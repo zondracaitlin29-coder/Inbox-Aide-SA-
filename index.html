@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox Aide | Communication Help From Zondra</title>
+    <style>
+        :root {
+            --olive: #4E684E;
+            --terra: #D98353;
+            --cream: #FAF7F0;
+            --navy: #1A2530;
+            --muted: #5A6A7A;
+            --border: #E2DBD0;
+            --card: #FFFFFF;
+            --light: #F3EFE6;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+        body { background: var(--cream); color: var(--navy); line-height: 1.6; }
+        .wrapper { max-width: 480px; margin: 0 auto; background: var(--cream); min-height: 100vh; }
+
+        nav {
+            display: flex; align-items: center; padding: 18px 22px;
+            border-bottom: 1px solid var(--border); background: var(--cream);
+            position: sticky; top: 0; z-index: 10;
+        }
+        .logo-box { width: 38px; height: 38px; border-radius: 8px; margin-right: 11px; overflow: hidden; flex-shrink: 0; }
+        .logo-img { width: 100%; height: 100%; object-fit: cover; }
+        .brand-name { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.3px; color: var(--navy); line-height: 1.2; }
+        .brand-sub { font-size: 0.68rem; color: var(--olive); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .hero { background: var(--cream); padding: 40px 24px 44px; border-bottom: 1px solid var(--border); }
+        .hero-intro { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+        .hero-avatar { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; border: 2px solid var(--terra); flex-shrink: 0; }
+        .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-intro-text { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+        .hero-intro-text strong { color: var(--navy); }
+        .eyebrow { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--terra); margin-bottom: 14px; }
+        .hero h1 { font-size: 1.95rem; line-height: 1.25; font-weight: 900; letter-spacing: -0.5px; color: var(--navy); margin-bottom: 16px; }
+        .hero h1 em { color: var(--terra); font-style: normal; }
+        .hero-sub { font-size: 0.96rem; color: var(--muted); margin-bottom: 26px; line-height: 1.7; }
+        .hero-stats { display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
+        .stat-box { display: flex; gap: 14px; align-items: flex-start; padding: 16px; background: #fff8f0; border: 1px solid var(--border); border-radius: 11px; }
+        .stat-icon { font-size: 1.6rem; flex-shrink: 0; }
+        .stat-content { flex: 1; }
+        .stat-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--terra); margin-bottom: 2px; }
+        .stat-text { font-size: 0.9rem; font-weight: 700; color: var(--navy); line-height: 1.4; }
+
+        .btn { display: block; width: 100%; padding: 16px; text-align: center; border-radius: 12px; font-weight: 800; text-decoration: none; font-size: 0.97rem; border: none; cursor: pointer; transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s; }
+        .btn:active { transform: scale(0.98); opacity: 0.92; }
+        .btn-terra { background: var(--terra); color: #fff; box-shadow: 0 2px 12px rgba(217, 131, 83, 0.15); }
+        .btn-terra:hover { box-shadow: 0 4px 16px rgba(217, 131, 83, 0.22); }
+        .btn-white { background: #fff; color: var(--terra); font-weight: 800; border: 1px solid var(--border); }
+        .btn-olive { background: var(--olive); color: #fff; box-shadow: 0 2px 12px rgba(78, 104, 78, 0.18); }
+        .btn-outline { background: transparent; color: var(--terra); border: 1.5px solid var(--terra); }
+        .link-secondary { display: block; text-align: center; font-size: 0.85rem; color: var(--olive); font-weight: 700; text-decoration: none; margin-top: 14px; }
+        .link-secondary:hover { text-decoration: underline; }
+
+        section { padding: 44px 24px; border-bottom: 1px solid var(--border); }
+        .section-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.3px; color: var(--terra); margin-bottom: 12px; display: block; }
+        h2 { font-size: 1.55rem; line-height: 1.28; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 12px; color: var(--navy); }
+        .section-sub { font-size: 0.94rem; color: var(--muted); margin-bottom: 28px; line-height: 1.68; }
+
+        /* PAIN POINTS */
+        .pain-section { background: #fff; }
+        .wins-grid { display: flex; flex-direction: column; gap: 12px; }
+        .win-card { background: var(--light); padding: 18px; border-radius: 11px; border: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
+        .win-icon { font-size: 1.3rem; flex-shrink: 0; }
+        .win-body p { font-size: 0.9rem; color: var(--navy); line-height: 1.55; font-weight: 500; }
+        .pain-transition { margin-top: 22px; font-size: 0.95rem; font-weight: 700; color: var(--terra); text-align: center; }
+
+        /* ABOUT / MEET ZONDRA */
+        .about-section { background: var(--light); }
+        .about-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 26px 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+        .about-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+        .about-avatar { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2.5px solid var(--terra); flex-shrink: 0; }
+        .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .about-name { font-size: 1.1rem; font-weight: 800; color: var(--navy); }
+        .about-role { font-size: 0.78rem; color: var(--olive); font-weight: 700; }
+        .about-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
+        .about-card p:last-child { margin-bottom: 0; }
+        .about-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--olive); font-weight: 700; background: #eaf0ea; padding: 8px 12px; border-radius: 20px; margin-top: 6px; }
+
+        /* PATH LADDER */
+        .path-section { background: #fff; }
+        .path-ladder { display: flex; flex-direction: column; gap: 12px; }
+        .path-card { display: flex; gap: 13px; background: var(--light); border: 1px solid var(--border); border-radius: 14px; padding: 17px; text-decoration: none; color: inherit; align-items: flex-start; }
+        .path-card:active { transform: scale(0.98); }
+        .path-num { width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--terra); font-weight: 900; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1.5px solid var(--terra); margin-top: 1px; }
+        .path-body { flex: 1; }
+        .path-tag { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--olive); margin-bottom: 3px; }
+        .path-title { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 3px; }
+        .path-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
+        .path-arrow { font-size: 1.1rem; color: var(--terra); align-self: center; flex-shrink: 0; margin-top: 1px; }
+
+        /* CHECKLIST */
+        .checklist-section { background: var(--light); }
+        .checklist-card { background: #fff; border-radius: 16px; padding: 26px 22px; border: 1px solid var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
+        .check-list { list-style: none; margin-bottom: 22px; }
+        .check-list li { font-size: 0.9rem; color: var(--navy); margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+        .check-mark { color: var(--olive); font-weight: 900; flex-shrink: 0; }
+        .nudge-box { margin-top: 24px; padding: 16px; background: #fff8f0; border: 1px dashed var(--terra); border-radius: 12px; font-size: 0.85rem; color: var(--navy); line-height: 1.6; text-align: center; }
+        .nudge-box a { color: var(--terra); font-weight: 800; text-decoration: none; }
+
+        /* INTERACTIVE QUIZ */
+        .quiz-group { margin-bottom: 20px; }
+        .quiz-group-title { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--olive); margin-bottom: 6px; }
+        .quiz-item { display: flex; align-items: flex-start; gap: 11px; font-size: 0.86rem; color: var(--navy); padding: 11px 2px; border-bottom: 1px solid var(--border); cursor: pointer; line-height: 1.5; }
+        .quiz-item:last-child { border-bottom: none; }
+        .quiz-item input[type="checkbox"] { width: 19px; height: 19px; flex-shrink: 0; margin-top: 1px; accent-color: var(--terra); cursor: pointer; }
+        .quiz-result { display: none; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border); text-align: center; }
+        .quiz-score { font-size: 2.3rem; font-weight: 900; color: var(--terra); margin-bottom: 4px; }
+        .quiz-tier { font-size: 0.95rem; font-weight: 800; margin-bottom: 10px; }
+        .quiz-tier.green { color: var(--olive); }
+        .quiz-tier.yellow { color: #b8860b; }
+        .quiz-tier.red { color: #c0392b; }
+        .quiz-message { font-size: 0.87rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+
+        /* AUDIT / HOW IT WORKS */
+        .audit-section { background: var(--card); }
+        .form-card { background: var(--light); border-radius: 16px; padding: 26px 22px; border: 1px solid var(--border); }
+
+        .slots-indicator { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-bottom: 24px; display: flex; gap: 16px; align-items: center; box-shadow: 0 1px 8px rgba(0,0,0,0.04); }
+        .slots-badge { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 62px; }
+        .slots-number { font-size: 2.2rem; font-weight: 900; color: var(--terra); line-height: 1; }
+        .slots-text { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-top: 6px; }
+        .slots-message { flex: 1; font-size: 0.87rem; color: var(--navy); line-height: 1.6; font-weight: 500; }
+
+        .steps { margin-bottom: 22px; display: flex; flex-direction: column; gap: 14px; }
+        .step { display: flex; gap: 12px; align-items: flex-start; }
+        .step-dot { width: 24px; height: 24px; border-radius: 50%; background: var(--terra); color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+        .step-body { font-size: 0.87rem; color: var(--navy); line-height: 1.6; }
+        .step-body strong { display: block; font-size: 0.92rem; margin-bottom: 2px; font-weight: 700; }
+
+        .form-note { font-size: 0.77rem; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.6; }
+
+        /* WHAT I LOOK AT */
+        .receive-section { background: #fff; }
+        .receive-grid { display: flex; flex-direction: column; gap: 12px; }
+        .receive-item { display: flex; gap: 13px; align-items: flex-start; padding: 17px; background: var(--light); border-radius: 12px; border: 1px solid var(--border); }
+        .receive-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 1px; }
+        .receive-body h4 { font-size: 0.93rem; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+        .receive-body p { font-size: 0.83rem; color: var(--muted); line-height: 1.55; }
+
+        /* PRODUCTS (TOOLKIT + VAULT) */
+        .products-section { background: var(--light); }
+        .product-grid { display: flex; flex-direction: column; gap: 16px; }
+        .product-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .product-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; gap: 10px; }
+        .product-name { font-size: 1.02rem; font-weight: 800; color: var(--navy); line-height: 1.3; }
+        .product-price { font-size: 1.3rem; font-weight: 900; color: var(--terra); white-space: nowrap; }
+        .product-tagline { font-size: 0.76rem; color: var(--olive); font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 12px; }
+        .product-desc { font-size: 0.86rem; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
+        .product-list { list-style: none; margin-bottom: 18px; }
+        .product-list li { font-size: 0.84rem; color: var(--navy); margin-bottom: 8px; display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
+        .product-check { color: var(--terra); font-weight: 900; flex-shrink: 0; }
+
+        /* TESTIMONIALS */
+        .testimonials-grid { display: flex; flex-direction: column; gap: 14px; margin-bottom: 8px; }
+        .testimonial-card { background: var(--light); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+        .testimonial-quote { font-size: 0.88rem; color: var(--navy); line-height: 1.7; margin-bottom: 12px; font-style: italic; }
+        .testimonial-author { font-size: 0.83rem; font-weight: 700; color: var(--terra); }
+        .testimonial-business { font-size: 0.76rem; color: var(--muted); }
+
+        /* FAQ */
+        .faq-section { background: #fff; }
+        .faq-item { margin-bottom: 14px; }
+        .faq-question { background: var(--light); padding: 16px; border-radius: 11px; cursor: pointer; font-weight: 700; font-size: 0.9rem; color: var(--navy); border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; user-select: none; gap: 10px; }
+        .faq-question:hover { background: #fff3e8; }
+        .faq-toggle { font-size: 1.2rem; color: var(--terra); flex-shrink: 0; }
+        .faq-answer { display: none; padding: 16px; background: #fafafa; border-left: 3px solid var(--terra); font-size: 0.86rem; color: var(--muted); line-height: 1.6; margin-top: 6px; }
+        .faq-answer.open { display: block; }
+
+        /* MANAGEMENT */
+        .package-section { background: var(--light); }
+        .package-card { border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .pkg-top { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 8px; }
+        .pkg-price { font-size: 2.5rem; font-weight: 900; color: var(--terra); line-height: 1; }
+        .pkg-period { font-size: 0.92rem; color: var(--muted); font-weight: 700; padding-bottom: 6px; }
+        .pkg-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border); line-height: 1.6; }
+        .pkg-list { list-style: none; margin-bottom: 22px; }
+        .pkg-list li { font-size: 0.89rem; color: var(--navy); margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+        .pkg-check { color: var(--terra); font-weight: 900; flex-shrink: 0; font-size: 1.05rem; }
+        .pkg-note { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 14px; line-height: 1.5; }
+
+        .final-cta { background: var(--terra); text-align: center; border-bottom: none; }
+        .final-cta h2 { color: #fff; margin-bottom: 12px; }
+        .final-cta p { color: rgba(255,255,255,0.92); font-size: 0.95rem; margin-bottom: 26px; line-height: 1.7; }
+        .final-cta .link-secondary { color: #fff; opacity: 0.92; }
+
+        footer { text-align: center; padding: 40px 24px; font-size: 0.82rem; color: var(--muted); background: var(--cream); }
+        footer strong { color: var(--navy); }
+        footer a { color: var(--terra); text-decoration: none; font-weight: 600; }
+        footer .footer-signature { font-size: 0.8rem; color: var(--olive); font-weight: 700; margin-bottom: 10px; }
+        .footer-social { display: none; justify-content: center; gap: 18px; margin-top: 14px; }
+        .footer-social a { font-size: 0.82rem; font-weight: 700; color: var(--terra); text-decoration: none; }
+
+        /* ADMIN PANEL */
+        .admin-panel {
+            display: none;
+            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; max-width: 480px;
+            background: var(--navy); border-top: 3px solid var(--terra);
+            padding: 16px 20px; z-index: 999; max-height: 90vh; overflow-y: auto;
+        }
+        .admin-header { color: #94A3B8; font-size: 0.75rem; text-align: center; margin-bottom: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .admin-tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+        .admin-tab {
+            flex: 1; min-width: 70px; padding: 10px; background: rgba(255,255,255,0.1); color: #94A3B8;
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+            font-size: 0.68rem; font-weight: 700; text-transform: uppercase; cursor: pointer;
+            transition: all 0.15s;
+        }
+        .admin-tab.active { background: var(--terra); color: #fff; border-color: var(--terra); }
+        .admin-content { display: none; }
+        .admin-content.active { display: block; }
+        .admin-btns { display: flex; gap: 8px; margin-bottom: 12px; }
+        .admin-btn {
+            flex: 1; padding: 12px; border: none; border-radius: 10px;
+            font-size: 0.85rem; font-weight: 900; cursor: pointer;
+            transition: transform 0.15s;
+        }
+        .admin-btn:active { transform: scale(0.95); }
+        .admin-btn.s1 { background: #ffe0e0; color: #c0392b; }
+        .admin-btn.s2 { background: #fff3cd; color: #b8860b; }
+        .admin-btn.s3 { background: #d4edda; color: #155724; }
+        .admin-status {
+            color: var(--terra); font-size: 0.75rem; text-align: center;
+            margin: 10px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .admin-section { margin-bottom: 16px; }
+        .admin-section-title { color: #94A3B8; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .admin-input {
+            display: block; width: 100%; padding: 10px; margin-bottom: 8px;
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+            font-size: 0.85rem; background: rgba(255,255,255,0.05); color: #fff;
+            font-family: inherit;
+        }
+        .admin-input::placeholder { color: #64748B; }
+        .admin-label { font-size: 0.75rem; color: #94A3B8; display: block; margin-bottom: 4px; font-weight: 700; margin-top: 10px; }
+        .admin-btn-add {
+            width: 100%; padding: 10px; background: var(--terra); color: #fff;
+            border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; margin-bottom: 12px;
+        }
+        .item-row {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; padding: 12px; margin-bottom: 8px; font-size: 0.78rem;
+            color: #E2E8F0;
+        }
+        .item-preview { margin-bottom: 8px; }
+        .item-controls { display: flex; gap: 6px; }
+        .item-delete { background: #c0392b; color: #fff; flex: 1; padding: 6px; border: none; border-radius: 4px; font-size: 0.7rem; font-weight: 700; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- HEADER NAV -->
+    <nav>
+        <div class="logo-box">
+            <img src="https://images.selar.co/p0vjlkv6pxz0n2qu" alt="Inbox Aide Logo" class="logo-img" id="navLogoImg">
+        </div>
+        <div>
+            <div class="brand-name">Inbox Aide</div>
+            <div class="brand-sub">with Zondra</div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-intro">
+            <div class="hero-avatar"><img src="https://images.selar.co/p0vjlkv6pxz0n2qu" alt="Zondra" id="heroAvatarImg"></div>
+            <div class="hero-intro-text">Hi, I'm <strong>Zondra</strong> 👋 — nice to meet you.</div>
+        </div>
+        <span class="eyebrow">For small business owners buried in DMs</span>
+        <h1>Your customers are messaging you right now. <em>Are you replying fast enough?</em></h1>
+        <p class="hero-sub">I help small businesses fix their WhatsApp and Facebook replies — so fewer customers slip away while you're busy running everything else. No agency, no call centre. Just me, helping you build something that actually works.</p>
+        <div class="hero-stats">
+            <div class="stat-box">
+                <div class="stat-icon">😩</div>
+                <div class="stat-content">
+                    <div class="stat-label">Right Now</div>
+                    <div class="stat-text">Same questions, every day. Replies that take hours. No system, just chaos.</div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">✨</div>
+                <div class="stat-content">
+                    <div class="stat-label">After We Fix It</div>
+                    <div class="stat-text">Fast replies. Ready-made templates. Customers who feel looked after.</div>
+                </div>
+            </div>
+        </div>
+        <a href="#checklist" class="btn btn-terra">Get My Free Checklist</a>
+        <a href="#audit" class="link-secondary">Already know you need help? Book your free audit →</a>
+    </section>
+
+    <!-- PAIN POINTS -->
+    <section class="pain-section">
+        <span class="section-label">Sound Familiar?</span>
+        <h2>If this feels like your inbox, you're not alone.</h2>
+        <div class="wins-grid">
+            <div class="win-card">
+                <div class="win-icon">😩</div>
+                <div class="win-body"><p>You're typing the same 5 answers over and over, every single day.</p></div>
+            </div>
+            <div class="win-card">
+                <div class="win-icon">⏰</div>
+                <div class="win-body"><p>Customers wait hours — sometimes days — for a reply. Some just disappear.</p></div>
+            </div>
+            <div class="win-card">
+                <div class="win-icon">📵</div>
+                <div class="win-body"><p>Facebook comments and DMs pile up faster than you can keep track of.</p></div>
+            </div>
+            <div class="win-card">
+                <div class="win-icon">🤷</div>
+                <div class="win-body"><p>You know your replies need work — you just don't know where to start.</p></div>
+            </div>
+        </div>
+        <p class="pain-transition">That's exactly where I come in.</p>
+    </section>
+
+    <!-- MEET ZONDRA -->
+    <section class="about-section">
+        <span class="section-label">About Me</span>
+        <h2>Hi, I'm Zondra.</h2>
+        <div class="about-card">
+            <div class="about-top">
+                <div class="about-avatar"><img src="https://images.selar.co/p0vjlkv6pxz0n2qu" alt="Zondra" id="aboutAvatarImg"></div>
+                <div>
+                    <div class="about-name">Zondra</div>
+                    <div class="about-role">Founder, Inbox Aide</div>
+                </div>
+            </div>
+            <p>I started Inbox Aide because I kept seeing small businesses lose customers over something completely fixable — slow, disorganized replies. Not bad products. Not bad service. Just a messy inbox.</p>
+            <p>I'm not running an agency. I work with businesses directly, one inbox at a time, from my phone, wherever I am. I only take on <strong>1–2 management clients at a time</strong> — because I'd rather do a handful of inboxes brilliantly than a hundred badly.</p>
+            <p>Everything else I've built — my checklist, my guide, my app — exists so you can fix things yourself too, at your own pace, even if you never become a client.</p>
+            <span class="about-tag">📍 South Africa · WhatsApp &amp; Facebook specialist</span>
+        </div>
+    </section>
+
+    <!-- PATH LADDER -->
+    <section class="path-section">
+        <span class="section-label">Where To Start</span>
+        <h2>Pick your starting point.</h2>
+        <p class="section-sub">Every inbox is different, and so is every budget. Here's how most people work with me — start wherever fits you right now.</p>
+        <div class="path-ladder">
+            <a href="#checklist" class="path-card">
+                <div class="path-num">1</div>
+                <div class="path-body">
+                    <div class="path-tag">Free · Do it yourself</div>
+                    <div class="path-title">Self-Communication Checklist</div>
+                    <div class="path-desc">Answer 15 quick questions right here and get your score instantly.</div>
+                </div>
+                <div class="path-arrow">→</div>
+            </a>
+            <a href="#audit" class="path-card">
+                <div class="path-num">2</div>
+                <div class="path-body">
+                    <div class="path-tag">Free · 3 spots weekly</div>
+                    <div class="path-title">Communication Audit</div>
+                    <div class="path-desc">I personally review your inbox and send you findings.</div>
+                </div>
+                <div class="path-arrow">→</div>
+            </a>
+            <a href="#toolkit" class="path-card">
+                <div class="path-num">3</div>
+                <div class="path-body">
+                    <div class="path-tag">From R30 · DIY tools</div>
+                    <div class="path-title">Reply Toolkit &amp; Reply Vault</div>
+                    <div class="path-desc">Templates and frameworks you can use today.</div>
+                </div>
+                <div class="path-arrow">→</div>
+            </a>
+            <a href="#management" class="path-card">
+                <div class="path-num">4</div>
+                <div class="path-body">
+                    <div class="path-tag">Limited · 1–2 clients only</div>
+                    <div class="path-title">DM Management</div>
+                    <div class="path-desc">I manage your inbox for you, personally, every week.</div>
+                </div>
+                <div class="path-arrow">→</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- CHECKLIST (INTERACTIVE SELF-AUDIT) -->
+    <section class="checklist-section" id="checklist">
+        <span class="section-label">Start Here — It's Free</span>
+        <h2>Take the 2-Minute Communication Check.</h2>
+        <p class="section-sub">Think about your last 10 conversations on WhatsApp or Facebook, then check every box that's true for your business right now. No email, no sign-up — your score shows up instantly below.</p>
+
+        <div class="checklist-card">
+            <div class="quiz-group">
+                <div class="quiz-group-title">Before They Message You</div>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Is your pricing easy to find?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you mention deposits or requirements before customers enquire?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Is your booking or ordering process explained somewhere?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do customers know your business hours?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you explain what's included in your service or product?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you answer common FAQs somewhere customers can see?</span></label>
+            </div>
+
+            <div class="quiz-group">
+                <div class="quiz-group-title">When They Message You</div>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you reply within 30 minutes during business hours?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you have a greeting or welcome message set up?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you use templates for your most-asked questions?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Does your tone match your brand — friendly, clear, and professional?</span></label>
+            </div>
+
+            <div class="quiz-group">
+                <div class="quiz-group-title">After They Message You</div>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you follow up if a customer goes quiet?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Does every conversation have a clear next step?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you flag hot leads so none get missed?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you check Facebook comments and DMs as often as WhatsApp?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you know how many enquiries actually turn into sales?</span></label>
+            </div>
+
+            <button type="button" class="btn btn-terra" onclick="calculateScore()">Check My Score</button>
+
+            <div class="quiz-result" id="quizResult">
+                <div class="quiz-score" id="quizScoreNum">0/15</div>
+                <div class="quiz-tier" id="quizTierLabel"></div>
+                <p class="quiz-message" id="quizMessage"></p>
+                <a href="#audit" class="btn btn-terra" id="quizCta">Want A Second Opinion? Book My Free Audit</a>
+                <a href="#" class="link-secondary" onclick="resetQuiz(); return false;">Retake the check</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUDIT -->
+    <section class="audit-section" id="audit">
+        <span class="section-label">Go Deeper</span>
+        <h2>Ready for a closer look? Book your free audit.</h2>
+        <p class="section-sub">I'll personally go through your WhatsApp and Facebook conversations and send you a detailed, honest breakdown within 24 hours — no scripts, no templates, just me looking at your actual inbox.</p>
+
+        <div class="form-card">
+            <div class="slots-indicator">
+                <div class="slots-badge">
+                    <div class="slots-number" id="slotCount">3</div>
+                    <div class="slots-text">Spots Left</div>
+                </div>
+                <div class="slots-message">I only take a few audits a week so I can give each one proper attention.</div>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-dot">1</div>
+                    <div class="step-body"><strong>Share your inbox.</strong>Send me screenshots of your recent conversations — or add me as a contact so I can review them directly.</div>
+                </div>
+                <div class="step">
+                    <div class="step-dot">2</div>
+                    <div class="step-body"><strong>I go through everything myself.</strong>Response speed, tone, repeated questions, missed leads, and where your customer journey breaks down.</div>
+                </div>
+                <div class="step">
+                    <div class="step-dot">3</div>
+                    <div class="step-body"><strong>You get real findings.</strong>Within 24 hours, I send you a clear WhatsApp breakdown of what's working, what's not, and what to fix first.</div>
+                </div>
+            </div>
+
+            <a href="https://wa.link/i8kqhj" id="auditLink" class="btn btn-terra">Reserve My Free Audit</a>
+            <p class="form-note">No credit card. No sales pitch. Just an honest look at your inbox — and if you want next steps, I'll point you to the right one, whether that's my templates, my app, or working with me directly.</p>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials-section" style="display: none;">
+        <span class="section-label">Don't Take My Word For It</span>
+        <h2>What small businesses are saying.</h2>
+        <div class="testimonials-grid" id="testimonialsContainer"></div>
+    </section>
+
+    <!-- WHAT I EVALUATE -->
+    <section class="receive-section">
+        <span class="section-label">What I Actually Look At</span>
+        <h2>A real look at your inbox, not a generic checklist.</h2>
+        <div class="receive-grid">
+            <div class="receive-item">
+                <div class="receive-icon">⚡</div>
+                <div class="receive-body">
+                    <h4>Response Speed</h4>
+                    <p>Are customers waiting 4+ hours, or hearing back within 30 minutes?</p>
+                </div>
+            </div>
+            <div class="receive-item">
+                <div class="receive-icon">👋</div>
+                <div class="receive-body">
+                    <h4>First Impressions</h4>
+                    <p>Your opening message sets the tone — does it build trust or push people away?</p>
+                </div>
+            </div>
+            <div class="receive-item">
+                <div class="receive-icon">🔄</div>
+                <div class="receive-body">
+                    <h4>Repetition</h4>
+                    <p>Which questions are you answering over and over? Where could a template save you hours?</p>
+                </div>
+            </div>
+            <div class="receive-item">
+                <div class="receive-icon">💰</div>
+                <div class="receive-body">
+                    <h4>Lost Sales</h4>
+                    <p>Where do conversations quietly stop, and what would it take to keep them moving?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS: TOOLKIT + VAULT -->
+    <section class="products-section" id="toolkit">
+        <span class="section-label">Prefer To DIY?</span>
+        <h2>Fix it yourself, at your own pace.</h2>
+        <p class="section-sub">Not ready for an audit or management yet? Start with my templates — built from real conversations with South African small businesses.</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-top">
+                    <div class="product-name">Reply Toolkit Guide</div>
+                    <div class="product-price">R30</div>
+                </div>
+                <div class="product-tagline">One-time · Instant download</div>
+                <p class="product-desc">A practical guide packed with reply frameworks, tone tips, and message structures you can copy straight into WhatsApp today.</p>
+                <ul class="product-list">
+                    <li><span class="product-check">✓</span> Reply templates for your most-asked questions</li>
+                    <li><span class="product-check">✓</span> A tone &amp; clarity checklist</li>
+                    <li><span class="product-check">✓</span> Simple, no fluff, straight to the point</li>
+                </ul>
+                <a href="#" id="toolkitLink" class="btn btn-outline">Get The Guide — R30</a>
+            </div>
+            <div class="product-card">
+                <div class="product-top">
+                    <div class="product-name">Reply Vault App</div>
+                    <div class="product-price">R120</div>
+                </div>
+                <div class="product-tagline">One-time · Lifetime access</div>
+                <p class="product-desc">96 ready-to-send WhatsApp reply templates for South African small businesses, organized and ready in one simple app.</p>
+                <ul class="product-list">
+                    <li><span class="product-check">✓</span> 96 professional templates, ready to use</li>
+                    <li><span class="product-check">✓</span> Organized by category — find it fast</li>
+                    <li><span class="product-check">✓</span> Copy, paste, send — done in seconds</li>
+                </ul>
+                <a href="#" id="vaultLink" class="btn btn-outline">Get Reply Vault — R120</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <span class="section-label">Questions</span>
+        <h2>Things people usually ask me.</h2>
+        <div id="faqContainer"></div>
+    </section>
+
+    <!-- MANAGEMENT -->
+    <section class="package-section" id="management">
+        <span class="section-label">Limited Availability</span>
+        <h2>Want me to manage it for you?</h2>
+        <p class="section-sub">I only take on 1–2 management clients at a time — so the businesses I do work with get my full attention, not a shared inbox handled by a team.</p>
+
+        <div class="slots-indicator">
+            <div class="slots-badge">
+                <div class="slots-number" id="clientSpotCount">1</div>
+                <div class="slots-text">Spot Open</div>
+            </div>
+            <div class="slots-message">When this hits zero, I'm fully booked — message me to check current availability.</div>
+        </div>
+
+        <div class="package-card">
+            <div class="pkg-top">
+                <div class="pkg-price">R450</div>
+                <div class="pkg-period">/ week</div>
+            </div>
+            <div class="pkg-sub">Monday – Friday · 09:00–17:00 · No long contracts · EFT or PayShap</div>
+            <ul class="pkg-list">
+                <li><span class="pkg-check">✓</span>Hourly inbox sweeps on WhatsApp &amp; Facebook during business hours</li>
+                <li><span class="pkg-check">✓</span>Every reply sent in your brand voice — fast and professional</li>
+                <li><span class="pkg-check">✓</span>Facebook comments engaged and converted to DMs</li>
+                <li><span class="pkg-check">✓</span>Hot leads flagged and followed up within 24 hours</li>
+                <li><span class="pkg-check">✓</span>Complex issues escalated straight to you — nothing gets dropped</li>
+                <li><span class="pkg-check">✓</span>Weekly summary: lead volume, response times, and conversions</li>
+            </ul>
+            <a href="#" id="managementLink" class="btn btn-olive">Message Me About Management</a>
+            <p class="pkg-note">Most people start with the free audit first to see if it's a fit. Totally fine to jump straight here too.</p>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <h2>Let's fix your inbox — together.</h2>
+        <p>Whether you start with the checklist, book the audit, grab my templates, or hand it all over to me — I'm here to help you stop losing customers to slow replies.</p>
+        <a href="#checklist" class="btn btn-white">Get My Free Checklist</a>
+        <a href="#audit" class="link-secondary">or book your free audit →</a>
+    </section>
+
+    <footer>
+        <p class="footer-signature">— Zondra, Inbox Aide</p>
+        <p><strong>Inbox Aide</strong></p>
+        <p style="margin-top:6px;">WhatsApp: <a href="#" id="footerWhatsappLink"><span id="footerWhatsappText">076 826 0594</span></a></p>
+        <p style="margin-top:4px;">Monday – Friday · 09:00 – 17:00</p>
+        <div class="footer-social" id="footerSocial">
+            <a href="#" id="footerFacebook" target="_blank" rel="noopener">Facebook</a>
+            <a href="#" id="footerInstagram" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <p style="margin-top:18px;opacity:0.5;">© 2026 Inbox Aide</p>
+    </footer>
+
+</div>
+
+<!-- ADMIN PANEL (only visible at ?admin) -->
+<div class="admin-panel" id="adminPanel">
+    <div class="admin-header">⚙️ Inbox Aide Admin</div>
+
+    <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchTab('slots')">Audit Slots</button>
+        <button class="admin-tab" onclick="switchTab('clientspots')">Client Spots</button>
+        <button class="admin-tab" onclick="switchTab('testimonials')">Testimonials</button>
+        <button class="admin-tab" onclick="switchTab('faq')">FAQ</button>
+        <button class="admin-tab" onclick="switchTab('links')">Settings</button>
+    </div>
+
+    <!-- AUDIT SLOTS TAB -->
+    <div class="admin-content active" id="slots-tab">
+        <div class="admin-section-title">Available Audit Slots (this week)</div>
+        <div class="admin-btns">
+            <button class="admin-btn s1" onclick="setSlots(0)">0</button>
+            <button class="admin-btn s2" onclick="setSlots(1)">1</button>
+            <button class="admin-btn s2" onclick="setSlots(2)">2</button>
+            <button class="admin-btn s3" onclick="setSlots(3)">3</button>
+        </div>
+        <div class="admin-status" id="slotsStatus"></div>
+    </div>
+
+    <!-- CLIENT SPOTS TAB -->
+    <div class="admin-content" id="clientspots-tab">
+        <div class="admin-section-title">Open Management Client Spots</div>
+        <div class="admin-btns">
+            <button class="admin-btn s1" onclick="setClientSpots(0)">0</button>
+            <button class="admin-btn s2" onclick="setClientSpots(1)">1</button>
+            <button class="admin-btn s3" onclick="setClientSpots(2)">2</button>
+        </div>
+        <div class="admin-status" id="clientSpotsStatus"></div>
+    </div>
+
+    <!-- TESTIMONIALS TAB -->
+    <div class="admin-content" id="testimonials-tab">
+        <div class="admin-section-title">Add Testimonial</div>
+        <input type="text" class="admin-input" id="testAuthor" placeholder="Name & business">
+        <input type="text" class="admin-input" id="testBusiness" placeholder="Business type">
+        <textarea class="admin-input" id="testQuote" placeholder="Quote" style="resize: vertical; min-height: 50px;"></textarea>
+        <button class="admin-btn-add" onclick="addTestimonial()">Add Testimonial</button>
+        <div class="admin-section-title" style="margin-top: 14px; margin-bottom: 8px;">All Testimonials</div>
+        <div id="testList"></div>
+        <div class="admin-status" id="testStatus"></div>
+    </div>
+
+    <!-- FAQ TAB -->
+    <div class="admin-content" id="faq-tab">
+        <div class="admin-section-title">Add FAQ Item</div>
+        <input type="text" class="admin-input" id="faqQuestion" placeholder="Question">
+        <textarea class="admin-input" id="faqAnswer" placeholder="Answer" style="resize: vertical; min-height: 50px;"></textarea>
+        <button class="admin-btn-add" onclick="addFaqItem()">Add FAQ</button>
+        <div class="admin-section-title" style="margin-top: 14px; margin-bottom: 8px;">All FAQ Items</div>
+        <div id="faqList"></div>
+        <div class="admin-status" id="faqStatus"></div>
+    </div>
+
+    <!-- SETTINGS TAB (everything editable: logo, links, socials) -->
+    <div class="admin-content" id="links-tab">
+        <div class="admin-section-title">Your Photo / Logo</div>
+        <label class="admin-label" style="margin-top:0;">Image URL — used in header, hero &amp; about section</label>
+        <input type="text" class="admin-input" id="settingLogo" placeholder="https://...">
+
+        <div class="admin-section-title" style="margin-top:16px;">Button &amp; Contact Links</div>
+        <label class="admin-label" style="margin-top:0;">Audit Booking Link</label>
+        <input type="text" class="admin-input" id="linkWhatsapp" placeholder="https://wa.link/...">
+
+        <label class="admin-label">Management Contact Link</label>
+        <input type="text" class="admin-input" id="linkManagement" placeholder="https://form.jotform.com/... or wa.link">
+
+        <label class="admin-label">Reply Toolkit Guide Link (Selar)</label>
+        <input type="text" class="admin-input" id="linkToolkit" placeholder="https://selar.co/...">
+
+        <label class="admin-label">Reply Vault App Link (Selar)</label>
+        <input type="text" class="admin-input" id="linkVault" placeholder="https://selar.co/...">
+
+        <div class="admin-section-title" style="margin-top:16px;">Footer Contact</div>
+        <label class="admin-label" style="margin-top:0;">Footer WhatsApp Link</label>
+        <input type="text" class="admin-input" id="linkFooterWhatsapp" placeholder="https://wa.me/27...">
+
+        <label class="admin-label">Footer WhatsApp Display Text</label>
+        <input type="text" class="admin-input" id="settingWhatsappDisplay" placeholder="076 826 0594">
+
+        <div class="admin-section-title" style="margin-top:16px;">Social Links (optional)</div>
+        <label class="admin-label" style="margin-top:0;">Facebook Link</label>
+        <input type="text" class="admin-input" id="linkFacebook" placeholder="https://facebook.com/...">
+
+        <label class="admin-label">Instagram Link</label>
+        <input type="text" class="admin-input" id="linkInstagram" placeholder="https://instagram.com/...">
+
+        <button class="admin-btn-add" onclick="saveLinks()" style="margin-top:14px;">Save Settings</button>
+        <div class="admin-status" id="linksStatus"></div>
+    </div>
+</div>
+
+<script>
+    const BIN_ID  = "6a2417f6da38895dfe90c8ba";
+    const API_KEY = "$2a$10$csJPQWRM/9aFQnQDXBZo/O96k.i8h/Lw2kgYIWUNscvTbic9qo6Pu";
+    const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
+    let currentData = {};
+
+    // ── Load all data with fallback ────────────────────────────────────────────
+    async function loadData() {
+        try {
+            const res = await fetch(BIN_URL + '/latest', {
+                headers: { 'X-Master-Key': API_KEY }
+            });
+            if (!res.ok) throw new Error('API Error');
+            const data = await res.json();
+            currentData = data.record || {};
+        } catch(e) {
+            // Use defaults if API fails
+        }
+
+        // Always set defaults for missing values
+        if (currentData.slots === undefined) currentData.slots = 3;
+        if (currentData.clientSpots === undefined) currentData.clientSpots = 1;
+        if (!currentData.brand) currentData.brand = {};
+        if (!currentData.brand.logoUrl) currentData.brand.logoUrl = "https://images.selar.co/p0vjlkv6pxz0n2qu";
+        if (!currentData.brand.whatsappDisplay) currentData.brand.whatsappDisplay = "076 826 0594";
+        if (!currentData.testimonials) currentData.testimonials = [];
+        if (!currentData.faqItems) {
+            currentData.faqItems = [
+                {
+                    question: "What's the difference between the checklist and the audit?",
+                    answer: "The checklist is something you score yourself in 5 minutes — great for a quick gut-check. The audit is me personally going through your actual conversations and sending you a detailed breakdown. Most people do the checklist first, then book the audit."
+                },
+                {
+                    question: "How long does the audit actually take?",
+                    answer: "Your time: about 5 minutes to send me screenshots or grant access. My time: 2–3 hours to properly review your communication and prepare honest findings."
+                },
+                {
+                    question: "Do you need my password or full access?",
+                    answer: "No. You can send me screenshots of your conversations, or add me as a contact so I can review your chat history. I never ask for passwords or login details."
+                },
+                {
+                    question: "When will I get my report?",
+                    answer: "Within 24 hours, sent directly via WhatsApp — what's working, what's not, and exactly what to change first."
+                },
+                {
+                    question: "Is this going to turn into a sales pitch?",
+                    answer: "No sales calls, no pressure. You get an honest evaluation either way. If you want next steps after that, I'll point you to my templates, my app, or management — but the audit stands on its own."
+                },
+                {
+                    question: "I only have R30–R120 to spend right now — where do I start?",
+                    answer: "Start with the Reply Toolkit Guide (R30) or Reply Vault App (R120). Both are built to help you fix your replies yourself, no audit or ongoing commitment needed."
+                }
+            ];
+        }
+        if (!currentData.links) {
+            currentData.links = {
+                management: "https://form.jotform.com/261363512824050",
+                whatsapp: "https://wa.link/i8kqhj",
+                toolkit: "https://selar.co/",
+                vault: "https://selar.co/",
+                footerWhatsapp: "https://wa.me/27768260594",
+                facebook: "",
+                instagram: ""
+            };
+        }
+        // Backfill any newly introduced link fields for existing saved data
+        if (!currentData.links.toolkit) currentData.links.toolkit = "https://selar.co/";
+        if (!currentData.links.vault) currentData.links.vault = "https://selar.co/";
+        if (!currentData.links.footerWhatsapp) currentData.links.footerWhatsapp = "https://wa.me/27768260594";
+        if (currentData.links.facebook === undefined) currentData.links.facebook = "";
+        if (currentData.links.instagram === undefined) currentData.links.instagram = "";
+
+        // Display everything
+        displaySlots(currentData.slots);
+        displayClientSpots(currentData.clientSpots);
+        displayTestimonials(currentData.testimonials);
+        displayFaq(currentData.faqItems);
+        applyBrand();
+        applyLinks();
+        applySocial();
+
+        if (window.location.search.includes('admin')) {
+            populateAdminFields();
+        }
+    }
+
+    async function saveData() {
+        try {
+            const res = await fetch(BIN_URL, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': API_KEY
+                },
+                body: JSON.stringify(currentData)
+            });
+            return res.ok;
+        } catch(e) {
+            return false;
+        }
+    }
+
+    function applyLinks() {
+        document.getElementById('auditLink').href = currentData.links.whatsapp || "https://wa.link/i8kqhj";
+        document.getElementById('quizCta').href = currentData.links.whatsapp || "https://wa.link/i8kqhj";
+        document.getElementById('toolkitLink').href = currentData.links.toolkit;
+        document.getElementById('vaultLink').href = currentData.links.vault;
+        document.getElementById('managementLink').href = currentData.links.management || "https://form.jotform.com/261363512824050";
+        document.getElementById('footerWhatsappLink').href = currentData.links.footerWhatsapp || "https://wa.me/27768260594";
+    }
+
+    function applyBrand() {
+        const logo = currentData.brand.logoUrl || "https://images.selar.co/p0vjlkv6pxz0n2qu";
+        document.getElementById('navLogoImg').src = logo;
+        document.getElementById('heroAvatarImg').src = logo;
+        document.getElementById('aboutAvatarImg').src = logo;
+        document.getElementById('footerWhatsappText').textContent = currentData.brand.whatsappDisplay || "076 826 0594";
+    }
+
+    function applySocial() {
+        const fb = currentData.links.facebook;
+        const ig = currentData.links.instagram;
+        const fbEl = document.getElementById('footerFacebook');
+        const igEl = document.getElementById('footerInstagram');
+        let any = false;
+        if (fb) { fbEl.href = fb; fbEl.style.display = 'inline'; any = true; } else { fbEl.style.display = 'none'; }
+        if (ig) { igEl.href = ig; igEl.style.display = 'inline'; any = true; } else { igEl.style.display = 'none'; }
+        document.getElementById('footerSocial').style.display = any ? 'flex' : 'none';
+    }
+
+    function calculateScore() {
+        const checks = document.querySelectorAll('.quiz-check');
+        let score = 0;
+        checks.forEach(c => { if (c.checked) score++; });
+        const total = checks.length;
+        document.getElementById('quizScoreNum').textContent = `${score}/${total}`;
+        const tierEl = document.getElementById('quizTierLabel');
+        const msgEl = document.getElementById('quizMessage');
+        tierEl.className = 'quiz-tier';
+        if (score >= 13) {
+            tierEl.classList.add('green');
+            tierEl.textContent = '🟢 Great shape!';
+            msgEl.textContent = "Your inbox is already working well. A few small tweaks could make it even smoother — that's exactly what a free audit is good for.";
+        } else if (score >= 8) {
+            tierEl.classList.add('yellow');
+            tierEl.textContent = '🟡 Room to improve';
+            msgEl.textContent = "You're doing okay, but there are real gaps here that are likely costing you time — and a few customers along the way.";
+        } else {
+            tierEl.classList.add('red');
+            tierEl.textContent = '🔴 Losing customers';
+            msgEl.textContent = "Right now, gaps in your communication are probably costing you enquiries and sales. The good news: most of this is fixable fast.";
+        }
+        const resultBox = document.getElementById('quizResult');
+        resultBox.style.display = 'block';
+        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function resetQuiz() {
+        document.querySelectorAll('.quiz-check').forEach(c => c.checked = false);
+        document.getElementById('quizResult').style.display = 'none';
+        document.getElementById('checklist').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function displaySlots(n) {
+        const el = document.getElementById('slotCount');
+        el.textContent = n;
+        el.style.color = n === 0 ? '#c0392b' : 'var(--terra)';
+    }
+
+    async function setSlots(n) {
+        const status = document.getElementById('slotsStatus');
+        status.textContent = 'Saving…';
+        currentData.slots = n;
+        if (await saveData()) {
+            displaySlots(n);
+            status.textContent = `✓ Updated to ${n} slot${n !== 1 ? 's' : ''}`;
+            setTimeout(() => status.textContent = '', 2000);
+        } else {
+            status.textContent = '✗ Save failed';
+        }
+    }
+
+    function displayClientSpots(n) {
+        const el = document.getElementById('clientSpotCount');
+        el.textContent = n;
+        el.style.color = n === 0 ? '#c0392b' : 'var(--terra)';
+    }
+
+    async function setClientSpots(n) {
+        const status = document.getElementById('clientSpotsStatus');
+        status.textContent = 'Saving…';
+        currentData.clientSpots = n;
+        if (await saveData()) {
+            displayClientSpots(n);
+            status.textContent = `✓ Updated to ${n} spot${n !== 1 ? 's' : ''}`;
+            setTimeout(() => status.textContent = '', 2000);
+        } else {
+            status.textContent = '✗ Save failed';
+        }
+    }
+
+    function displayTestimonials(testimonials) {
+        const container = document.getElementById('testimonialsContainer');
+        if (testimonials.length === 0) {
+            document.getElementById('testimonials-section').style.display = 'none';
+            return;
+        }
+        document.getElementById('testimonials-section').style.display = 'block';
+        container.innerHTML = '';
+        testimonials.forEach(t => {
+            const card = document.createElement('div');
+            card.className = 'testimonial-card';
+            card.innerHTML = `
+                <div class="testimonial-quote">"${t.quote}"</div>
+                <div class="testimonial-author">${t.author}</div>
+                <div class="testimonial-business">${t.business}</div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function renderTestimonialList(testimonials) {
+        const list = document.getElementById('testList');
+        list.innerHTML = '';
+        testimonials.forEach((t, idx) => {
+            const item = document.createElement('div');
+            item.className = 'item-row';
+            item.innerHTML = `
+                <div class="item-preview">
+                    <strong>${t.author}</strong> (${t.business})<br>
+                    <small>"${t.quote.substring(0, 50)}..."</small>
+                </div>
+                <div class="item-controls">
+                    <button class="item-delete" onclick="removeTestimonial(${idx})">Delete</button>
+                </div>
+            `;
+            list.appendChild(item);
+        });
+    }
+
+    async function addTestimonial() {
+        const author = document.getElementById('testAuthor').value.trim();
+        const business = document.getElementById('testBusiness').value.trim();
+        const quote = document.getElementById('testQuote').value.trim();
+        const status = document.getElementById('testStatus');
+
+        if (!author || !business || !quote) {
+            status.textContent = '✗ Fill all fields';
+            setTimeout(() => status.textContent = '', 2000);
+            return;
+        }
+
+        currentData.testimonials.push({ author, business, quote });
+        if (await saveData()) {
+            status.textContent = '✓ Added';
+            document.getElementById('testAuthor').value = '';
+            document.getElementById('testBusiness').value = '';
+            document.getElementById('testQuote').value = '';
+            displayTestimonials(currentData.testimonials);
+            renderTestimonialList(currentData.testimonials);
+            setTimeout(() => status.textContent = '', 2000);
+        } else {
+            status.textContent = '✗ Save failed';
+        }
+    }
+
+    async function removeTestimonial(idx) {
+        currentData.testimonials.splice(idx, 1);
+        if (await saveData()) {
+            displayTestimonials(currentData.testimonials);
+            renderTestimonialList(currentData.testimonials);
+        }
+    }
+
+    function displayFaq(faqItems) {
+        const container = document.getElementById('faqContainer');
+        container.innerHTML = '';
+        faqItems.forEach((item) => {
+            const div = document.createElement('div');
+            div.className = 'faq-item';
+            div.innerHTML = `
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    ${item.question}
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">${item.answer}</div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function renderFaqList(faqItems) {
+        const list = document.getElementById('faqList');
+        list.innerHTML = '';
+        faqItems.forEach((item, idx) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'item-row';
+            itemDiv.innerHTML = `
+                <div class="item-preview">
+                    <strong>${item.question}</strong><br>
+                    <small>${item.answer.substring(0, 50)}...</small>
+                </div>
+                <div class="item-controls">
+                    <button class="item-delete" onclick="removeFaqItem(${idx})">Delete</button>
+                </div>
+            `;
+            list.appendChild(itemDiv);
+        });
+    }
+
+    async function addFaqItem() {
+        const question = document.getElementById('faqQuestion').value.trim();
+        const answer = document.getElementById('faqAnswer').value.trim();
+        const status = document.getElementById('faqStatus');
+
+        if (!question || !answer) {
+            status.textContent = '✗ Fill all fields';
+            setTimeout(() => status.textContent = '', 2000);
+            return;
+        }
+
+        currentData.faqItems.push({ question, answer });
+        if (await saveData()) {
+            status.textContent = '✓ Added';
+            document.getElementById('faqQuestion').value = '';
+            document.getElementById('faqAnswer').value = '';
+            displayFaq(currentData.faqItems);
+            renderFaqList(currentData.faqItems);
+            setTimeout(() => status.textContent = '', 2000);
+        } else {
+            status.textContent = '✗ Save failed';
+        }
+    }
+
+    async function removeFaqItem(idx) {
+        currentData.faqItems.splice(idx, 1);
+        if (await saveData()) {
+            displayFaq(currentData.faqItems);
+            renderFaqList(currentData.faqItems);
+        }
+    }
+
+    function populateAdminFields() {
+        document.getElementById('settingLogo').value = currentData.brand.logoUrl || '';
+        document.getElementById('settingWhatsappDisplay').value = currentData.brand.whatsappDisplay || '';
+        document.getElementById('linkWhatsapp').value = currentData.links.whatsapp || '';
+        document.getElementById('linkToolkit').value = currentData.links.toolkit || '';
+        document.getElementById('linkVault').value = currentData.links.vault || '';
+        document.getElementById('linkManagement').value = currentData.links.management || '';
+        document.getElementById('linkFooterWhatsapp').value = currentData.links.footerWhatsapp || '';
+        document.getElementById('linkFacebook').value = currentData.links.facebook || '';
+        document.getElementById('linkInstagram').value = currentData.links.instagram || '';
+        renderTestimonialList(currentData.testimonials);
+        renderFaqList(currentData.faqItems);
+    }
+
+    async function saveLinks() {
+        currentData.brand.logoUrl = document.getElementById('settingLogo').value.trim();
+        currentData.brand.whatsappDisplay = document.getElementById('settingWhatsappDisplay').value.trim();
+        currentData.links.whatsapp = document.getElementById('linkWhatsapp').value.trim();
+        currentData.links.toolkit = document.getElementById('linkToolkit').value.trim();
+        currentData.links.vault = document.getElementById('linkVault').value.trim();
+        currentData.links.management = document.getElementById('linkManagement').value.trim();
+        currentData.links.footerWhatsapp = document.getElementById('linkFooterWhatsapp').value.trim();
+        currentData.links.facebook = document.getElementById('linkFacebook').value.trim();
+        currentData.links.instagram = document.getElementById('linkInstagram').value.trim();
+
+        const status = document.getElementById('linksStatus');
+        if (await saveData()) {
+            applyBrand();
+            applyLinks();
+            applySocial();
+            status.textContent = '✓ Settings updated';
+            setTimeout(() => status.textContent = '', 2000);
+        } else {
+            status.textContent = '✗ Save failed';
+        }
+    }
+
+    function switchTab(tab) {
+        document.querySelectorAll('.admin-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
+        document.getElementById(tab + '-tab').classList.add('active');
+        event.target.classList.add('active');
+    }
+
+    function toggleFaq(element) {
+        const answer = element.nextElementSibling;
+        answer.classList.toggle('open');
+        const toggle = element.querySelector('.faq-toggle');
+        toggle.textContent = answer.classList.contains('open') ? '−' : '+';
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === '#') return;
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    if (window.location.search.includes('admin')) {
+        document.getElementById('adminPanel').style.display = 'block';
+    }
+
+    loadData();
+</script>
+</body>
+</html>
