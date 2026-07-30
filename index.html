@@ -20,12 +20,12 @@
         .wrapper { max-width: 480px; margin: 0 auto; background: var(--cream); min-height: 100vh; }
 
         nav {
-            display: flex; align-items: center; padding: 18px 22px;
+            display: flex; align-items: center; padding: 14px 22px;
             border-bottom: 1px solid var(--border); background: var(--cream);
             position: sticky; top: 0; z-index: 10;
         }
-        .logo-box { width: 38px; height: 38px; border-radius: 8px; margin-right: 11px; overflow: hidden; flex-shrink: 0; }
-        .logo-img { width: 100%; height: 100%; object-fit: cover; }
+        .logo-box { width: 62px; height: 62px; border-radius: 14px; margin-right: 13px; overflow: hidden; flex-shrink: 0; background: #fff; }
+        .logo-img { width: 100%; height: 100%; object-fit: contain; }
         .brand-name { font-size: 1.05rem; font-weight: 800; letter-spacing: -0.3px; color: var(--navy); line-height: 1.2; }
         .brand-sub { font-size: 0.68rem; color: var(--olive); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 
@@ -66,12 +66,12 @@
 
         /* ABOUT / MEET ZONDRA */
         .about-section { background: var(--light); }
-        .about-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 26px 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        .about-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
-        .about-avatar { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; border: 2.5px solid var(--terra); flex-shrink: 0; }
+        .about-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 30px 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+        .about-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; margin-bottom: 20px; }
+        .about-avatar { width: 152px; height: 152px; border-radius: 50%; overflow: hidden; border: 3px solid var(--terra); flex-shrink: 0; box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
         .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .about-name { font-size: 1.1rem; font-weight: 800; color: var(--navy); }
-        .about-role { font-size: 0.78rem; color: var(--olive); font-weight: 700; }
+        .about-name { font-size: 1.2rem; font-weight: 800; color: var(--navy); }
+        .about-role { font-size: 0.8rem; color: var(--olive); font-weight: 700; }
         .about-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
         .about-card p:last-child { margin-bottom: 0; }
         .about-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--olive); font-weight: 700; background: #eaf0ea; padding: 8px 12px; border-radius: 20px; margin-top: 6px; }
@@ -145,6 +145,7 @@
         .product-name { font-size: 1.02rem; font-weight: 800; color: var(--navy); line-height: 1.3; }
         .product-price { font-size: 1.3rem; font-weight: 900; color: var(--terra); white-space: nowrap; }
         .product-tagline { font-size: 0.76rem; color: var(--olive); font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 12px; }
+        .product-preview { width: 100%; border-radius: 10px; margin-bottom: 14px; display: none; border: 1px solid var(--border); }
         .product-desc { font-size: 0.86rem; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
         .product-list { list-style: none; margin-bottom: 18px; }
         .product-list li { font-size: 0.84rem; color: var(--navy); margin-bottom: 8px; display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
@@ -266,8 +267,8 @@
     <!-- HERO -->
     <section class="hero">
         <span class="eyebrow">For small business owners buried in DMs</span>
-        <h1>Your customers are messaging you right now. <em>Are you replying fast enough?</em></h1>
-        <p class="hero-sub">I help small businesses fix their WhatsApp and Facebook replies — so fewer customers slip away while you're busy running everything else. No agency, no call centre. Just me, helping you build something that actually works.</p>
+        <h1>Stop losing customers to slow, <em>confusing replies.</em></h1>
+        <p class="hero-sub">Your customers are messaging you right now on WhatsApp and Facebook. I help small businesses reply faster, clearer, and with a lot less chaos. No agency, no call centre. Just me, helping you build something that actually works.</p>
         <div class="hero-stats">
             <div class="stat-box">
                 <div class="stat-icon">😩</div>
@@ -327,6 +328,7 @@
             </div>
             <p>I started Inbox Aide because I kept seeing small businesses lose customers over something completely fixable — slow, disorganized replies. Not bad products. Not bad service. Just a messy inbox.</p>
             <p>I'm not running an agency. I work with businesses directly, one inbox at a time, from my phone, wherever I am. I only take on <strong>1–2 management clients at a time</strong> — because I'd rather do a handful of inboxes brilliantly than a hundred badly.</p>
+            <p>Everything I do — from a free audit to full management — works from screenshots you send me. I never log into your accounts, and I never ask for passwords or access. It's always just you sharing screenshots, on your terms.</p>
             <p>Everything else I've built — my checklist, my guide, my app — exists so you can fix things yourself too, at your own pace, even if you never become a client.</p>
             <span class="about-tag">📍 South Africa · WhatsApp &amp; Facebook specialist</span>
         </div>
@@ -435,13 +437,13 @@
                     <div class="slots-number" id="slotCount">3</div>
                     <div class="slots-text">Spots Left</div>
                 </div>
-                <div class="slots-message">I only take a few audits a week so I can give each one proper attention.</div>
+                <div class="slots-message">I only take a few audits a week so I can give each one proper attention — always from screenshots you send me, never account access.</div>
             </div>
 
             <div class="steps">
                 <div class="step">
                     <div class="step-dot">1</div>
-                    <div class="step-body"><strong>Share your inbox.</strong>Send me screenshots of your recent conversations — or add me as a contact so I can review them directly.</div>
+                    <div class="step-body"><strong>Send me screenshots.</strong>Just screenshots of your recent WhatsApp or Facebook conversations — exactly which ones I'll ask for can vary a little depending on your business. No logins, no access to your accounts, ever.</div>
                 </div>
                 <div class="step">
                     <div class="step-dot">2</div>
@@ -459,9 +461,9 @@
     </section>
 
     <!-- TESTIMONIALS -->
-    <section id="testimonials-section" style="display: none;">
-        <span class="section-label">Don't Take My Word For It</span>
-        <h2>What small businesses are saying.</h2>
+    <section id="testimonials-section">
+        <span class="section-label" id="testimonialsLabel">Don't Take My Word For It</span>
+        <h2 id="testimonialsHeading">What small businesses are saying.</h2>
         <div class="testimonials-grid" id="testimonialsContainer"></div>
     </section>
 
@@ -513,6 +515,7 @@
                     <div class="product-price">R30</div>
                 </div>
                 <div class="product-tagline">One-time · Instant download</div>
+                <img src="" alt="Reply Toolkit Guide preview" class="product-preview" id="toolkitPreviewImg">
                 <p class="product-desc">A practical guide packed with reply frameworks, tone tips, and message structures you can copy straight into WhatsApp today.</p>
                 <ul class="product-list">
                     <li><span class="product-check">✓</span> Reply templates for your most-asked questions</li>
@@ -527,6 +530,7 @@
                     <div class="product-price">R120</div>
                 </div>
                 <div class="product-tagline">One-time · Lifetime access</div>
+                <img src="" alt="Reply Vault App preview" class="product-preview" id="vaultPreviewImg">
                 <p class="product-desc">96 ready-to-send WhatsApp reply templates for South African small businesses, organized and ready in one simple app.</p>
                 <ul class="product-list">
                     <li><span class="product-check">✓</span> 96 professional templates, ready to use</li>
@@ -680,6 +684,16 @@
         <label class="admin-label">Reply Vault App Link (Selar)</label>
         <input type="text" class="admin-input" id="linkVault" placeholder="https://selar.co/...">
 
+        <div class="admin-section-title" style="margin-top:16px;">Preview Images (optional)</div>
+        <label class="admin-label" style="margin-top:0;">Reply Toolkit Guide Preview</label>
+        <input type="text" class="admin-input" id="previewToolkit" placeholder="https://... (screenshot of the guide)">
+
+        <label class="admin-label">Reply Vault App Preview</label>
+        <input type="text" class="admin-input" id="previewVault" placeholder="https://... (screenshot of the app)">
+
+        <label class="admin-label">Checklist Preview</label>
+        <input type="text" class="admin-input" id="previewChecklist" placeholder="https://... (screenshot of the checklist)">
+
         <div class="admin-section-title" style="margin-top:16px;">Footer Contact</div>
         <label class="admin-label" style="margin-top:0;">Footer WhatsApp Link</label>
         <input type="text" class="admin-input" id="linkFooterWhatsapp" placeholder="https://wa.me/27...">
@@ -735,11 +749,11 @@
                 },
                 {
                     question: "How long does the audit actually take?",
-                    answer: "Your time: about 5 minutes to send me screenshots or grant access. My time: 2–3 hours to properly review your communication and prepare honest findings."
+                    answer: "Your time: about 5 minutes to send me screenshots of your conversations. My time: 2–3 hours to properly review your communication and prepare honest findings."
                 },
                 {
-                    question: "Do you need my password or full access?",
-                    answer: "No. You can send me screenshots of your conversations, or add me as a contact so I can review your chat history. I never ask for passwords or login details."
+                    question: "Do you need my password or account access?",
+                    answer: "No, never. I only work from screenshots you send me — I don't log into your accounts, and I never ask for passwords or access of any kind. The exact screenshots I'll ask for can vary a little depending on your business, but it's always just screenshots."
                 },
                 {
                     question: "When will I get my report?",
@@ -773,6 +787,11 @@
         if (currentData.links.facebook === undefined) currentData.links.facebook = "";
         if (currentData.links.instagram === undefined) currentData.links.instagram = "";
 
+        if (!currentData.previews) currentData.previews = {};
+        if (currentData.previews.toolkit === undefined) currentData.previews.toolkit = "";
+        if (currentData.previews.vault === undefined) currentData.previews.vault = "";
+        if (currentData.previews.checklist === undefined) currentData.previews.checklist = "";
+
         // Display everything
         displaySlots(currentData.slots);
         displayClientSpots(currentData.clientSpots);
@@ -781,6 +800,7 @@
         applyBrand();
         applyLinks();
         applySocial();
+        applyPreviews();
 
         if (window.location.search.includes('admin')) {
             populateAdminFields();
@@ -817,6 +837,23 @@
         document.getElementById('navLogoImg').src = logo;
         document.getElementById('aboutAvatarImg').src = currentData.brand.aboutPhotoUrl || logo;
         document.getElementById('footerWhatsappText').textContent = currentData.brand.whatsappDisplay || "076 826 0594";
+    }
+
+    function applyPreviews() {
+        const toolkitImg = document.getElementById('toolkitPreviewImg');
+        const vaultImg = document.getElementById('vaultPreviewImg');
+        if (currentData.previews.toolkit) {
+            toolkitImg.src = currentData.previews.toolkit;
+            toolkitImg.style.display = 'block';
+        } else {
+            toolkitImg.style.display = 'none';
+        }
+        if (currentData.previews.vault) {
+            vaultImg.src = currentData.previews.vault;
+            vaultImg.style.display = 'block';
+        } else {
+            vaultImg.style.display = 'none';
+        }
     }
 
     function applySocial() {
@@ -903,11 +940,47 @@
 
     function displayTestimonials(testimonials) {
         const container = document.getElementById('testimonialsContainer');
+        const label = document.getElementById('testimonialsLabel');
+        const heading = document.getElementById('testimonialsHeading');
+
         if (testimonials.length === 0) {
-            document.getElementById('testimonials-section').style.display = 'none';
+            label.textContent = 'A Little About The Work';
+            heading.textContent = "What's actually inside.";
+            const vaultImgTag = currentData.previews.vault
+                ? `<img src="${currentData.previews.vault}" alt="Reply Vault preview" style="width:100%;border-radius:10px;margin-bottom:12px;border:1px solid var(--border);display:block;">`
+                : '';
+            const checklistImgTag = currentData.previews.checklist
+                ? `<img src="${currentData.previews.checklist}" alt="Checklist preview" style="width:100%;border-radius:10px;margin-bottom:12px;border:1px solid var(--border);display:block;">`
+                : '';
+            container.innerHTML = `
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"Built by someone obsessed with making customer communication simpler."</div>
+                    <div class="testimonial-author">— Zondra, Founder of Inbox Aide</div>
+                </div>
+                <div class="testimonial-card">
+                    ${vaultImgTag}
+                    <div class="testimonial-author" style="margin-bottom:8px;">What's inside the Reply Vault App</div>
+                    <div class="testimonial-business" style="line-height:1.8;">
+                        ✓ 96 ready-to-send WhatsApp templates<br>
+                        ✓ Organized by category — bookings, pricing, follow-ups, complaints<br>
+                        ✓ Built from real South African small business conversations
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    ${checklistImgTag}
+                    <div class="testimonial-author" style="margin-bottom:8px;">What's inside the Free Checklist</div>
+                    <div class="testimonial-business" style="line-height:1.8;">
+                        ✓ 15 quick yes/no questions across your whole customer journey<br>
+                        ✓ Instant scoring — no email or sign-up needed<br>
+                        ✓ The same checks I use in real paid audits
+                    </div>
+                </div>
+            `;
             return;
         }
-        document.getElementById('testimonials-section').style.display = 'block';
+
+        label.textContent = "Don't Take My Word For It";
+        heading.textContent = 'What small businesses are saying.';
         container.innerHTML = '';
         testimonials.forEach(t => {
             const card = document.createElement('div');
@@ -1049,6 +1122,9 @@
         document.getElementById('linkWhatsapp').value = currentData.links.whatsapp || '';
         document.getElementById('linkToolkit').value = currentData.links.toolkit || '';
         document.getElementById('linkVault').value = currentData.links.vault || '';
+        document.getElementById('previewToolkit').value = currentData.previews.toolkit || '';
+        document.getElementById('previewVault').value = currentData.previews.vault || '';
+        document.getElementById('previewChecklist').value = currentData.previews.checklist || '';
         document.getElementById('linkManagement').value = currentData.links.management || '';
         document.getElementById('linkFooterWhatsapp').value = currentData.links.footerWhatsapp || '';
         document.getElementById('linkFacebook').value = currentData.links.facebook || '';
@@ -1064,6 +1140,9 @@
         currentData.links.whatsapp = document.getElementById('linkWhatsapp').value.trim();
         currentData.links.toolkit = document.getElementById('linkToolkit').value.trim();
         currentData.links.vault = document.getElementById('linkVault').value.trim();
+        currentData.previews.toolkit = document.getElementById('previewToolkit').value.trim();
+        currentData.previews.vault = document.getElementById('previewVault').value.trim();
+        currentData.previews.checklist = document.getElementById('previewChecklist').value.trim();
         currentData.links.management = document.getElementById('linkManagement').value.trim();
         currentData.links.footerWhatsapp = document.getElementById('linkFooterWhatsapp').value.trim();
         currentData.links.facebook = document.getElementById('linkFacebook').value.trim();
@@ -1074,6 +1153,8 @@
             applyBrand();
             applyLinks();
             applySocial();
+            applyPreviews();
+            displayTestimonials(currentData.testimonials);
             status.textContent = '✓ Settings updated';
             setTimeout(() => status.textContent = '', 2000);
         } else {
