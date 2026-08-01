@@ -111,6 +111,22 @@
         .quiz-tier.red { color: #c0392b; }
         .quiz-message { font-size: 0.87rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
 
+        .score-legend { background: var(--light); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 18px; }
+        .score-legend-title { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--olive); margin-bottom: 8px; }
+        .score-legend-row { font-size: 0.8rem; color: var(--navy); line-height: 1.5; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 8px; }
+        .score-legend-row:last-child { margin-bottom: 0; }
+        .score-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+        .score-dot.green { background: var(--olive); }
+        .score-dot.yellow { background: #d9a021; }
+        .score-dot.red { background: #c0392b; }
+
+        .next-steps { text-align: left; background: var(--light); border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+        .next-steps-title { font-size: 0.78rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+        .next-steps-list { list-style: none; }
+        .next-steps-list li { font-size: 0.85rem; color: var(--navy); margin-bottom: 9px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+        .next-steps-list li:last-child { margin-bottom: 0; }
+        .next-steps-check { color: var(--terra); font-weight: 900; flex-shrink: 0; }
+
         /* AUDIT / HOW IT WORKS */
         .audit-section { background: var(--card); }
         .form-card { background: var(--light); border-radius: 16px; padding: 26px 22px; border: 1px solid var(--border); }
@@ -188,15 +204,14 @@
         footer strong { color: var(--navy); }
         footer a { color: var(--terra); text-decoration: none; font-weight: 600; }
         .footer-contact-title { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--olive); margin-bottom: 16px; }
-        .footer-icons { display: flex; justify-content: center; gap: 14px; margin-bottom: 16px; }
-        .footer-icon-btn {
-            width: 46px; height: 46px; border-radius: 50%; background: var(--light);
-            border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; font-weight: 800; color: var(--terra); text-decoration: none;
-            transition: transform 0.15s;
+        .footer-links { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .footer-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.85rem; font-weight: 700; color: var(--navy);
+            text-decoration: none; padding: 2px 4px;
         }
-        .footer-icon-btn:active { transform: scale(0.92); }
-        .footer-contact-text { font-size: 0.85rem; color: var(--navy); font-weight: 600; }
+        .footer-pill .footer-pill-label { color: var(--olive); font-weight: 800; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.4px; }
+        .footer-pill .footer-pill-value { color: var(--terra); font-weight: 700; }
 
         /* ADMIN PANEL */
         .admin-panel {
@@ -395,29 +410,36 @@
         <div class="checklist-card">
             <div class="quiz-group">
                 <div class="quiz-group-title">Before They Message You</div>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Is your pricing easy to find?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you mention deposits or requirements before customers enquire?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Is your booking or ordering process explained somewhere?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do customers know your business hours?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you explain what's included in your service or product?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you answer common FAQs somewhere customers can see?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Make your pricing easy to find so customers don't have to ask."><span>Is your pricing easy to find?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Mention deposits or requirements upfront to avoid back-and-forth."><span>Do you mention deposits or requirements before customers enquire?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Write out your booking or ordering process somewhere customers can see it."><span>Is your booking or ordering process explained somewhere?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Post your business hours somewhere visible."><span>Do customers know your business hours?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Explain exactly what's included in your service or product."><span>Do you explain what's included in your service or product?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Create a simple FAQ customers can check before messaging you."><span>Do you answer common FAQs somewhere customers can see?</span></label>
             </div>
 
             <div class="quiz-group">
                 <div class="quiz-group-title">When They Message You</div>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you reply within 30 minutes during business hours?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you have a greeting or welcome message set up?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you use templates for your most-asked questions?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Does your tone match your brand — friendly, clear, and professional?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Aim to reply within 30 minutes during business hours."><span>Do you reply within 30 minutes during business hours?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Set up a greeting message for new conversations."><span>Do you have a greeting or welcome message set up?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Create quick-reply templates for your most-asked questions."><span>Do you use templates for your most-asked questions?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Review your tone so it feels friendly, clear, and professional."><span>Does your tone match your brand — friendly, clear, and professional?</span></label>
             </div>
 
             <div class="quiz-group">
                 <div class="quiz-group-title">After They Message You</div>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you follow up if a customer goes quiet?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Does every conversation have a clear next step?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you flag hot leads so none get missed?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you check Facebook comments and DMs as often as WhatsApp?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check"><span>Do you know how many enquiries actually turn into sales?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Follow up with customers who go quiet instead of letting it drop."><span>Do you follow up if a customer goes quiet?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Give every conversation a clear next step, like "reply YES to book"."><span>Does every conversation have a clear next step?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Flag hot leads so none slip through the cracks."><span>Do you flag hot leads so none get missed?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Check Facebook comments and DMs as often as WhatsApp."><span>Do you check Facebook comments and DMs as often as WhatsApp?</span></label>
+                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Start tracking how many enquiries actually turn into sales."><span>Do you know how many enquiries actually turn into sales?</span></label>
+            </div>
+
+            <div class="score-legend">
+                <div class="score-legend-title">What Your Score Means</div>
+                <div class="score-legend-row"><span class="score-dot green"></span>12–15 → Your communication is strong.</div>
+                <div class="score-legend-row"><span class="score-dot yellow"></span>8–11 → You're doing well, but small improvements could increase conversions.</div>
+                <div class="score-legend-row"><span class="score-dot red"></span>0–7 → You're probably losing customers before you even realize it.</div>
             </div>
 
             <button type="button" class="btn btn-terra" onclick="calculateScore()">Check My Score</button>
@@ -426,6 +448,7 @@
                 <div class="quiz-score" id="quizScoreNum">0/15</div>
                 <div class="quiz-tier" id="quizTierLabel"></div>
                 <p class="quiz-message" id="quizMessage"></p>
+                <div class="next-steps" id="nextSteps"></div>
                 <a href="#audit" class="btn btn-terra" id="quizCta">Want A Second Opinion? Book My Free Audit</a>
                 <a href="#" class="link-secondary" onclick="resetQuiz(); return false;">Retake the check</a>
             </div>
@@ -600,13 +623,12 @@
 
     <footer>
         <div class="footer-contact-title">Let's Talk</div>
-        <div class="footer-icons">
-            <a href="#" id="footerWhatsappLink" class="footer-icon-btn" aria-label="WhatsApp">💬</a>
-            <a href="#" id="footerEmailLink" class="footer-icon-btn" aria-label="Email">✉️</a>
-            <a href="#" id="footerFacebook" class="footer-icon-btn" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-            <a href="#" id="footerInstagram" class="footer-icon-btn" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+        <div class="footer-links">
+            <a href="#" id="footerWhatsappLink" class="footer-pill"><span class="footer-pill-label">WhatsApp</span><span class="footer-pill-value" id="footerWhatsappText">076 826 0594</span></a>
+            <a href="#" id="footerEmailLink" class="footer-pill"><span class="footer-pill-label">Email</span><span class="footer-pill-value" id="footerEmailText">zondracaitlin29@gmail.com</span></a>
+            <a href="#" id="footerFacebook" class="footer-pill" target="_blank" rel="noopener" style="display:none;"><span class="footer-pill-label">Facebook</span></a>
+            <a href="#" id="footerInstagram" class="footer-pill" target="_blank" rel="noopener" style="display:none;"><span class="footer-pill-label">Instagram</span></a>
         </div>
-        <p class="footer-contact-text"><span id="footerWhatsappText">076 826 0594</span> · <span id="footerEmailText">zondracaitlin29@gmail.com</span></p>
         <p style="margin-top:10px;">Monday – Friday · 09:00 – 17:00</p>
         <p style="margin-top:16px;opacity:0.5;">© 2026 Inbox Aide</p>
     </footer>
@@ -872,32 +894,54 @@
         const ig = currentData.links.instagram;
         const fbEl = document.getElementById('footerFacebook');
         const igEl = document.getElementById('footerInstagram');
-        if (fb) { fbEl.href = fb; fbEl.style.display = 'flex'; } else { fbEl.style.display = 'none'; }
-        if (ig) { igEl.href = ig; igEl.style.display = 'flex'; } else { igEl.style.display = 'none'; }
+        if (fb) { fbEl.href = fb; fbEl.style.display = 'inline-flex'; } else { fbEl.style.display = 'none'; }
+        if (ig) { igEl.href = ig; igEl.style.display = 'inline-flex'; } else { igEl.style.display = 'none'; }
     }
 
     function calculateScore() {
         const checks = document.querySelectorAll('.quiz-check');
         let score = 0;
-        checks.forEach(c => { if (c.checked) score++; });
+        const uncheckedTips = [];
+        checks.forEach(c => {
+            if (c.checked) { score++; }
+            else { uncheckedTips.push(c.getAttribute('data-tip')); }
+        });
         const total = checks.length;
         document.getElementById('quizScoreNum').textContent = `${score}/${total}`;
         const tierEl = document.getElementById('quizTierLabel');
         const msgEl = document.getElementById('quizMessage');
         tierEl.className = 'quiz-tier';
-        if (score >= 13) {
+        if (score >= 12) {
             tierEl.classList.add('green');
-            tierEl.textContent = '🟢 Great shape!';
-            msgEl.textContent = "Your inbox is already working well. A few small tweaks could make it even smoother — that's exactly what a free audit is good for.";
+            tierEl.textContent = '🟢 Your communication is strong';
+            msgEl.textContent = "Your inbox looks relatively good. For a deeper insight, book the free communication audit.";
         } else if (score >= 8) {
             tierEl.classList.add('yellow');
-            tierEl.textContent = '🟡 Room to improve';
-            msgEl.textContent = "You're doing okay, but there are real gaps here that are likely costing you time — and a few customers along the way.";
+            tierEl.textContent = "🟡 You're doing well";
+            msgEl.textContent = "There are a few real gaps here that could be increasing your conversions if you fixed them.";
         } else {
             tierEl.classList.add('red');
-            tierEl.textContent = '🔴 Losing customers';
-            msgEl.textContent = "Right now, gaps in your communication are probably costing you enquiries and sales. The good news: most of this is fixable fast.";
+            tierEl.textContent = "🔴 You're probably losing customers";
+            msgEl.textContent = "Right now, gaps in your communication are likely costing you enquiries — before you even realize it. Most of this is fixable fast.";
         }
+
+        const nextStepsEl = document.getElementById('nextSteps');
+        if (uncheckedTips.length === 0) {
+            nextStepsEl.innerHTML = `
+                <div class="next-steps-title">Based on your answers:</div>
+                <ul class="next-steps-list">
+                    <li><span class="next-steps-check">✓</span>You're not missing anything obvious here — nice work.</li>
+                </ul>
+            `;
+        } else {
+            const topTips = uncheckedTips.slice(0, 3);
+            const items = topTips.map(tip => `<li><span class="next-steps-check">✓</span>${tip}</li>`).join('');
+            nextStepsEl.innerHTML = `
+                <div class="next-steps-title">Based on your answers:</div>
+                <ul class="next-steps-list">${items}</ul>
+            `;
+        }
+
         const resultBox = document.getElementById('quizResult');
         resultBox.style.display = 'block';
         resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
