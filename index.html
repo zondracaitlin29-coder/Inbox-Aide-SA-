@@ -38,7 +38,25 @@
         .nav-link { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-decoration: none; }
         .nav-link:hover { color: var(--terra); }
         .nav-cta { background: var(--terra); color: #fff; padding: 9px 16px; border-radius: 22px; font-size: 0.8rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
-        @media (max-width: 520px) { .nav-link { display: none; } }
+
+        .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 4px; width: 30px; height: 30px; background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0; }
+        .nav-toggle span { width: 100%; height: 2px; background: var(--navy); border-radius: 2px; }
+
+        .mobile-menu {
+            display: none; flex-direction: column;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--cream); z-index: 40; padding: 80px 28px 28px;
+            overflow-y: auto;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu-close { position: absolute; top: 20px; right: 24px; background: none; border: none; font-size: 1.4rem; color: var(--navy); cursor: pointer; padding: 8px; }
+        .mobile-menu-link { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .mobile-menu-cta { color: var(--terra); border-bottom: none; }
+
+        @media (max-width: 680px) {
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+        }
 
         .hero { background: var(--cream); padding: 56px var(--narrow) 52px; border-bottom: 1px solid var(--border); }
         .eyebrow { font-size: 0.78rem; font-weight: 700; color: var(--terra); margin-bottom: 16px; }
@@ -232,11 +250,12 @@
         .final-cta p { color: rgba(255,255,255,0.92); font-size: 0.95rem; margin-bottom: 26px; line-height: 1.7; }
         .final-cta .link-secondary { color: #fff; opacity: 0.92; }
 
-        footer { text-align: center; padding: 40px 24px; font-size: 0.82rem; color: var(--muted); background: var(--cream); }
+        footer { text-align: center; padding: 60px var(--narrow) 44px; font-size: 0.82rem; color: var(--muted); background: var(--cream); border-bottom: none; }
+        footer .section-label, footer h2, footer .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
+        footer .btn { margin: 0 auto 28px; }
         footer strong { color: var(--navy); }
         footer a { color: var(--terra); text-decoration: none; font-weight: 600; }
-        .footer-contact-title { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--olive); margin-bottom: 16px; }
-        .footer-links { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .footer-links { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 10px; }
         .footer-pill {
             display: inline-flex; align-items: center; gap: 6px;
             font-size: 0.85rem; font-weight: 700; color: var(--navy);
@@ -244,6 +263,15 @@
         }
         .footer-pill .footer-pill-label { color: var(--olive); font-weight: 800; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.4px; }
         .footer-pill .footer-pill-value { color: var(--terra); font-weight: 700; }
+        .footer-meta { margin-top: 6px; font-size: 0.8rem; }
+
+        .float-whatsapp {
+            position: fixed; bottom: 20px; right: 20px; width: 54px; height: 54px; border-radius: 50%;
+            background: var(--olive); color: #fff; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.22); z-index: 30;
+            transition: transform 0.15s;
+        }
+        .float-whatsapp:hover { transform: scale(1.07); }
 
         /* ADMIN PANEL */
         .admin-panel {
@@ -315,9 +343,28 @@
         </div>
         <div class="nav-links">
             <a href="#howican" class="nav-link">How I Help</a>
+            <a href="#toolkit" class="nav-link">Products</a>
+            <a href="#miniservices" class="nav-link">Mini Services</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
             <a href="#audit" class="nav-cta">Free Check</a>
+            <button class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
+        <a href="#howican" class="mobile-menu-link" onclick="closeMobileMenu()">How I Help</a>
+        <a href="#toolkit" class="mobile-menu-link" onclick="closeMobileMenu()">Products</a>
+        <a href="#miniservices" class="mobile-menu-link" onclick="closeMobileMenu()">Mini Services</a>
+        <a href="#faq" class="mobile-menu-link" onclick="closeMobileMenu()">FAQ</a>
+        <a href="#contact" class="mobile-menu-link" onclick="closeMobileMenu()">Contact</a>
+        <a href="#audit" class="mobile-menu-link mobile-menu-cta" onclick="closeMobileMenu()">Book Free Check</a>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -550,7 +597,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="faq-section">
+    <section class="faq-section" id="faq">
         <span class="section-label">Questions</span>
         <h2>Things people usually ask me.</h2>
         <div id="faqContainer"></div>
@@ -597,17 +644,21 @@
         <a href="#howican" class="link-secondary">or see all the ways I can help</a>
     </section>
 
-    <footer>
-        <div class="footer-contact-title">Let's Talk</div>
+    <footer id="contact">
+        <span class="section-label">Get In Touch</span>
+        <h2>Let's talk.</h2>
+        <p class="section-sub">Got a question, or not sure which option fits? Message me directly — I read and reply to these myself.</p>
+        <a href="#" id="footerWhatsappLink" class="btn btn-terra" style="max-width:320px;">Message Me On WhatsApp</a>
         <div class="footer-links">
-            <a href="#" id="footerWhatsappLink" class="footer-pill"><span class="footer-pill-label">WhatsApp</span><span class="footer-pill-value" id="footerWhatsappText">076 826 0594</span></a>
             <a href="#" id="footerEmailLink" class="footer-pill"><span class="footer-pill-label">Email</span><span class="footer-pill-value" id="footerEmailText">zondracaitlin29@gmail.com</span></a>
             <a href="#" id="footerFacebook" class="footer-pill" target="_blank" rel="noopener" style="display:none;"><span class="footer-pill-label">Facebook</span></a>
             <a href="#" id="footerInstagram" class="footer-pill" target="_blank" rel="noopener" style="display:none;"><span class="footer-pill-label">Instagram</span></a>
         </div>
-        <p style="margin-top:10px;">Monday – Friday · 09:00 – 17:00</p>
-        <p style="margin-top:16px;opacity:0.5;">© 2026 Inbox Aide</p>
+        <p class="footer-meta">Monday – Friday · 09:00 – 17:00</p>
+        <p class="footer-meta" style="opacity:0.5;">© 2026 Inbox Aide</p>
     </footer>
+
+    <a href="#" id="floatWhatsapp" class="float-whatsapp" aria-label="Message on WhatsApp" target="_blank" rel="noopener">💬</a>
 
 </div>
 
@@ -726,12 +777,9 @@
         <label class="admin-label">Mini Services Contact Link</label>
         <input type="text" class="admin-input" id="linkMiniServices" placeholder="https://wa.link/... (used when a mini service has no link of its own)">
 
-        <div class="admin-section-title" style="margin-top:16px;">Footer Contact</div>
-        <label class="admin-label" style="margin-top:0;">Footer WhatsApp Link</label>
+        <div class="admin-section-title" style="margin-top:16px;">Contact Section</div>
+        <label class="admin-label" style="margin-top:0;">Contact WhatsApp Link (also used for the floating button)</label>
         <input type="text" class="admin-input" id="linkFooterWhatsapp" placeholder="https://wa.me/27...">
-
-        <label class="admin-label">Footer WhatsApp Display Text</label>
-        <input type="text" class="admin-input" id="settingWhatsappDisplay" placeholder="076 826 0594">
 
         <label class="admin-label">Contact Email</label>
         <input type="text" class="admin-input" id="settingEmail" placeholder="you@email.com">
@@ -773,7 +821,6 @@
         if (currentData.clientSpots === undefined) currentData.clientSpots = 1;
         if (!currentData.brand) currentData.brand = {};
         if (currentData.brand.aboutPhotoUrl === undefined) currentData.brand.aboutPhotoUrl = "";
-        if (!currentData.brand.whatsappDisplay) currentData.brand.whatsappDisplay = "076 826 0594";
         if (!currentData.brand.email) currentData.brand.email = "zondracaitlin29@gmail.com";
         if (!currentData.testimonials) currentData.testimonials = [];
         if (!currentData.miniServices) {
@@ -926,6 +973,8 @@
         document.getElementById('quizCta').href = currentData.links.whatsapp || "https://wa.link/i8kqhj";
         document.getElementById('managementLink').href = currentData.links.management || "https://form.jotform.com/261363512824050";
         document.getElementById('footerWhatsappLink').href = currentData.links.footerWhatsapp || "https://wa.me/27768260594";
+        const floatBtn = document.getElementById('floatWhatsapp');
+        if (floatBtn) floatBtn.href = currentData.links.footerWhatsapp || "https://wa.me/27768260594";
         const msContactEl = document.getElementById('miniServicesContactLink');
         if (msContactEl) msContactEl.href = currentData.links.miniServices || currentData.links.whatsapp || "https://wa.link/i8kqhj";
         const notsureEl = document.getElementById('notsureLink');
@@ -944,7 +993,6 @@
             avatarImg.style.display = 'none';
             if (avatarInitial) avatarInitial.style.display = 'flex';
         }
-        document.getElementById('footerWhatsappText').textContent = currentData.brand.whatsappDisplay || "076 826 0594";
         document.getElementById('footerEmailLink').href = "mailto:" + (currentData.brand.email || "zondracaitlin29@gmail.com");
         document.getElementById('footerEmailText').textContent = currentData.brand.email || "zondracaitlin29@gmail.com";
     }
@@ -1465,7 +1513,6 @@
 
     function populateAdminFields() {
         document.getElementById('settingAboutPhoto').value = currentData.brand.aboutPhotoUrl || '';
-        document.getElementById('settingWhatsappDisplay').value = currentData.brand.whatsappDisplay || '';
         document.getElementById('settingEmail').value = currentData.brand.email || '';
         document.getElementById('linkWhatsapp').value = currentData.links.whatsapp || '';
         document.getElementById('linkManagement').value = currentData.links.management || '';
@@ -1481,7 +1528,6 @@
 
     async function saveLinks() {
         currentData.brand.aboutPhotoUrl = document.getElementById('settingAboutPhoto').value.trim();
-        currentData.brand.whatsappDisplay = document.getElementById('settingWhatsappDisplay').value.trim();
         currentData.brand.email = document.getElementById('settingEmail').value.trim();
         currentData.links.whatsapp = document.getElementById('linkWhatsapp').value.trim();
         currentData.links.management = document.getElementById('linkManagement').value.trim();
@@ -1509,6 +1555,13 @@
         document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
         document.getElementById(tab + '-tab').classList.add('active');
         event.target.classList.add('active');
+    }
+
+    function toggleMobileMenu() {
+        document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMobileMenu() {
+        document.getElementById('mobileMenu').classList.remove('open');
     }
 
     function toggleFaq(element) {
