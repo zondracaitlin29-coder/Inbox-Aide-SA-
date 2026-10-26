@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FFF1E6;--surface:#FFF9F4;--soft:#FCDFCB;--ink:#2A2A3B;--mute:#5E5F72;--line:#EFC7AE;--peach:#B84A24;--peach-soft:#FFD3B9;--olive:#6B6A2E;--olive-soft:#FBE3C6;--btn:#B84A24;--btn-ink:#fff;--out:#FFD0B3;
+:root{--bg:#FFF8F2;--surface:#FFFDFA;--soft:#FDEEE2;--ink:#2A2A3B;--mute:#5E5F72;--line:#F2D8C6;--peach:#B84A24;--peach-soft:#FFE2D0;--olive:#6B6A2E;--olive-soft:#FBEED8;--btn:#B84A24;--btn-ink:#fff;--out:#FFE4D2;
 --hd:"Bricolage Grotesque",Georgia,sans-serif;--bd:"Figtree",system-ui,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171B26;--surface:#212736;--soft:#1D2230;--ink:#F3EEE4;--mute:#B2B9C9;--line:#343C50;--peach:#F0A47F;--peach-soft:#3A2B2A;--olive:#B5C47E;--olive-soft:#2C3322;--btn:#F0A47F;--btn-ink:#171B26;--out:#5A3A2B;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#171B26;--surface:#212736;--soft:#1D2230;--ink:#F3EEE4;--mute:#B2B9C9;--line:#343C50;--peach:#F0A47F;--peach-soft:#3A2B2A;--olive:#B5C47E;--olive-soft:#2C3322;--btn:#F0A47F;--btn-ink:#171B26;--out:#5A3A2B;color-scheme:dark}
@@ -64,6 +64,8 @@ form{display:grid;gap:.9rem;max-width:560px}label{font-weight:600;display:grid;g
 input,select,textarea{font:400 1rem var(--bd);padding:.7rem;border:1.5px solid var(--mute);border-radius:10px;background:var(--surface);color:var(--ink);width:100%}
 #fstatus{font-size:.95rem;min-height:1.4em}
 .final{background:var(--ink);color:var(--bg)}.final .lead{color:inherit;opacity:.85}.final .btn{background:var(--peach-soft);color:#232A3B;border-color:var(--peach-soft)}.final .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+#services .grp{margin:2rem 0 1rem}.diy{display:grid;gap:1rem;background:var(--olive-soft);border:2px dashed var(--olive);border-radius:14px;padding:1.4rem}.diy p{margin-bottom:.6rem}.diy .price{margin:0 0 .6rem}.diy .btn{margin:0}
+@media(min-width:760px){.diy{grid-template-columns:1fr auto;align-items:center;gap:2rem}}
 footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -121,7 +123,10 @@ footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 <section id="services" class="alt"><div class="wrap">
 <h2>Services and pricing</h2>
 <p class="lead">Clear scope, clear prices. All amounts are in rand (ZAR).</p>
-<div class="grid g3" id="servicecards"></div>
+<h3 class="grp">Work with me</h3>
+<div class="grid g2" id="servicecards"></div>
+<h3 class="grp">Do it yourself</h3>
+<div id="diy"></div>
 </div></section>
 
 <section id="choose"><div class="wrap">
@@ -195,9 +200,9 @@ const CONFIG = {
   businessName: "Inbox Aide SA",
   founder: "Zondra",
   location: "Cape Town, South Africa",
-  whatsappNumber: "27768260594",
+  whatsappNumber: "YOUR_WHATSAPP_NUMBER",
   formEndpoint: "",
-  toolkit: { active: true, price: "R99" },  // set active:false to hide the toolkit price
+  toolkit: { active: true, fromPrice: "R99" },  // "From" price on the Do it yourself card. Set active:false to hide the card.
   messages: {
     general: "Hi Zondra! I’d like to find out more about Inbox Aide SA.",
     reply: "Hi Zondra! I’d like to find out more about the R100 Reply Refresh.",
@@ -242,10 +247,11 @@ const num = CONFIG.whatsappNumber.replace(/[^0-9A-Za-z_]/g,"");
 const waUrl = k => "https://wa.me/" + num + "?text=" + encodeURIComponent(CONFIG.messages[k] || CONFIG.messages.general);
 if (CONFIG.whatsappNumber.includes("YOUR_")) $("#setup").hidden = false;
 
-$("#servicecards").innerHTML = SERVICES.map(s => {
+$("#servicecards").innerHTML = SERVICES.filter(s => s.key!=="resources").map(s => {
   const price = s.key==="resources" ? (CONFIG.toolkit.active ? `<p class="price">${CONFIG.toolkit.price} <small>toolkit, once-off</small></p>` : "") : `<p class="price">${s.price} <small>${s.unit}</small></p>`;
   return `<article class="card"><h3>${s.name}</h3>${price}<p>${s.who}</p>${s.items.length?`<ul>${s.items.map(i=>`<li>${i}</li>`).join("")}</ul>`:""}${s.note?`<div class="note">${s.note}</div>`:""}<a class="btn" data-wa="${s.key}" href="#">${s.cta}</a></article>`;
 }).join("");
+$("#diy").innerHTML = CONFIG.toolkit.active ? `<article class="diy"><div><h3>Guides and toolkits</h3><p>Affordable resources you buy and use on your own. You don’t need me involved: no back-and-forth and no waiting. Good if you’d rather improve things yourself, at your own pace.</p><p>Prices vary by resource.</p></div><div><p class="price">From ${CONFIG.toolkit.fromPrice}</p><a class="btn" data-wa="resources" href="#">Ask about resources</a></div></article>` : "";
 $("#pick").innerHTML = PICK.map(p => `<li><span>${p[0]}</span><a data-wa="${p[2]}" href="#">${p[1]}</a></li>`).join("");
 $("#faqlist").innerHTML = FAQS.map(f => `<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
 $("#fservice").innerHTML = ["Reply Refresh (R100)","WhatsApp Business Setup & Refresh (R150)","Guides and tools","Something more ongoing or specific","Not sure yet"].map(o=>`<option>${o}</option>`).join("");
