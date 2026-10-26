@@ -1,1589 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inbox Aide | Communication Help From Zondra</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --olive: #4E684E;
-            --terra: #D98353;
-            --cream: #FAF7F0;
-            --navy: #1A2530;
-            --muted: #5A6A7A;
-            --border: #E2DBD0;
-            --card: #FFFFFF;
-            --light: #F3EFE6;
-            --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-            --wide: max(24px, calc(50% - 560px));
-            --narrow: max(24px, calc(50% - 350px));
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
-        body { background: var(--cream); color: var(--navy); line-height: 1.6; }
-        .wrapper { background: var(--cream); min-height: 100vh; overflow-x: hidden; }
-
-        nav {
-            display: flex; align-items: center; justify-content: space-between; gap: 16px;
-            padding: 16px var(--wide);
-            border-bottom: 1px solid var(--border); background: var(--cream);
-            position: sticky; top: 0; z-index: 10;
-        }
-        .nav-brand { line-height: 1.15; }
-        .brand-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.2px; color: var(--navy); }
-        .brand-sub { font-size: 0.68rem; color: var(--olive); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-        .nav-links { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
-        .nav-link { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-decoration: none; }
-        .nav-link:hover { color: var(--terra); }
-        .nav-cta { background: var(--terra); color: #fff; padding: 9px 16px; border-radius: 22px; font-size: 0.8rem; font-weight: 800; text-decoration: none; white-space: nowrap; }
-
-        .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 4px; width: 30px; height: 30px; background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0; }
-        .nav-toggle span { width: 100%; height: 2px; background: var(--navy); border-radius: 2px; }
-
-        .mobile-menu {
-            display: none; flex-direction: column;
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--cream); z-index: 40; padding: 80px 28px 28px;
-            overflow-y: auto;
-        }
-        .mobile-menu.open { display: flex; }
-        .mobile-menu-close { position: absolute; top: 20px; right: 24px; background: none; border: none; font-size: 1.4rem; color: var(--navy); cursor: pointer; padding: 8px; }
-        .mobile-menu-link { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--navy); text-decoration: none; padding: 16px 0; border-bottom: 1px solid var(--border); }
-        .mobile-menu-cta { color: var(--terra); border-bottom: none; }
-
-        @media (max-width: 680px) {
-            .nav-links { display: none; }
-            .nav-toggle { display: flex; }
-        }
-
-        .hero { background: var(--cream); padding: 56px var(--narrow) 52px; border-bottom: 1px solid var(--border); }
-        .eyebrow { font-size: 0.78rem; font-weight: 700; color: var(--terra); margin-bottom: 16px; }
-        .hero h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.14; font-weight: 600; letter-spacing: -0.5px; color: var(--navy); margin-bottom: 20px; }
-        .hero h1 em { color: var(--terra); font-style: normal; }
-        .hero-sub { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--muted); margin-bottom: 30px; line-height: 1.65; max-width: 44ch; }
-        .hero > .btn, .hero > .link-secondary { max-width: 420px; }
-
-        .btn { display: block; width: 100%; padding: 16px; text-align: center; border-radius: 12px; font-weight: 800; text-decoration: none; font-size: 0.97rem; border: none; cursor: pointer; transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s; }
-        .btn:active { transform: scale(0.98); opacity: 0.92; }
-        .btn-terra { background: var(--terra); color: #fff; box-shadow: 0 2px 12px rgba(217, 131, 83, 0.15); }
-        .btn-terra:hover { box-shadow: 0 4px 16px rgba(217, 131, 83, 0.22); }
-        .btn-white { background: #fff; color: var(--terra); font-weight: 800; border: 1px solid var(--border); }
-        .btn-olive { background: var(--olive); color: #fff; box-shadow: 0 2px 12px rgba(78, 104, 78, 0.18); }
-        .btn-outline { background: transparent; color: var(--terra); border: 1.5px solid var(--terra); }
-        .link-secondary { display: block; text-align: center; font-size: 0.85rem; color: var(--olive); font-weight: 700; text-decoration: none; margin-top: 14px; }
-        .link-secondary:hover { text-decoration: underline; }
-
-        @media (min-width: 640px) {
-            .btn, .link-secondary { width: auto; display: inline-block; }
-        }
-
-        /* HERO QUICK-NAV PILLS (the 4 ways to work with Zondra) */
-        .hero-ways { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
-        .hero-way-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.76rem; font-weight: 800; color: var(--navy); background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 7px 12px 7px 8px; text-decoration: none; }
-        .hway-num { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: var(--terra); color: #fff; font-size: 0.62rem; font-weight: 900; flex-shrink: 0; }
-
-        section { padding: 52px var(--narrow); border-bottom: 1px solid var(--border); }
-        .section-label { font-size: 0.78rem; font-weight: 700; color: var(--terra); margin-bottom: 12px; display: block; }
-        h2 { font-family: var(--serif); font-size: clamp(1.5rem, 3.2vw, 2.1rem); line-height: 1.22; font-weight: 600; letter-spacing: -0.3px; margin-bottom: 14px; color: var(--navy); }
-        .section-sub { font-size: 0.98rem; color: var(--muted); margin-bottom: 30px; line-height: 1.65; max-width: 56ch; }
-
-        /* Sections with multi-column grids get the wider content band */
-        .pain-section, .path-section, #testimonials-section, .miniservices-section, .products-section {
-            padding-left: var(--wide); padding-right: var(--wide);
-        }
-        .pain-section .section-sub, .path-section .section-sub { max-width: 64ch; }
-
-        /* PAIN POINTS */
-        .pain-section { background: #fff; }
-        .wins-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-        .win-card { background: var(--light); padding: 18px; border-radius: 11px; border: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
-        .win-icon { font-size: 1.3rem; flex-shrink: 0; }
-        .win-body p { font-size: 0.9rem; color: var(--navy); line-height: 1.55; font-weight: 500; }
-        .pain-transition { margin-top: 22px; font-size: 0.95rem; font-weight: 700; color: var(--terra); text-align: center; }
-
-        /* ABOUT / MEET ZONDRA */
-        .about-section { background: var(--light); }
-        .about-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 30px 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        .about-top { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; margin-bottom: 20px; }
-        .about-avatar { position: relative; width: 132px; height: 132px; border-radius: 50%; overflow: hidden; border: 3px solid var(--terra); flex-shrink: 0; box-shadow: 0 6px 20px rgba(0,0,0,0.1); background: var(--light); }
-        .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .about-avatar-initial { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-family: var(--serif); font-size: 3rem; font-weight: 600; color: var(--terra); background: var(--light); }
-        .about-name { font-size: 1.2rem; font-weight: 800; color: var(--navy); }
-        .about-role { font-size: 0.8rem; color: var(--olive); font-weight: 700; }
-        .about-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.75; margin-bottom: 14px; }
-        .about-card p:last-child { margin-bottom: 0; }
-        .about-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--olive); font-weight: 700; background: #eaf0ea; padding: 8px 12px; border-radius: 20px; margin-top: 6px; }
-
-        /* PATH LADDER */
-        .path-section { background: #fff; }
-        .path-ladder { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px 40px; margin-bottom: 6px; }
-        .path-card { display: block; text-decoration: none; color: inherit; border-left: 3px solid var(--border); padding: 2px 0 2px 20px; transition: border-color 0.15s; }
-        .path-card:hover { border-left-color: var(--terra); }
-        .path-tag { font-size: 0.78rem; font-weight: 700; color: var(--terra); margin-bottom: 8px; }
-        .path-title { font-family: var(--serif); font-size: 1.12rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.3; }
-        .path-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
-        .path-link { font-size: 0.82rem; font-weight: 800; color: var(--olive); }
-        .path-card:hover .path-link { color: var(--terra); text-decoration: underline; }
-
-        .notsure-block { margin-top: 12px; padding: 26px 24px; background: var(--light); border-radius: 14px; }
-        .notsure-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-        .notsure-text { font-size: 0.88rem; color: var(--muted); line-height: 1.6; max-width: 52ch; }
-
-        .trust-row { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; }
-        .trust-row span { font-size: 0.78rem; font-weight: 700; color: var(--olive); display: flex; align-items: center; gap: 6px; }
-        .trust-row span::before { content: "✓"; color: var(--terra); font-weight: 900; }
-
-        /* CHECKLIST */
-        .checklist-section { background: var(--light); }
-        .checklist-card { background: #fff; border-radius: 16px; padding: 26px 22px; border: 1px solid var(--border); box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
-        .check-list { list-style: none; margin-bottom: 22px; }
-        .check-list li { font-size: 0.9rem; color: var(--navy); margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
-        .check-mark { color: var(--olive); font-weight: 900; flex-shrink: 0; }
-        .nudge-box { margin-top: 24px; padding: 16px; background: #fff8f0; border: 1px dashed var(--terra); border-radius: 12px; font-size: 0.85rem; color: var(--navy); line-height: 1.6; text-align: center; }
-        .nudge-box a { color: var(--terra); font-weight: 800; text-decoration: none; }
-
-        /* INTERACTIVE QUIZ */
-        .quiz-group { margin-bottom: 20px; }
-        .quiz-group-title { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--olive); margin-bottom: 6px; }
-        .quiz-item { display: flex; align-items: flex-start; gap: 11px; font-size: 0.86rem; color: var(--navy); padding: 11px 2px; border-bottom: 1px solid var(--border); cursor: pointer; line-height: 1.5; }
-        .quiz-item:last-child { border-bottom: none; }
-        .quiz-item input[type="checkbox"] { width: 19px; height: 19px; flex-shrink: 0; margin-top: 1px; accent-color: var(--terra); cursor: pointer; }
-        .quiz-result { display: none; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border); text-align: center; }
-        .quiz-score { font-size: 2.3rem; font-weight: 900; color: var(--terra); margin-bottom: 4px; }
-        .quiz-tier { font-size: 0.95rem; font-weight: 800; margin-bottom: 10px; }
-        .quiz-tier.green { color: var(--olive); }
-        .quiz-tier.yellow { color: #b8860b; }
-        .quiz-tier.red { color: #c0392b; }
-        .quiz-message { font-size: 0.87rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
-
-        .score-legend { background: var(--light); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 18px; }
-        .score-legend-title { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--olive); margin-bottom: 8px; }
-        .score-legend-row { font-size: 0.8rem; color: var(--navy); line-height: 1.5; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 8px; }
-        .score-legend-row:last-child { margin-bottom: 0; }
-        .score-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
-        .score-dot.green { background: var(--olive); }
-        .score-dot.yellow { background: #d9a021; }
-        .score-dot.red { background: #c0392b; }
-
-        .next-steps { text-align: left; background: var(--light); border-radius: 12px; padding: 16px; margin-bottom: 20px; }
-        .next-steps-title { font-size: 0.78rem; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
-        .next-steps-list { list-style: none; }
-        .next-steps-list li { font-size: 0.85rem; color: var(--navy); margin-bottom: 9px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
-        .next-steps-list li:last-child { margin-bottom: 0; }
-        .next-steps-check { color: var(--terra); font-weight: 900; flex-shrink: 0; }
-
-        /* AUDIT / HOW IT WORKS */
-        .audit-section { background: var(--card); }
-        .form-card { background: var(--light); border-radius: 16px; padding: 26px 22px; border: 1px solid var(--border); }
-
-        .slots-indicator { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin-bottom: 24px; display: flex; gap: 16px; align-items: center; box-shadow: 0 1px 8px rgba(0,0,0,0.04); }
-        .slots-badge { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 62px; }
-        .slots-number { font-size: 2.2rem; font-weight: 900; color: var(--terra); line-height: 1; }
-        .slots-text { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-top: 6px; }
-        .slots-message { flex: 1; font-size: 0.87rem; color: var(--navy); line-height: 1.6; font-weight: 500; }
-
-        .steps { margin-bottom: 22px; display: flex; flex-direction: column; gap: 14px; }
-        .step { display: flex; gap: 12px; align-items: flex-start; }
-        .step-dot { width: 24px; height: 24px; border-radius: 50%; background: var(--terra); color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-        .step-body { font-size: 0.87rem; color: var(--navy); line-height: 1.6; }
-        .step-body strong { display: block; font-size: 0.92rem; margin-bottom: 2px; font-weight: 700; }
-
-        .form-note { font-size: 0.77rem; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.6; }
-
-        /* MINI SERVICES */
-        .miniservices-section { background: #fff; }
-        .miniservice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; align-items: start; }
-        .miniservice-card { background: var(--light); border: 1px solid var(--border); border-radius: 14px; padding: 20px 18px; }
-        .miniservice-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
-        .miniservice-name { font-size: 1rem; font-weight: 800; color: var(--navy); line-height: 1.3; }
-        .miniservice-price { font-size: 1.15rem; font-weight: 900; color: var(--terra); white-space: nowrap; flex-shrink: 0; }
-        .miniservice-desc { font-size: 0.86rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
-
-        /* PRODUCTS (TOOLKIT + VAULT) */
-        .products-section { background: var(--light); }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; align-items: start; }
-        .product-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
-        .product-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; gap: 10px; }
-        .product-name { font-size: 1.02rem; font-weight: 800; color: var(--navy); line-height: 1.3; }
-        .product-price { font-size: 1.3rem; font-weight: 900; color: var(--terra); white-space: nowrap; }
-        .product-tagline { font-size: 0.76rem; color: var(--olive); font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 12px; }
-        .product-preview-grid { display: flex; gap: 8px; margin-bottom: 16px; }
-        .product-preview { flex: 1; min-width: 0; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; display: none; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
-        .product-desc { font-size: 0.86rem; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
-        .product-list { list-style: none; margin-bottom: 18px; }
-        .product-list li { font-size: 0.84rem; color: var(--navy); margin-bottom: 8px; display: flex; gap: 8px; align-items: flex-start; line-height: 1.4; }
-        .product-check { color: var(--terra); font-weight: 900; flex-shrink: 0; }
-
-        /* TESTIMONIALS */
-        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 8px; align-items: start; }
-        .testimonial-card { background: var(--light); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
-        .testimonial-quote { font-size: 0.88rem; color: var(--navy); line-height: 1.7; margin-bottom: 12px; font-style: italic; }
-        .testimonial-author { font-size: 0.83rem; font-weight: 700; color: var(--terra); }
-        .testimonial-business { font-size: 0.76rem; color: var(--muted); }
-
-        /* FAQ */
-        .faq-section { background: #fff; }
-        .faq-item { border-bottom: 1px solid var(--border); }
-        .faq-item:first-child { border-top: 1px solid var(--border); }
-        .faq-question { padding: 18px 4px; cursor: pointer; font-weight: 700; font-size: 0.95rem; color: var(--navy); display: flex; align-items: center; justify-content: space-between; user-select: none; gap: 10px; }
-        .faq-question:hover { color: var(--terra); }
-        .faq-toggle { font-size: 1.2rem; color: var(--terra); flex-shrink: 0; }
-        .faq-answer { display: none; padding: 0 4px 18px; font-size: 0.88rem; color: var(--muted); line-height: 1.65; max-width: 60ch; }
-        .faq-answer.open { display: block; }
-
-        /* MANAGEMENT */
-        .package-section { background: var(--light); }
-        .package-card { border: 1px solid var(--border); border-radius: 16px; padding: 28px 20px; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
-        .pkg-top { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 8px; }
-        .pkg-price { font-size: 2.5rem; font-weight: 900; color: var(--terra); line-height: 1; }
-        .pkg-period { font-size: 0.92rem; color: var(--muted); font-weight: 700; padding-bottom: 6px; }
-        .pkg-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border); line-height: 1.6; }
-        .pkg-list { list-style: none; margin-bottom: 22px; }
-        .pkg-list li { font-size: 0.89rem; color: var(--navy); margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
-        .pkg-check { color: var(--terra); font-weight: 900; flex-shrink: 0; font-size: 1.05rem; }
-        .pkg-note { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 14px; line-height: 1.5; }
-
-        .final-cta { background: var(--terra); text-align: center; border-bottom: none; }
-        .final-cta h2 { color: #fff; margin-bottom: 12px; }
-        .final-cta p { color: rgba(255,255,255,0.92); font-size: 0.95rem; margin-bottom: 26px; line-height: 1.7; }
-        .final-cta .link-secondary { color: #fff; opacity: 0.92; }
-
-        footer { text-align: center; padding: 60px var(--narrow) 44px; font-size: 0.82rem; color: var(--muted); background: var(--cream); border-bottom: none; }
-        footer .section-label, footer h2, footer .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
-        footer .btn { margin: 0 auto 28px; }
-        footer strong { color: var(--navy); }
-        footer a { color: var(--terra); text-decoration: none; font-weight: 600; }
-        .footer-links { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .footer-pill {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-size: 0.85rem; font-weight: 700; color: var(--navy);
-            text-decoration: none; padding: 2px 4px;
-        }
-        .footer-pill .footer-pill-label { color: var(--olive); font-weight: 800; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.4px; }
-        .footer-pill .footer-pill-value { color: var(--terra); font-weight: 700; }
-        .footer-meta { margin-top: 6px; font-size: 0.8rem; }
-
-        .float-whatsapp {
-            position: fixed; bottom: 20px; right: 20px; width: 54px; height: 54px; border-radius: 50%;
-            background: var(--olive); color: #fff; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 16px rgba(0,0,0,0.22); z-index: 30;
-            transition: transform 0.15s;
-        }
-        .float-whatsapp:hover { transform: scale(1.07); }
-
-        /* ADMIN PANEL */
-        .admin-panel {
-            display: none;
-            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 100%; max-width: 480px;
-            background: var(--navy); border-top: 3px solid var(--terra);
-            padding: 16px 20px; z-index: 999; max-height: 90vh; overflow-y: auto;
-        }
-        .admin-header { color: #94A3B8; font-size: 0.75rem; text-align: center; margin-bottom: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .admin-tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
-        .admin-tab {
-            flex: 1; min-width: 70px; padding: 10px; background: rgba(255,255,255,0.1); color: #94A3B8;
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
-            font-size: 0.68rem; font-weight: 700; text-transform: uppercase; cursor: pointer;
-            transition: all 0.15s;
-        }
-        .admin-tab.active { background: var(--terra); color: #fff; border-color: var(--terra); }
-        .admin-content { display: none; }
-        .admin-content.active { display: block; }
-        .admin-btns { display: flex; gap: 8px; margin-bottom: 12px; }
-        .admin-btn {
-            flex: 1; padding: 12px; border: none; border-radius: 10px;
-            font-size: 0.85rem; font-weight: 900; cursor: pointer;
-            transition: transform 0.15s;
-        }
-        .admin-btn:active { transform: scale(0.95); }
-        .admin-btn.s1 { background: #ffe0e0; color: #c0392b; }
-        .admin-btn.s2 { background: #fff3cd; color: #b8860b; }
-        .admin-btn.s3 { background: #d4edda; color: #155724; }
-        .admin-status {
-            color: var(--terra); font-size: 0.75rem; text-align: center;
-            margin: 10px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .admin-section { margin-bottom: 16px; }
-        .admin-section-title { color: #94A3B8; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
-        .admin-input {
-            display: block; width: 100%; padding: 10px; margin-bottom: 8px;
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
-            font-size: 0.85rem; background: rgba(255,255,255,0.05); color: #fff;
-            font-family: inherit;
-        }
-        .admin-input::placeholder { color: #64748B; }
-        .admin-label { font-size: 0.75rem; color: #94A3B8; display: block; margin-bottom: 4px; font-weight: 700; margin-top: 10px; }
-        .admin-btn-add {
-            width: 100%; padding: 10px; background: var(--terra); color: #fff;
-            border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
-            cursor: pointer; margin-bottom: 12px;
-        }
-        .item-row {
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px; padding: 12px; margin-bottom: 8px; font-size: 0.78rem;
-            color: #E2E8F0;
-        }
-        .item-preview { margin-bottom: 8px; }
-        .item-controls { display: flex; gap: 6px; }
-        .item-delete { background: #c0392b; color: #fff; flex: 1; padding: 6px; border: none; border-radius: 4px; font-size: 0.7rem; font-weight: 700; cursor: pointer; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inbox Aide SA | Clearer customer replies and WhatsApp Business content</title>
+<meta name="description" content="Inbox Aide SA helps small businesses improve their customer replies and WhatsApp Business content, so customers find what they need and know what to do next. Reply Refresh from R100.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23232A3B'/%3E%3Cpath d='M8 10h16v9H15l-5 4v-4H8z' fill='%23F0A47F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF1E6;--surface:#FFF9F4;--soft:#FCDFCB;--ink:#2A2A3B;--mute:#5E5F72;--line:#EFC7AE;--peach:#B84A24;--peach-soft:#FFD3B9;--olive:#6B6A2E;--olive-soft:#FBE3C6;--btn:#B84A24;--btn-ink:#fff;--out:#FFD0B3;
+--hd:"Bricolage Grotesque",Georgia,sans-serif;--bd:"Figtree",system-ui,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171B26;--surface:#212736;--soft:#1D2230;--ink:#F3EEE4;--mute:#B2B9C9;--line:#343C50;--peach:#F0A47F;--peach-soft:#3A2B2A;--olive:#B5C47E;--olive-soft:#2C3322;--btn:#F0A47F;--btn-ink:#171B26;--out:#5A3A2B;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171B26;--surface:#212736;--soft:#1D2230;--ink:#F3EEE4;--mute:#B2B9C9;--line:#343C50;--peach:#F0A47F;--peach-soft:#3A2B2A;--olive:#B5C47E;--olive-soft:#2C3322;--btn:#F0A47F;--btn-ink:#171B26;--out:#5A3A2B;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--bd)}
+h1,h2,h3{font-family:var(--hd);line-height:1.15;margin:0 0 .6em;letter-spacing:-.01em}
+h1{font-size:clamp(2.1rem,6.5vw,3.5rem)}h2{font-size:clamp(1.6rem,4.5vw,2.4rem)}h3{font-size:1.25rem}
+p{margin:0 0 1em;max-width:62ch}a{color:inherit}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+section{padding:3.5rem 0}.alt{background:var(--soft)}
+.lead{font-size:1.15rem;color:var(--mute)}
+:focus-visible{outline:3px solid var(--peach);outline-offset:3px;border-radius:6px}
+.btn{display:inline-block;padding:.8rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--btn);background:var(--btn);color:var(--btn-ink);cursor:pointer;font:600 1rem var(--bd);text-align:center}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:hover{filter:brightness(1.1)}
+.row{display:flex;flex-wrap:wrap;gap:.75rem}
+#setup{background:#FFE9A8;color:#3a2f00;padding:.6rem 1rem;font-size:.9rem;text-align:center}
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:1rem}
+.logo{font:700 1.2rem var(--hd);text-decoration:none}.logo span{color:var(--peach)}
+nav ul{display:flex;gap:1.3rem;list-style:none;margin:0;padding:0}nav a{text-decoration:none;font-weight:500;font-size:.97rem}nav a:hover{text-decoration:underline}
+#menu{display:none;background:none;border:2px solid var(--ink);color:var(--ink);border-radius:8px;padding:.45rem .5rem;line-height:0}
+@media(max-width:820px){#menu{display:block}nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);padding:.5rem 1.25rem 1rem}nav.open{display:block}nav ul{flex-direction:column;gap:0}nav a{display:block;padding:.7rem 0}.hdcta{display:none}}
+.hero{padding:2.5rem 0 3.5rem}.hero .wrap{display:grid;gap:2rem}
+@media(min-width:900px){.hero .wrap{grid-template-columns:1.15fr 1fr;align-items:center}}
+.chat{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:1rem;display:flex;flex-direction:column;gap:.55rem}
+.chat small{color:var(--mute);font-size:.8rem}
+.b{max-width:88%;padding:.6rem .85rem;border-radius:14px;background:var(--surface);border:1px solid var(--line);font-size:.97rem;line-height:1.45}
+.b.out{align-self:flex-end;background:var(--out);border-color:transparent}
+.b.meh{color:var(--mute);font-style:italic}
+.tag{font-weight:600;font-size:.85rem;color:var(--peach)}
+.qs{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}.qs .b{max-width:none}
+.grid{display:grid;gap:1.1rem}
+@media(min-width:760px){.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.4rem;display:flex;flex-direction:column}
+.card .btn{margin-top:auto;align-self:flex-start}.card ul{padding-left:1.2rem;margin:.3rem 0 1.2rem}.card li{margin-bottom:.3rem}
+.price{font:700 2rem var(--hd);margin:0 0 .2rem}.price small{font:500 .95rem var(--bd);color:var(--mute)}
+.note{background:var(--olive-soft);border-radius:10px;padding:.7rem .9rem;font-size:.95rem;margin-bottom:1rem}
+.pick{list-style:none;padding:0;margin:0;display:grid;gap:.7rem}
+.pick li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem}
+.pick a{font-weight:600;color:var(--olive)}
+.steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:1rem}
+@media(min-width:760px){.steps{grid-template-columns:repeat(4,1fr)}}
+.steps li{counter-increment:s;border-top:3px solid var(--peach);padding-top:.8rem}
+.steps li::before{content:counter(s);font:700 1.4rem var(--hd);color:var(--peach);display:block}
+.steps b{display:block;font-family:var(--hd);font-size:1.1rem;margin-bottom:.2rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:.7rem}
+summary{cursor:pointer;padding:1rem 1.1rem;font-weight:600;list-style-position:inside}
+details p{padding:0 1.1rem;margin:0 0 1rem}
+form{display:grid;gap:.9rem;max-width:560px}label{font-weight:600;display:grid;gap:.3rem;font-size:.97rem}
+input,select,textarea{font:400 1rem var(--bd);padding:.7rem;border:1.5px solid var(--mute);border-radius:10px;background:var(--surface);color:var(--ink);width:100%}
+#fstatus{font-size:.95rem;min-height:1.4em}
+.final{background:var(--ink);color:var(--bg)}.final .lead{color:inherit;opacity:.85}.final .btn{background:var(--peach-soft);color:#232A3B;border-color:var(--peach-soft)}.final .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
+<!-- ============ EDIT YOUR DETAILS IN CONFIG (in the script at the bottom of this file) ============ -->
+<div id="setup" role="status" hidden>Setup needed: replace YOUR_WHATSAPP_NUMBER in CONFIG (bottom of this file). WhatsApp buttons won’t work until you do.</div>
+<header><div class="wrap">
+<a class="logo" href="#top">Inbox Aide <span>SA</span></a>
+<button id="menu" aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+<nav id="nav" aria-label="Main"><ul>
+<li><a href="#familiar">Sound familiar?</a></li><li><a href="#help">How I help</a></li><li><a href="#services">Services</a></li><li><a href="#how">How it works</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+<a class="btn hdcta" data-wa="general" href="#">WhatsApp me</a>
+</div></header>
 
-<div class="wrapper">
-
-    <!-- HEADER NAV -->
-    <nav>
-        <div class="nav-brand">
-            <div class="brand-name">Inbox Aide</div>
-            <div class="brand-sub">with Zondra</div>
-        </div>
-        <div class="nav-links">
-            <a href="#howican" class="nav-link">How I Help</a>
-            <a href="#toolkit" class="nav-link">Products</a>
-            <a href="#miniservices" class="nav-link">Mini Services</a>
-            <a href="#faq" class="nav-link">FAQ</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </div>
-        <div style="display:flex; align-items:center; gap:10px;">
-            <a href="#audit" class="nav-cta">Free Check</a>
-            <button class="nav-toggle" id="navToggle" onclick="toggleMobileMenu()" aria-label="Open menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
-
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
-        <a href="#howican" class="mobile-menu-link" onclick="closeMobileMenu()">How I Help</a>
-        <a href="#toolkit" class="mobile-menu-link" onclick="closeMobileMenu()">Products</a>
-        <a href="#miniservices" class="mobile-menu-link" onclick="closeMobileMenu()">Mini Services</a>
-        <a href="#faq" class="mobile-menu-link" onclick="closeMobileMenu()">FAQ</a>
-        <a href="#contact" class="mobile-menu-link" onclick="closeMobileMenu()">Contact</a>
-        <a href="#audit" class="mobile-menu-link mobile-menu-cta" onclick="closeMobileMenu()">Book Free Check</a>
-    </div>
-
-    <!-- HERO -->
-    <section class="hero">
-        <span class="eyebrow">For small business owners buried in DMs</span>
-        <h1>Stop losing customers to slow, <em>confusing replies.</em></h1>
-        <p class="hero-sub">Your customers are messaging you right now on WhatsApp and Facebook. I'm Zondra, and I help small businesses improve and manage that communication — whether you'd rather fix it yourself, want a bit of hands-on help, or want to hand the whole inbox over to me. No agency, no call centre. Just me, one inbox at a time.</p>
-        <div class="hero-ways">
-            <a href="#howican" class="hero-way-pill"><span class="hway-num">1</span>Free check</a>
-            <a href="#howican" class="hero-way-pill"><span class="hway-num">2</span>DIY · R30+</a>
-            <a href="#howican" class="hero-way-pill"><span class="hway-num">3</span>Mini fixes · R100+</a>
-            <a href="#howican" class="hero-way-pill"><span class="hway-num">4</span>Managed · R450/wk</a>
-        </div>
-        <a href="#checklist" class="btn btn-terra">Take My Free Communication Checklist</a>
-        <a href="#audit" class="link-secondary">Already know you need help? Book your free check</a>
-    </section>
-
-    <!-- PAIN POINTS -->
-    <section class="pain-section">
-        <span class="section-label">Sound Familiar?</span>
-        <h2>If this feels like your inbox, you're not alone.</h2>
-        <div class="wins-grid">
-            <div class="win-card">
-                <div class="win-icon">😩</div>
-                <div class="win-body"><p>You're typing the same 5 answers over and over, every single day.</p></div>
-            </div>
-            <div class="win-card">
-                <div class="win-icon">⏰</div>
-                <div class="win-body"><p>Customers wait hours — sometimes days — for a reply. Some just disappear.</p></div>
-            </div>
-            <div class="win-card">
-                <div class="win-icon">📵</div>
-                <div class="win-body"><p>Facebook comments and DMs pile up faster than you can keep track of.</p></div>
-            </div>
-            <div class="win-card">
-                <div class="win-icon">🤷</div>
-                <div class="win-body"><p>You know your replies need work — you just don't know where to start.</p></div>
-            </div>
-        </div>
-        <p class="pain-transition">That's exactly where I come in.</p>
-    </section>
-
-    <!-- MEET ZONDRA -->
-    <section class="about-section">
-        <span class="section-label">About Me</span>
-        <h2>Hi, I'm Zondra.</h2>
-        <div class="about-card">
-            <div class="about-top">
-                <div class="about-avatar"><span class="about-avatar-initial" id="aboutAvatarInitial">Z</span><img alt="Zondra" id="aboutAvatarImg" style="display:none;"></div>
-                <div>
-                    <div class="about-name">Zondra</div>
-                    <div class="about-role">Founder, Inbox Aide</div>
-                </div>
-            </div>
-            <p>I started Inbox Aide because I kept seeing small businesses lose customers over something completely fixable — slow, disorganized replies. Not bad products. Not bad service. Just a messy inbox.</p>
-            <p>I'm not running an agency. I work with businesses directly, one inbox at a time, from my phone, wherever I am. I only take on <strong>1–2 management clients at a time</strong> — because I'd rather do a handful of inboxes brilliantly than a hundred badly.</p>
-            <p>Everything I do — from a free check to full management — works from screenshots you send me. I never log into your accounts, and I never ask for passwords or access. It's always just you sharing screenshots, on your terms.</p>
-            <p>Everything else I've built — my checklist, my guide, my app — exists so you can fix things yourself too, at your own pace, even if you never become a client.</p>
-            <span class="about-tag">📍 South Africa · WhatsApp &amp; Facebook specialist</span>
-        </div>
-    </section>
-
-    <!-- HOW I CAN HELP -->
-    <section class="path-section" id="howican">
-        <span class="section-label">The Different Ways I Can Help</span>
-        <h2>Pick your starting point.</h2>
-        <p class="section-sub">Whether you want to fix things yourself, need a bit of hands-on help, or want it fully taken off your plate — here's how small businesses usually work with me. Every inbox and every budget is different, so start wherever fits you right now.</p>
-        <div class="path-ladder">
-            <a href="#checklist" class="path-card">
-                <div class="path-tag">Free · See where you stand</div>
-                <div class="path-title">Checklist &amp; Free Communication Check</div>
-                <div class="path-desc">Score your own inbox in 2 minutes, or let me personally review it and send you 3 practical takeaways.</div>
-                <span class="path-link">Start here</span>
-            </a>
-            <a href="#toolkit" class="path-card">
-                <div class="path-tag">R30–R150 · Do it yourself</div>
-                <div class="path-title">Reply Toolkit &amp; Reply Vault</div>
-                <div class="path-desc">Templates and frameworks so you can fix your own replies today, at your own pace.</div>
-                <span class="path-link">Browse resources</span>
-            </a>
-            <a href="#miniservices" class="path-card">
-                <div class="path-tag">R100–R200 · A little hands-on help</div>
-                <div class="path-title">Mini Fixes</div>
-                <div class="path-desc">Small, done-for-you jobs — like a Quick Reply Refresh — for the specific things you'd rather hand over.</div>
-                <span class="path-link">See mini services</span>
-            </a>
-            <a href="#management" class="path-card">
-                <div class="path-tag">R450/week · Limited · 1–2 clients only</div>
-                <div class="path-title">Inbox Management</div>
-                <div class="path-desc">I manage your WhatsApp &amp; Facebook inbox for you, personally, every week.</div>
-                <span class="path-link">Learn about management</span>
-            </a>
-        </div>
-
-        <div class="notsure-block">
-            <div class="notsure-title">Not sure where to start?</div>
-            <p class="notsure-text">Tell me a little about your business on WhatsApp, and I'll point you to the option that makes the most sense — no pressure, no sales pitch.</p>
-            <a href="#" id="notsureLink" class="link-secondary" style="margin-top:8px; text-align:left; padding:0;">Let's chat on WhatsApp</a>
-        </div>
-
-        <div class="trust-row">
-            <span>Direct to Zondra, not a call centre</span>
-            <span>South African small business specialist</span>
-            <span>Clear pricing, no hidden fees</span>
-        </div>
-    </section>
-
-    <!-- CHECKLIST (INTERACTIVE SELF-AUDIT) -->
-    <section class="checklist-section" id="checklist">
-        <span class="section-label">Start Here — It's Free</span>
-        <h2>Take the 2-Minute Communication Checklist.</h2>
-        <p class="section-sub">Think about your last 10 conversations on WhatsApp or Facebook, then check every box that's true for your business right now. No email, no sign-up — your score shows up instantly below.</p>
-
-        <div class="checklist-card">
-            <div class="quiz-group">
-                <div class="quiz-group-title">Before They Message You</div>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Make your pricing easy to find so customers don't have to ask."><span>Is your pricing easy to find?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Mention deposits or requirements upfront to avoid back-and-forth."><span>Do you mention deposits or requirements before customers enquire?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Write out your booking or ordering process somewhere customers can see it."><span>Is your booking or ordering process explained somewhere?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Post your business hours somewhere visible."><span>Do customers know your business hours?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Explain exactly what's included in your service or product."><span>Do you explain what's included in your service or product?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Create a simple FAQ customers can check before messaging you."><span>Do you answer common FAQs somewhere customers can see?</span></label>
-            </div>
-
-            <div class="quiz-group">
-                <div class="quiz-group-title">When They Message You</div>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Aim to reply within 30 minutes during business hours."><span>Do you reply within 30 minutes during business hours?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Set up a greeting message for new conversations."><span>Do you have a greeting or welcome message set up?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Create quick-reply templates for your most-asked questions."><span>Do you use templates for your most-asked questions?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Review your tone so it feels friendly, clear, and professional."><span>Does your tone match your brand — friendly, clear, and professional?</span></label>
-            </div>
-
-            <div class="quiz-group">
-                <div class="quiz-group-title">After They Message You</div>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Follow up with customers who go quiet instead of letting it drop."><span>Do you follow up if a customer goes quiet?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Give every conversation a clear next step, like "reply YES to book"."><span>Does every conversation have a clear next step?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Flag hot leads so none slip through the cracks."><span>Do you flag hot leads so none get missed?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Check Facebook comments and DMs as often as WhatsApp."><span>Do you check Facebook comments and DMs as often as WhatsApp?</span></label>
-                <label class="quiz-item"><input type="checkbox" class="quiz-check" data-tip="Start tracking how many enquiries actually turn into sales."><span>Do you know how many enquiries actually turn into sales?</span></label>
-            </div>
-
-            <div class="score-legend">
-                <div class="score-legend-title">What Your Score Means</div>
-                <div class="score-legend-row"><span class="score-dot green"></span>12–15 → Your communication is strong.</div>
-                <div class="score-legend-row"><span class="score-dot yellow"></span>8–11 → You're doing well, but small improvements could increase conversions.</div>
-                <div class="score-legend-row"><span class="score-dot red"></span>0–7 → You're probably losing customers before you even realize it.</div>
-            </div>
-
-            <button type="button" class="btn btn-terra" onclick="calculateScore()">Check My Score</button>
-
-            <div class="quiz-result" id="quizResult">
-                <div class="quiz-score" id="quizScoreNum">0/15</div>
-                <div class="quiz-tier" id="quizTierLabel"></div>
-                <p class="quiz-message" id="quizMessage"></p>
-                <div class="next-steps" id="nextSteps"></div>
-                <a href="#audit" class="btn btn-terra" id="quizCta">Want A Second Opinion? Book My Free Check</a>
-                <a href="#" class="link-secondary" onclick="resetQuiz(); return false;">Retake the check</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- AUDIT -->
-    <section class="audit-section" id="audit">
-        <span class="section-label">Free &amp; Practical</span>
-        <h2>Get a Free Customer Communication Check.</h2>
-        <p class="section-sub">This isn't a lengthy consulting report — it's a quick, practical look at how your business communicates with customers right now, so you can see what's working and what needs fixing.</p>
-
-        <div class="form-card">
-            <p style="font-weight:800;color:var(--navy);margin-bottom:10px;font-size:0.92rem;">Where I look</p>
-            <ul class="check-list" style="margin-bottom:20px;">
-                <li><span class="check-mark">✓</span>WhatsApp Business</li>
-                <li><span class="check-mark">✓</span>Facebook &amp; Messenger</li>
-                <li><span class="check-mark">✓</span>Instagram comments and DMs, where relevant</li>
-                <li><span class="check-mark">✓</span>Bios, catalogues, quick replies, greeting/away messages, automations, and real customer conversations</li>
-                <li><span class="check-mark">✓</span>Your website or page, where it affects how customers reach or message you</li>
-            </ul>
-
-            <p style="font-size:0.85rem;color:var(--muted);line-height:1.65;margin-bottom:22px;padding:14px;background:#fff8f0;border:1px dashed var(--terra);border-radius:12px;"><strong style="color:var(--navy);">I'm a customer communication specialist — not a social media manager, marketing consultant, or advertising adviser.</strong> I don't assess posting frequency, content strategy, ad performance, marketing captions, aesthetics, or follower growth. I only look at these platforms where they involve how you actually talk to customers.</p>
-
-            <div class="slots-indicator">
-                <div class="slots-badge">
-                    <div class="slots-number" id="slotCount">3</div>
-                    <div class="slots-text">Free Checks Left</div>
-                </div>
-                <div class="slots-message">I only take 3 free checks a week so each one gets proper attention — always from what you send me, never account access.</div>
-            </div>
-
-            <div class="steps">
-                <div class="step">
-                    <div class="step-dot">1</div>
-                    <div class="step-body"><strong>Send me what's relevant.</strong>This varies by business — usually 2–3 recent customer conversation screenshots, plus anything else that applies: your quick replies, greeting/away messages, catalogue, automations, or a page/website link. I'll tell you exactly what's useful once I know your setup.</div>
-                </div>
-                <div class="step">
-                    <div class="step-dot">2</div>
-                    <div class="step-body"><strong>I review it personally.</strong>No automated scans, no templates — just a real look at what it's actually like to message your business as a customer.</div>
-                </div>
-                <div class="step">
-                    <div class="step-dot">3</div>
-                    <div class="step-body"><strong>You get 3 practical takeaways.</strong>What's working, where there's friction, and one clear, actionable improvement you can make right away.</div>
-                </div>
-            </div>
-
-            <a href="https://wa.link/i8kqhj" id="auditLink" class="btn btn-terra">Reserve My Free Check</a>
-            <p class="form-note">This is a quick, practical check — not a full consulting report. It's how I spot real communication gaps and show you what I do. If it's a good fit, the natural next step is weekly Inbox Aide management — but the check stands on its own either way, no pressure.</p>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials-section">
-        <span class="section-label" id="testimonialsLabel">Don't Take My Word For It</span>
-        <h2 id="testimonialsHeading">What small businesses are saying.</h2>
-        <div class="testimonials-grid" id="testimonialsContainer"></div>
-    </section>
-
-    <!-- PRODUCTS: TOOLKIT + VAULT -->
-    <section class="products-section" id="toolkit">
-        <span class="section-label">Prefer To DIY?</span>
-        <h2>Fix it yourself, at your own pace.</h2>
-        <p class="section-sub">Not ready for a free check or management yet? Start with my templates — built from real conversations with South African small businesses.</p>
-        <p style="font-size:0.85rem;color:var(--olive);font-weight:700;font-style:italic;margin-bottom:24px;margin-top:-14px;">"Built by someone obsessed with making customer communication simpler." — Zondra</p>
-        <div class="product-grid" id="productsContainer"></div>
-    </section>
-
-    <!-- MINI SERVICES -->
-    <section class="miniservices-section" id="miniservices">
-        <span class="section-label">Want A Little Hands-On Help?</span>
-        <h2>Small jobs, done for you.</h2>
-        <p class="section-sub">Not ready for weekly management, but don't want to tackle it all yourself either? These are small, specific fixes I can do for you — no ongoing commitment, no big spend.</p>
-        <div class="miniservice-grid" id="miniServicesContainer"></div>
-        <p class="form-note" style="margin-top:18px;">Not sure which fix you need? <a href="#" id="miniServicesContactLink" style="color:var(--terra);font-weight:800;text-decoration:none;">Message me and I'll point you in the right direction</a>.</p>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq-section" id="faq">
-        <span class="section-label">Questions</span>
-        <h2>Things people usually ask me.</h2>
-        <div id="faqContainer"></div>
-    </section>
-
-    <!-- MANAGEMENT -->
-    <section class="package-section" id="management">
-        <span class="section-label">Limited Availability</span>
-        <h2>Want me to manage it for you?</h2>
-        <p class="section-sub">I only take on 1–2 management clients at a time — so the businesses I do work with get my full attention, not a shared inbox handled by a team.</p>
-
-        <div class="slots-indicator">
-            <div class="slots-badge">
-                <div class="slots-number" id="clientSpotCount">1</div>
-                <div class="slots-text">Spot Open</div>
-            </div>
-            <div class="slots-message">When this hits zero, I'm fully booked — message me to check current availability.</div>
-        </div>
-
-        <div class="package-card">
-            <div class="pkg-top">
-                <div class="pkg-price">R450</div>
-                <div class="pkg-period">/ week</div>
-            </div>
-            <div class="pkg-sub">Monday – Friday · 09:00–17:00 · No long contracts · EFT or PayShap</div>
-            <ul class="pkg-list">
-                <li><span class="pkg-check">✓</span>Hourly inbox sweeps on WhatsApp &amp; Facebook during business hours</li>
-                <li><span class="pkg-check">✓</span>Every reply sent in your brand voice — fast and professional</li>
-                <li><span class="pkg-check">✓</span>Facebook comments engaged and converted to DMs</li>
-                <li><span class="pkg-check">✓</span>Hot leads flagged and followed up within 24 hours</li>
-                <li><span class="pkg-check">✓</span>Complex issues escalated straight to you — nothing gets dropped</li>
-                <li><span class="pkg-check">✓</span>Weekly summary: lead volume, response times, and conversions</li>
-            </ul>
-            <a href="#" id="managementLink" class="btn btn-olive">Message Me About Management</a>
-            <p class="pkg-note">Most people start with the free check first to see if it's a fit — or try a Mini Fix if they just need one specific thing sorted. Totally fine to jump straight here too.</p>
-        </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="final-cta">
-        <h2>Let's fix your inbox — together.</h2>
-        <p>Whether you start with the checklist, grab my templates, hand me one small job, or want it all managed for you — I'm here to help you stop losing customers to slow replies.</p>
-        <a href="#checklist" class="btn btn-white">Take My Free Communication Checklist</a>
-        <a href="#howican" class="link-secondary">or see all the ways I can help</a>
-    </section>
-
-    <footer id="contact">
-        <span class="section-label">Get In Touch</span>
-        <h2>Let's talk.</h2>
-        <p class="section-sub">Got a question, or not sure which option fits? Message me directly — I read and reply to these myself.</p>
-        <a href="#" id="footerWhatsappLink" class="btn btn-terra" style="max-width:320px;">Message Me On WhatsApp</a>
-        <div class="footer-links">
-            <a href="#" id="footerEmailLink" class="footer-pill"><span class="footer-pill-label">Email</span><span class="footer-pill-value" id="footerEmailText">zondracaitlin29@gmail.com</span></a>
-            <a href="#" id="footerFacebook" class="footer-pill" target="_blank" rel="noopener" style="display:none;"><span class="footer-pill-label">Facebook</span></a>
-            <a href="#" id="footerInstagram" class="footer-pill" target="_blank" rel="noopener" style="display:none;"><span class="footer-pill-label">Instagram</span></a>
-        </div>
-        <p class="footer-meta">Monday – Friday · 09:00 – 17:00</p>
-        <p class="footer-meta" style="opacity:0.5;">© 2026 Inbox Aide</p>
-    </footer>
-
-    <a href="#" id="floatWhatsapp" class="float-whatsapp" aria-label="Message on WhatsApp" target="_blank" rel="noopener">💬</a>
-
+<main id="top">
+<section class="hero"><div class="wrap">
+<div>
+<h1>Your customers have questions. Let’s make the answers clearer.</h1>
+<p class="lead">I help small businesses improve their customer replies and WhatsApp Business content, so important information is easier to find, messages are easier to understand, and customers know what to do next.</p>
+<div class="row"><a class="btn" href="#choose">Find the right service</a><a class="btn ghost" data-wa="general" href="#">Chat to me on WhatsApp</a></div>
+<p style="margin-top:1rem;font-size:.95rem;color:var(--mute)">Made for small businesses in South Africa. You work with me directly.</p>
 </div>
-
-<!-- ADMIN PANEL (only visible at ?admin) -->
-<div class="admin-panel" id="adminPanel">
-    <div class="admin-header">⚙️ Inbox Aide Admin</div>
-
-    <div class="admin-tabs">
-        <button class="admin-tab active" onclick="switchTab('slots')">Check Slots</button>
-        <button class="admin-tab" onclick="switchTab('clientspots')">Client Spots</button>
-        <button class="admin-tab" onclick="switchTab('testimonials')">Testimonials</button>
-        <button class="admin-tab" onclick="switchTab('products')">Products</button>
-        <button class="admin-tab" onclick="switchTab('miniservices')">Mini Services</button>
-        <button class="admin-tab" onclick="switchTab('faq')">FAQ</button>
-        <button class="admin-tab" onclick="switchTab('links')">Settings</button>
-    </div>
-
-    <!-- AUDIT SLOTS TAB -->
-    <div class="admin-content active" id="slots-tab">
-        <div class="admin-section-title">Available Free Checks (this week)</div>
-        <div class="admin-btns">
-            <button class="admin-btn s1" onclick="setSlots(0)">0</button>
-            <button class="admin-btn s2" onclick="setSlots(1)">1</button>
-            <button class="admin-btn s2" onclick="setSlots(2)">2</button>
-            <button class="admin-btn s3" onclick="setSlots(3)">3</button>
-        </div>
-        <div class="admin-status" id="slotsStatus"></div>
-    </div>
-
-    <!-- CLIENT SPOTS TAB -->
-    <div class="admin-content" id="clientspots-tab">
-        <div class="admin-section-title">Open Management Client Spots</div>
-        <div class="admin-btns">
-            <button class="admin-btn s1" onclick="setClientSpots(0)">0</button>
-            <button class="admin-btn s2" onclick="setClientSpots(1)">1</button>
-            <button class="admin-btn s3" onclick="setClientSpots(2)">2</button>
-        </div>
-        <div class="admin-status" id="clientSpotsStatus"></div>
-    </div>
-
-    <!-- TESTIMONIALS TAB -->
-    <div class="admin-content" id="testimonials-tab">
-        <div class="admin-section-title">Add Testimonial</div>
-        <input type="text" class="admin-input" id="testAuthor" placeholder="Name & business">
-        <input type="text" class="admin-input" id="testBusiness" placeholder="Business type">
-        <textarea class="admin-input" id="testQuote" placeholder="Quote" style="resize: vertical; min-height: 50px;"></textarea>
-        <button class="admin-btn-add" onclick="addTestimonial()">Add Testimonial</button>
-        <div class="admin-section-title" style="margin-top: 14px; margin-bottom: 8px;">All Testimonials</div>
-        <div id="testList"></div>
-        <div class="admin-status" id="testStatus"></div>
-    </div>
-
-    <!-- PRODUCTS TAB -->
-    <div class="admin-content" id="products-tab">
-        <div class="admin-section-title" id="prFormTitle">Add Product</div>
-        <input type="text" class="admin-input" id="prName" placeholder="Name (e.g. Reply Toolkit Guide)">
-        <input type="text" class="admin-input" id="prPrice" placeholder="Price (e.g. R30)">
-        <input type="text" class="admin-input" id="prTagline" placeholder="Tagline (e.g. One-time · Instant download)">
-        <textarea class="admin-input" id="prDesc" placeholder="Description" style="resize: vertical; min-height: 50px;"></textarea>
-        <textarea class="admin-input" id="prFeatures" placeholder="Feature bullets — one per line" style="resize: vertical; min-height: 60px;"></textarea>
-        <input type="text" class="admin-input" id="prLink" placeholder="Purchase / download link">
-        <input type="text" class="admin-input" id="prPreview1" placeholder="Preview image 1 URL (optional)">
-        <input type="text" class="admin-input" id="prPreview2" placeholder="Preview image 2 URL (optional)">
-        <div class="admin-btns" style="margin-bottom:12px;">
-            <button class="admin-btn-add" id="prSaveBtn" onclick="saveProduct()" style="margin-bottom:0; flex:1; width:auto;">Add Product</button>
-            <button class="admin-btn-add" id="prCancelBtn" onclick="cancelPrEdit()" style="margin-bottom:0; flex:1; width:auto; background: rgba(255,255,255,0.15); display:none;">Cancel</button>
-        </div>
-        <div class="admin-section-title" style="margin-top: 14px; margin-bottom: 8px;">All Products</div>
-        <div id="prList"></div>
-        <div class="admin-status" id="prStatus"></div>
-    </div>
-
-    <!-- MINI SERVICES TAB -->
-    <div class="admin-content" id="miniservices-tab">
-        <div class="admin-section-title" id="msFormTitle">Add Mini Service</div>
-        <input type="text" class="admin-input" id="msName" placeholder="Name (e.g. Quick Reply Refresh)">
-        <input type="text" class="admin-input" id="msPrice" placeholder="Price (e.g. R150)">
-        <textarea class="admin-input" id="msDesc" placeholder="Short description" style="resize: vertical; min-height: 50px;"></textarea>
-        <input type="text" class="admin-input" id="msLink" placeholder="Link (optional — leave blank to use shared contact link)">
-        <div class="admin-btns" style="margin-bottom:12px;">
-            <button class="admin-btn-add" id="msSaveBtn" onclick="saveMiniService()" style="margin-bottom:0; flex:1; width:auto;">Add Mini Service</button>
-            <button class="admin-btn-add" id="msCancelBtn" onclick="cancelMsEdit()" style="margin-bottom:0; flex:1; width:auto; background: rgba(255,255,255,0.15); display:none;">Cancel</button>
-        </div>
-        <div class="admin-section-title" style="margin-top: 14px; margin-bottom: 8px;">All Mini Services</div>
-        <div id="msList"></div>
-        <div class="admin-status" id="msStatus"></div>
-    </div>
-
-    <!-- FAQ TAB -->
-    <div class="admin-content" id="faq-tab">
-        <div class="admin-section-title" id="faqFormTitle">Add FAQ Item</div>
-        <input type="text" class="admin-input" id="faqQuestion" placeholder="Question">
-        <textarea class="admin-input" id="faqAnswer" placeholder="Answer" style="resize: vertical; min-height: 50px;"></textarea>
-        <div class="admin-btns" style="margin-bottom:12px;">
-            <button class="admin-btn-add" id="faqSaveBtn" onclick="saveFaqItem()" style="margin-bottom:0; flex:1; width:auto;">Add FAQ</button>
-            <button class="admin-btn-add" id="faqCancelBtn" onclick="cancelFaqEdit()" style="margin-bottom:0; flex:1; width:auto; background: rgba(255,255,255,0.15); display:none;">Cancel</button>
-        </div>
-        <div class="admin-section-title" style="margin-top: 14px; margin-bottom: 8px;">All FAQ Items</div>
-        <div id="faqList"></div>
-        <div class="admin-status" id="faqStatus"></div>
-    </div>
-
-    <!-- SETTINGS TAB (everything editable: photo, links, socials) -->
-    <div class="admin-content" id="links-tab">
-        <div class="admin-section-title">Your Photo</div>
-        <label class="admin-label">"Meet Zondra" Photo URL — shown in the About section</label>
-        <input type="text" class="admin-input" id="settingAboutPhoto" placeholder="https://...">
-
-        <div class="admin-section-title" style="margin-top:16px;">Button &amp; Contact Links</div>
-        <label class="admin-label" style="margin-top:0;">Free Check Booking Link</label>
-        <input type="text" class="admin-input" id="linkWhatsapp" placeholder="https://wa.link/...">
-
-        <label class="admin-label">Management Contact Link</label>
-        <input type="text" class="admin-input" id="linkManagement" placeholder="https://form.jotform.com/... or wa.link">
-
-        <label class="admin-label">Mini Services Contact Link</label>
-        <input type="text" class="admin-input" id="linkMiniServices" placeholder="https://wa.link/... (used when a mini service has no link of its own)">
-
-        <div class="admin-section-title" style="margin-top:16px;">Contact Section</div>
-        <label class="admin-label" style="margin-top:0;">Contact WhatsApp Link (also used for the floating button)</label>
-        <input type="text" class="admin-input" id="linkFooterWhatsapp" placeholder="https://wa.me/27...">
-
-        <label class="admin-label">Contact Email</label>
-        <input type="text" class="admin-input" id="settingEmail" placeholder="you@email.com">
-
-        <div class="admin-section-title" style="margin-top:16px;">Social Links (optional)</div>
-        <label class="admin-label" style="margin-top:0;">Facebook Link</label>
-        <input type="text" class="admin-input" id="linkFacebook" placeholder="https://facebook.com/...">
-
-        <label class="admin-label">Instagram Link</label>
-        <input type="text" class="admin-input" id="linkInstagram" placeholder="https://instagram.com/...">
-
-        <button class="admin-btn-add" onclick="saveLinks()" style="margin-top:14px;">Save Settings</button>
-        <div class="admin-status" id="linksStatus"></div>
-    </div>
+<div class="chat" aria-label="Example of a clearer reply">
+<small>Illustrative example</small>
+<div class="b">Hi, how much is a cut and blow-dry?</div>
+<div class="b out meh">hi ya its R250 but depends on length, we open tues-sat, call to book</div>
+<div class="b out">Hi! A cut and blow-dry starts at R250, depending on hair length. We’re open Tuesday to Saturday, 09:00 to 17:00. To book, reply with your preferred day and time and I’ll confirm your slot.</div>
+<small>Same information. Clearer wording and a next step.</small>
 </div>
+</div></section>
+
+<section id="familiar" class="alt"><div class="wrap">
+<h2>Does this sound familiar?</h2>
+<div class="qs" aria-label="Common customer questions">
+<div class="b">How much does it cost?</div><div class="b">Are you open today?</div><div class="b">Do you deliver?</div><div class="b">How do I book?</div><div class="b">Can you send me the details again?</div></div>
+<p>Answering the same questions again and again is completely normal when you run a small business. Often the information is already there. It just isn’t easy for customers to find, or the wording leaves them unsure what to do next.</p>
+<p>Small changes can make a real difference: answering the actual question first, keeping messages short enough to scan, and ending with a clear next step. That makes things easier for your customers and for you, with less repeated typing.</p>
+<ul>
+<li>Messages that feel too long, unclear or hard to scan</li>
+<li>A WhatsApp Business profile that’s incomplete or out of date</li>
+<li>Catalogue descriptions that don’t explain the product or service well</li>
+<li>Wanting to sound professional without sounding cold or unlike yourself</li>
+</ul>
+</div></section>
+
+<section id="help"><div class="wrap">
+<h2>How I help</h2>
+<div class="grid g3">
+<article class="card"><h3>Clearer customer replies</h3><p>For when customers keep asking the same things and your answers could be clearer.</p><p><b>What I deliver:</b> improved versions of your common replies that answer directly, sound natural and give a clear next step.</p><p><b>Suits:</b> anyone who types the same answers every day.</p></article>
+<article class="card"><h3>Better WhatsApp Business content</h3><p>For when your profile or catalogue doesn’t explain your business as well as it could.</p><p><b>What I deliver:</b> wording for your About section, greeting message, quick replies and catalogue descriptions.</p><p><b>Suits:</b> businesses already on WhatsApp Business.</p></article>
+<article class="card"><h3>Practical communication resources</h3><p>For when you’d rather improve things yourself, at your own pace.</p><p><b>What I deliver:</b> simple, affordable guides and tools for everyday customer communication.</p><p><b>Suits:</b> hands-on owners who like a ready-made starting point.</p></article>
+</div></div></section>
+
+<section id="services" class="alt"><div class="wrap">
+<h2>Services and pricing</h2>
+<p class="lead">Clear scope, clear prices. All amounts are in rand (ZAR).</p>
+<div class="grid g3" id="servicecards"></div>
+</div></section>
+
+<section id="choose"><div class="wrap">
+<h2>Not sure which one you need?</h2>
+<ul class="pick" id="pick"></ul>
+</div></section>
+
+<section id="how" class="alt"><div class="wrap">
+<h2>How it works</h2>
+<ol class="steps">
+<li><b>Tell me what you need</b>Share a little about your business and the communication problems you want to improve.</li>
+<li><b>We clarify the scope</b>I confirm the service, deliverables, price and next steps with you.</li>
+<li><b>I prepare your content</b>I tailor the wording to your business and communication style.</li>
+<li><b>You receive your finished content</b>Your replies and profile wording arrive ready to copy and use.</li>
+</ol>
+<p>Payment and delivery arrangements are agreed before any work begins, so you’ll always know what’s included first.</p>
+</div></section>
+
+<section id="about"><div class="wrap">
+<h2>About Zondra</h2>
+<p><b>Hi, I’m Zondra, the person behind Inbox Aide SA.</b></p>
+<p>I started Inbox Aide to help small businesses make everyday customer communication a little easier. Sometimes it’s not about writing more. It’s about answering the actual question, putting the important information first, and making the next step clear.</p>
+<p>I help you prepare wording that fits your business and still sounds like you. No unnecessary jargon, no one-size-fits-all scripts, just practical support for clearer customer communication.</p>
+</div></section>
+
+<section id="faq" class="alt"><div class="wrap">
+<h2>Frequently asked questions</h2>
+<div id="faqlist"></div>
+</div></section>
+
+<section id="ongoing"><div class="wrap">
+<h2>Need something more ongoing?</h2>
+<p>Every business handles customer communication differently. If you’re looking for more ongoing support with customer enquiries, you’re welcome to tell me about your business and what you need. We can discuss whether there’s an arrangement that makes sense for both of us.</p>
+<p style="color:var(--mute)">This isn’t a standard package. It’s an individual conversation, with no obligation.</p>
+<a class="btn ghost" data-wa="ongoing" href="#">Discuss my needs with Zondra</a>
+</div></section>
+
+<section id="contact" class="alt"><div class="wrap">
+<h2>Send me an enquiry</h2>
+<p>Prefer WhatsApp? Use the buttons above. Or fill in the form below.</p>
+<form id="cform" novalidate>
+<label>Name<input name="name" required autocomplete="name"></label>
+<label>Business name (optional)<input name="business" autocomplete="organization"></label>
+<label>Preferred contact method<select name="method"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select></label>
+<label>Service of interest<select name="service" id="fservice"></select></label>
+<label>What would you like help with?<textarea name="message" rows="4" required></textarea></label>
+<button class="btn" type="submit" id="fbtn">Send enquiry</button>
+<div id="fstatus" role="status" aria-live="polite"></div>
+</form>
+</div></section>
+
+<section class="final"><div class="wrap">
+<h2>Let’s make your customer communication clearer.</h2>
+<p class="lead">Tell me a little about your business and where you need help. We can start with a small improvement and take it from there.</p>
+<div class="row"><a class="btn" data-wa="general" href="#">Chat to Zondra</a><a class="btn ghost" href="#services">View services</a></div>
+</div></section>
+</main>
+<footer><div class="wrap"><span id="foot"></span></div></footer>
 
 <script>
-    const BIN_ID  = "6a2417f6da38895dfe90c8ba";
-    const API_KEY = "$2a$10$csJPQWRM/9aFQnQDXBZo/O96k.i8h/Lw2kgYIWUNscvTbic9qo6Pu";
-    const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-
-    let currentData = {};
-
-    // ── Load all data with fallback ────────────────────────────────────────────
-    async function loadData() {
-        try {
-            const res = await fetch(BIN_URL + '/latest', {
-                headers: { 'X-Master-Key': API_KEY }
-            });
-            if (!res.ok) throw new Error('API Error');
-            const data = await res.json();
-            currentData = data.record || {};
-        } catch(e) {
-            // Use defaults if API fails
-        }
-
-        // Always set defaults for missing values
-        if (currentData.slots === undefined) currentData.slots = 3;
-        if (currentData.clientSpots === undefined) currentData.clientSpots = 1;
-        if (!currentData.brand) currentData.brand = {};
-        if (currentData.brand.aboutPhotoUrl === undefined) currentData.brand.aboutPhotoUrl = "";
-        if (!currentData.brand.email) currentData.brand.email = "zondracaitlin29@gmail.com";
-        if (!currentData.testimonials) currentData.testimonials = [];
-        if (!currentData.miniServices) {
-            currentData.miniServices = [
-                {
-                    name: "Quick Reply Refresh",
-                    price: "R150",
-                    description: "I rewrite and tighten up your 5\u201310 most-used replies so they sound clearer, friendlier, and more professional.",
-                    link: ""
-                },
-                {
-                    name: "Greeting & Away Message Setup",
-                    price: "R120",
-                    description: "A proper WhatsApp greeting and away message, set up for you, so customers know what to expect even when you can't reply right away.",
-                    link: ""
-                },
-                {
-                    name: "FAQ Draft",
-                    price: "R180",
-                    description: "I turn your most-asked questions into a clean, ready-to-use FAQ you can pin, post, or send straight to customers.",
-                    link: ""
-                }
-            ];
-        }
-        if (!currentData.faqItems) {
-            currentData.faqItems = [
-                {
-                    question: "What's the difference between the checklist and the free check?",
-                    answer: "The checklist is something you score yourself in 2 minutes, right on this page. The Customer Communication Check is me personally reviewing your actual customer communication and sending you 3 practical takeaways. Most people try the checklist first, then book the free check."
-                },
-                {
-                    question: "Do you manage my social media or run my ads?",
-                    answer: "No — I'm a customer communication specialist, not a social media manager or advertising consultant. I don't handle posting, content strategy, ads, captions, or growth. I only look at your platforms where they involve how customers actually message and talk to your business."
-                },
-                {
-                    question: "How long does the free check actually take?",
-                    answer: "Your time: just a few minutes to send me what's relevant — usually 2–3 conversation screenshots, plus anything else that applies. My time: I review it properly and send you 3 practical takeaways within 24 hours — not a lengthy report."
-                },
-                {
-                    question: "Do you need my password or account access?",
-                    answer: "No, never. I only work from what you send me — screenshots, a page link, or similar — I don't log into your accounts, and I never ask for passwords or access of any kind. Exactly what I'll ask for varies a little depending on your business, but it's always just what you share with me directly."
-                },
-                {
-                    question: "When will I hear back?",
-                    answer: "Usually within 24 hours, sent directly via WhatsApp — what's working, where there's friction, and one clear, actionable improvement to start with."
-                },
-                {
-                    question: "Is this going to turn into a sales pitch?",
-                    answer: "No sales calls, no pressure. You get 3 honest, practical takeaways either way. If it looks like a good fit, I'll mention weekly Inbox Aide management as a natural next step — but the free check stands on its own, no obligation."
-                },
-                {
-                    question: "I only have a small budget to spend right now — where do I start?",
-                    answer: "Start with the Reply Toolkit Guide (R30) or Reply Vault App (R120) if you want to fix things yourself. If you'd rather hand a specific job to me without committing to weekly management, take a look at Mini Fixes (R100–R200) — small, done-for-you jobs like a Quick Reply Refresh."
-                },
-                {
-                    question: "What's the difference between a Mini Fix and weekly Inbox Management?",
-                    answer: "A Mini Fix is a small, once-off job — like refreshing your quick replies or setting up a greeting message — done and handed back to you. Inbox Management is ongoing: I personally handle your WhatsApp &amp; Facebook inbox every week. Most people start with a Mini Fix or the free check, and move to management once they know it's a fit."
-                }
-            ];
-        }
-        if (!currentData.links) {
-            currentData.links = {
-                management: "https://form.jotform.com/261363512824050",
-                whatsapp: "https://wa.link/i8kqhj",
-                toolkit: "https://selar.co/",
-                vault: "https://selar.co/",
-                footerWhatsapp: "https://wa.me/27768260594",
-                facebook: "",
-                instagram: "",
-                miniServices: "https://wa.link/i8kqhj"
-            };
-        }
-        // Backfill any newly introduced link fields for existing saved data
-        if (!currentData.links.toolkit) currentData.links.toolkit = "https://selar.co/";
-        if (!currentData.links.vault) currentData.links.vault = "https://selar.co/";
-        if (!currentData.links.footerWhatsapp) currentData.links.footerWhatsapp = "https://wa.me/27768260594";
-        if (currentData.links.facebook === undefined) currentData.links.facebook = "";
-        if (currentData.links.instagram === undefined) currentData.links.instagram = "";
-        if (!currentData.links.miniServices) currentData.links.miniServices = currentData.links.whatsapp || "https://wa.link/i8kqhj";
-
-        if (!currentData.previews) currentData.previews = {};
-        // Migrate old single-string preview format to arrays of up to 2 images
-        if (typeof currentData.previews.toolkit === 'string') {
-            currentData.previews.toolkit = currentData.previews.toolkit ? [currentData.previews.toolkit] : [];
-        }
-        if (typeof currentData.previews.vault === 'string') {
-            currentData.previews.vault = currentData.previews.vault ? [currentData.previews.vault] : [];
-        }
-        if (!Array.isArray(currentData.previews.toolkit)) currentData.previews.toolkit = [];
-        if (!Array.isArray(currentData.previews.vault)) currentData.previews.vault = [];
-
-        // Migrate to fully-editable products list (one-time, keeps any links/previews already set)
-        if (!currentData.products) {
-            currentData.products = [
-                {
-                    name: "Reply Toolkit Guide",
-                    price: "R30",
-                    tagline: "One-time \u00b7 Instant download",
-                    description: "A practical guide packed with reply frameworks, tone tips, and message structures you can copy straight into WhatsApp today.",
-                    features: "Reply templates for your most-asked questions\nA tone & clarity checklist\nSimple, no fluff, straight to the point",
-                    link: currentData.links.toolkit || "",
-                    previews: currentData.previews.toolkit || []
-                },
-                {
-                    name: "Reply Vault App",
-                    price: "R120",
-                    tagline: "One-time \u00b7 Lifetime access",
-                    description: "96 ready-to-send WhatsApp reply templates for South African small businesses, organized and ready in one simple app.",
-                    features: "96 professional templates, ready to use\nOrganized by category \u2014 find it fast\nCopy, paste, send \u2014 done in seconds",
-                    link: currentData.links.vault || "",
-                    previews: currentData.previews.vault || []
-                }
-            ];
-        }
-
-        // Display everything
-        displaySlots(currentData.slots);
-        displayClientSpots(currentData.clientSpots);
-        displayTestimonials(currentData.testimonials);
-        displayProducts(currentData.products);
-        displayMiniServices(currentData.miniServices);
-        displayFaq(currentData.faqItems);
-        applyBrand();
-        applyLinks();
-        applySocial();
-
-        if (window.location.search.includes('admin')) {
-            populateAdminFields();
-        }
-    }
-
-    async function saveData() {
-        try {
-            const res = await fetch(BIN_URL, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Master-Key': API_KEY
-                },
-                body: JSON.stringify(currentData)
-            });
-            return res.ok;
-        } catch(e) {
-            return false;
-        }
-    }
-
-    function applyLinks() {
-        document.getElementById('auditLink').href = currentData.links.whatsapp || "https://wa.link/i8kqhj";
-        document.getElementById('quizCta').href = currentData.links.whatsapp || "https://wa.link/i8kqhj";
-        document.getElementById('managementLink').href = currentData.links.management || "https://form.jotform.com/261363512824050";
-        document.getElementById('footerWhatsappLink').href = currentData.links.footerWhatsapp || "https://wa.me/27768260594";
-        const floatBtn = document.getElementById('floatWhatsapp');
-        if (floatBtn) floatBtn.href = currentData.links.footerWhatsapp || "https://wa.me/27768260594";
-        const msContactEl = document.getElementById('miniServicesContactLink');
-        if (msContactEl) msContactEl.href = currentData.links.miniServices || currentData.links.whatsapp || "https://wa.link/i8kqhj";
-        const notsureEl = document.getElementById('notsureLink');
-        if (notsureEl) notsureEl.href = currentData.links.whatsapp || "https://wa.link/i8kqhj";
-    }
-
-    function applyBrand() {
-        const photo = currentData.brand.aboutPhotoUrl;
-        const avatarImg = document.getElementById('aboutAvatarImg');
-        const avatarInitial = document.getElementById('aboutAvatarInitial');
-        if (photo) {
-            avatarImg.src = photo;
-            avatarImg.style.display = 'block';
-            if (avatarInitial) avatarInitial.style.display = 'none';
-        } else {
-            avatarImg.style.display = 'none';
-            if (avatarInitial) avatarInitial.style.display = 'flex';
-        }
-        document.getElementById('footerEmailLink').href = "mailto:" + (currentData.brand.email || "zondracaitlin29@gmail.com");
-        document.getElementById('footerEmailText').textContent = currentData.brand.email || "zondracaitlin29@gmail.com";
-    }
-
-    function applySocial() {
-        const fb = currentData.links.facebook;
-        const ig = currentData.links.instagram;
-        const fbEl = document.getElementById('footerFacebook');
-        const igEl = document.getElementById('footerInstagram');
-        if (fb) { fbEl.href = fb; fbEl.style.display = 'inline-flex'; } else { fbEl.style.display = 'none'; }
-        if (ig) { igEl.href = ig; igEl.style.display = 'inline-flex'; } else { igEl.style.display = 'none'; }
-    }
-
-    function calculateScore() {
-        const checks = document.querySelectorAll('.quiz-check');
-        let score = 0;
-        const uncheckedTips = [];
-        checks.forEach(c => {
-            if (c.checked) { score++; }
-            else { uncheckedTips.push(c.getAttribute('data-tip')); }
-        });
-        const total = checks.length;
-        document.getElementById('quizScoreNum').textContent = `${score}/${total}`;
-        const tierEl = document.getElementById('quizTierLabel');
-        const msgEl = document.getElementById('quizMessage');
-        tierEl.className = 'quiz-tier';
-        if (score >= 12) {
-            tierEl.classList.add('green');
-            tierEl.textContent = '🟢 Your communication is strong';
-            msgEl.textContent = "Your inbox looks relatively good. For a deeper insight, book your free Customer Communication Check.";
-        } else if (score >= 8) {
-            tierEl.classList.add('yellow');
-            tierEl.textContent = "🟡 You're doing well";
-            msgEl.textContent = "There are a few real gaps here that could be increasing your conversions if you fixed them.";
-        } else {
-            tierEl.classList.add('red');
-            tierEl.textContent = "🔴 You're probably losing customers";
-            msgEl.textContent = "Right now, gaps in your communication are likely costing you enquiries — before you even realize it. Most of this is fixable fast.";
-        }
-
-        const nextStepsEl = document.getElementById('nextSteps');
-        if (uncheckedTips.length === 0) {
-            nextStepsEl.innerHTML = `
-                <div class="next-steps-title">Based on your answers:</div>
-                <ul class="next-steps-list">
-                    <li><span class="next-steps-check">✓</span>You're not missing anything obvious here — nice work.</li>
-                </ul>
-            `;
-        } else {
-            const topTips = uncheckedTips.slice(0, 3);
-            const items = topTips.map(tip => `<li><span class="next-steps-check">✓</span>${tip}</li>`).join('');
-            nextStepsEl.innerHTML = `
-                <div class="next-steps-title">Based on your answers:</div>
-                <ul class="next-steps-list">${items}</ul>
-            `;
-        }
-
-        const resultBox = document.getElementById('quizResult');
-        resultBox.style.display = 'block';
-        resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function resetQuiz() {
-        document.querySelectorAll('.quiz-check').forEach(c => c.checked = false);
-        document.getElementById('quizResult').style.display = 'none';
-        document.getElementById('checklist').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function displaySlots(n) {
-        const el = document.getElementById('slotCount');
-        el.textContent = n;
-        el.style.color = n === 0 ? '#c0392b' : 'var(--terra)';
-    }
-
-    async function setSlots(n) {
-        const status = document.getElementById('slotsStatus');
-        status.textContent = 'Saving…';
-        currentData.slots = n;
-        if (await saveData()) {
-            displaySlots(n);
-            status.textContent = `✓ Updated to ${n} slot${n !== 1 ? 's' : ''}`;
-            setTimeout(() => status.textContent = '', 2000);
-        } else {
-            status.textContent = '✗ Save failed';
-        }
-    }
-
-    function displayClientSpots(n) {
-        const el = document.getElementById('clientSpotCount');
-        el.textContent = n;
-        el.style.color = n === 0 ? '#c0392b' : 'var(--terra)';
-    }
-
-    async function setClientSpots(n) {
-        const status = document.getElementById('clientSpotsStatus');
-        status.textContent = 'Saving…';
-        currentData.clientSpots = n;
-        if (await saveData()) {
-            displayClientSpots(n);
-            status.textContent = `✓ Updated to ${n} spot${n !== 1 ? 's' : ''}`;
-            setTimeout(() => status.textContent = '', 2000);
-        } else {
-            status.textContent = '✗ Save failed';
-        }
-    }
-
-    function displayTestimonials(testimonials) {
-        const container = document.getElementById('testimonialsContainer');
-        const section = document.getElementById('testimonials-section');
-        const label = document.getElementById('testimonialsLabel');
-        const heading = document.getElementById('testimonialsHeading');
-
-        if (testimonials.length === 0) {
-            section.style.display = 'none';
-            return;
-        }
-
-        section.style.display = 'block';
-        label.textContent = "Don't Take My Word For It";
-        heading.textContent = 'What small businesses are saying.';
-        container.innerHTML = '';
-        testimonials.forEach(t => {
-            const card = document.createElement('div');
-            card.className = 'testimonial-card';
-            card.innerHTML = `
-                <div class="testimonial-quote">"${t.quote}"</div>
-                <div class="testimonial-author">${t.author}</div>
-                <div class="testimonial-business">${t.business}</div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function renderTestimonialList(testimonials) {
-        const list = document.getElementById('testList');
-        list.innerHTML = '';
-        testimonials.forEach((t, idx) => {
-            const item = document.createElement('div');
-            item.className = 'item-row';
-            item.innerHTML = `
-                <div class="item-preview">
-                    <strong>${t.author}</strong> (${t.business})<br>
-                    <small>"${t.quote.substring(0, 50)}..."</small>
-                </div>
-                <div class="item-controls">
-                    <button class="item-delete" onclick="removeTestimonial(${idx})">Delete</button>
-                </div>
-            `;
-            list.appendChild(item);
-        });
-    }
-
-    async function addTestimonial() {
-        const author = document.getElementById('testAuthor').value.trim();
-        const business = document.getElementById('testBusiness').value.trim();
-        const quote = document.getElementById('testQuote').value.trim();
-        const status = document.getElementById('testStatus');
-
-        if (!author || !business || !quote) {
-            status.textContent = '✗ Fill all fields';
-            setTimeout(() => status.textContent = '', 2000);
-            return;
-        }
-
-        currentData.testimonials.push({ author, business, quote });
-        if (await saveData()) {
-            status.textContent = '✓ Added';
-            document.getElementById('testAuthor').value = '';
-            document.getElementById('testBusiness').value = '';
-            document.getElementById('testQuote').value = '';
-            displayTestimonials(currentData.testimonials);
-            renderTestimonialList(currentData.testimonials);
-            setTimeout(() => status.textContent = '', 2000);
-        } else {
-            status.textContent = '✗ Save failed';
-        }
-    }
-
-    async function removeTestimonial(idx) {
-        currentData.testimonials.splice(idx, 1);
-        if (await saveData()) {
-            displayTestimonials(currentData.testimonials);
-            renderTestimonialList(currentData.testimonials);
-        }
-    }
-
-    // ── Products (Toolkit / Vault / any DIY product) ───────────────────────
-    function displayProducts(products) {
-        const container = document.getElementById('productsContainer');
-        if (!container) return;
-        container.innerHTML = '';
-        (products || []).forEach(p => {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            const features = (p.features || '').split('\n').map(f => f.trim()).filter(Boolean);
-            const featuresHtml = features.length
-                ? `<ul class="product-list">${features.map(f => `<li><span class="product-check">✓</span> ${f}</li>`).join('')}</ul>`
-                : '';
-            const previews = (p.previews || []).filter(Boolean);
-            const previewsHtml = previews.length
-                ? `<div class="product-preview-grid">${previews.map(src => `<img src="${src}" alt="${p.name} preview" class="product-preview">`).join('')}</div>`
-                : '';
-            const link = p.link || '#';
-            card.innerHTML = `
-                <div class="product-top">
-                    <div class="product-name">${p.name}</div>
-                    <div class="product-price">${p.price}</div>
-                </div>
-                <div class="product-tagline">${p.tagline || ''}</div>
-                ${previewsHtml}
-                <p class="product-desc">${p.description || ''}</p>
-                ${featuresHtml}
-                <a href="${link}" class="btn btn-outline" target="_blank" rel="noopener">Get ${p.name} — ${p.price}</a>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function renderProductList(products) {
-        const list = document.getElementById('prList');
-        if (!list) return;
-        list.innerHTML = '';
-        (products || []).forEach((p, idx) => {
-            const item = document.createElement('div');
-            item.className = 'item-row';
-            item.innerHTML = `
-                <div class="item-preview">
-                    <strong>${p.name}</strong> — ${p.price}<br>
-                    <small>${(p.description || '').substring(0, 60)}...</small>
-                </div>
-                <div class="item-controls">
-                    <button class="item-delete" style="background: var(--terra);" onclick="editProduct(${idx})">Edit</button>
-                    <button class="item-delete" onclick="removeProduct(${idx})">Delete</button>
-                </div>
-            `;
-            list.appendChild(item);
-        });
-    }
-
-    let editingPrIndex = null;
-
-    async function saveProduct() {
-        const name = document.getElementById('prName').value.trim();
-        const price = document.getElementById('prPrice').value.trim();
-        const tagline = document.getElementById('prTagline').value.trim();
-        const description = document.getElementById('prDesc').value.trim();
-        const features = document.getElementById('prFeatures').value.trim();
-        const link = document.getElementById('prLink').value.trim();
-        const preview1 = document.getElementById('prPreview1').value.trim();
-        const preview2 = document.getElementById('prPreview2').value.trim();
-        const status = document.getElementById('prStatus');
-
-        if (!name || !price || !description) {
-            status.textContent = '✗ Fill all required fields';
-            setTimeout(() => status.textContent = '', 2000);
-            return;
-        }
-
-        const previews = [preview1, preview2].filter(Boolean);
-        const item = { name, price, tagline, description, features, link, previews };
-
-        if (editingPrIndex !== null) {
-            currentData.products[editingPrIndex] = item;
-        } else {
-            currentData.products.push(item);
-        }
-
-        if (await saveData()) {
-            status.textContent = editingPrIndex !== null ? '✓ Updated' : '✓ Added';
-            cancelPrEdit();
-            displayProducts(currentData.products);
-            renderProductList(currentData.products);
-            setTimeout(() => status.textContent = '', 2000);
-        } else {
-            status.textContent = '✗ Save failed';
-        }
-    }
-
-    function editProduct(idx) {
-        const item = currentData.products[idx];
-        document.getElementById('prName').value = item.name;
-        document.getElementById('prPrice').value = item.price;
-        document.getElementById('prTagline').value = item.tagline || '';
-        document.getElementById('prDesc').value = item.description || '';
-        document.getElementById('prFeatures').value = item.features || '';
-        document.getElementById('prLink').value = item.link || '';
-        document.getElementById('prPreview1').value = (item.previews && item.previews[0]) || '';
-        document.getElementById('prPreview2').value = (item.previews && item.previews[1]) || '';
-        editingPrIndex = idx;
-        document.getElementById('prFormTitle').textContent = 'Edit Product';
-        document.getElementById('prSaveBtn').textContent = 'Update Product';
-        document.getElementById('prCancelBtn').style.display = 'block';
-        document.getElementById('prName').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function cancelPrEdit() {
-        editingPrIndex = null;
-        ['prName','prPrice','prTagline','prDesc','prFeatures','prLink','prPreview1','prPreview2'].forEach(id => {
-            document.getElementById(id).value = '';
-        });
-        document.getElementById('prFormTitle').textContent = 'Add Product';
-        document.getElementById('prSaveBtn').textContent = 'Add Product';
-        document.getElementById('prCancelBtn').style.display = 'none';
-    }
-
-    async function removeProduct(idx) {
-        currentData.products.splice(idx, 1);
-        if (editingPrIndex === idx) cancelPrEdit();
-        if (await saveData()) {
-            displayProducts(currentData.products);
-            renderProductList(currentData.products);
-        }
-    }
-
-    // ── Mini Services ───────────────────────────────────────────────────────
-    function displayMiniServices(services) {
-        const container = document.getElementById('miniServicesContainer');
-        if (!container) return;
-        container.innerHTML = '';
-        const fallbackLink = (currentData.links && (currentData.links.miniServices || currentData.links.whatsapp)) || "https://wa.link/i8kqhj";
-        (services || []).forEach(s => {
-            const card = document.createElement('div');
-            card.className = 'miniservice-card';
-            const link = s.link ? s.link : fallbackLink;
-            card.innerHTML = `
-                <div class="miniservice-top">
-                    <div class="miniservice-name">${s.name}</div>
-                    <div class="miniservice-price">${s.price}</div>
-                </div>
-                <div class="miniservice-desc">${s.description}</div>
-                <a href="${link}" class="btn btn-outline" target="_blank" rel="noopener">Ask About This — ${s.price}</a>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function renderMiniServiceList(services) {
-        const list = document.getElementById('msList');
-        if (!list) return;
-        list.innerHTML = '';
-        (services || []).forEach((s, idx) => {
-            const item = document.createElement('div');
-            item.className = 'item-row';
-            item.innerHTML = `
-                <div class="item-preview">
-                    <strong>${s.name}</strong> — ${s.price}<br>
-                    <small>${s.description.substring(0, 60)}...</small>
-                </div>
-                <div class="item-controls">
-                    <button class="item-delete" style="background: var(--terra);" onclick="editMiniService(${idx})">Edit</button>
-                    <button class="item-delete" onclick="removeMiniService(${idx})">Delete</button>
-                </div>
-            `;
-            list.appendChild(item);
-        });
-    }
-
-    let editingMsIndex = null;
-
-    async function saveMiniService() {
-        const name = document.getElementById('msName').value.trim();
-        const price = document.getElementById('msPrice').value.trim();
-        const description = document.getElementById('msDesc').value.trim();
-        const link = document.getElementById('msLink').value.trim();
-        const status = document.getElementById('msStatus');
-
-        if (!name || !price || !description) {
-            status.textContent = '✗ Fill all required fields';
-            setTimeout(() => status.textContent = '', 2000);
-            return;
-        }
-
-        if (editingMsIndex !== null) {
-            currentData.miniServices[editingMsIndex] = { name, price, description, link };
-        } else {
-            currentData.miniServices.push({ name, price, description, link });
-        }
-
-        if (await saveData()) {
-            status.textContent = editingMsIndex !== null ? '✓ Updated' : '✓ Added';
-            cancelMsEdit();
-            displayMiniServices(currentData.miniServices);
-            renderMiniServiceList(currentData.miniServices);
-            setTimeout(() => status.textContent = '', 2000);
-        } else {
-            status.textContent = '✗ Save failed';
-        }
-    }
-
-    function editMiniService(idx) {
-        const item = currentData.miniServices[idx];
-        document.getElementById('msName').value = item.name;
-        document.getElementById('msPrice').value = item.price;
-        document.getElementById('msDesc').value = item.description;
-        document.getElementById('msLink').value = item.link || '';
-        editingMsIndex = idx;
-        document.getElementById('msFormTitle').textContent = 'Edit Mini Service';
-        document.getElementById('msSaveBtn').textContent = 'Update Mini Service';
-        document.getElementById('msCancelBtn').style.display = 'block';
-        document.getElementById('msName').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function cancelMsEdit() {
-        editingMsIndex = null;
-        document.getElementById('msName').value = '';
-        document.getElementById('msPrice').value = '';
-        document.getElementById('msDesc').value = '';
-        document.getElementById('msLink').value = '';
-        document.getElementById('msFormTitle').textContent = 'Add Mini Service';
-        document.getElementById('msSaveBtn').textContent = 'Add Mini Service';
-        document.getElementById('msCancelBtn').style.display = 'none';
-    }
-
-    async function removeMiniService(idx) {
-        currentData.miniServices.splice(idx, 1);
-        if (editingMsIndex === idx) cancelMsEdit();
-        if (await saveData()) {
-            displayMiniServices(currentData.miniServices);
-            renderMiniServiceList(currentData.miniServices);
-        }
-    }
-
-    function displayFaq(faqItems) {
-        const container = document.getElementById('faqContainer');
-        container.innerHTML = '';
-        faqItems.forEach((item) => {
-            const div = document.createElement('div');
-            div.className = 'faq-item';
-            div.innerHTML = `
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    ${item.question}
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">${item.answer}</div>
-            `;
-            container.appendChild(div);
-        });
-    }
-
-    function renderFaqList(faqItems) {
-        const list = document.getElementById('faqList');
-        list.innerHTML = '';
-        faqItems.forEach((item, idx) => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'item-row';
-            itemDiv.innerHTML = `
-                <div class="item-preview">
-                    <strong>${item.question}</strong><br>
-                    <small>${item.answer.substring(0, 50)}...</small>
-                </div>
-                <div class="item-controls">
-                    <button class="item-delete" style="background: var(--terra);" onclick="editFaqItem(${idx})">Edit</button>
-                    <button class="item-delete" onclick="removeFaqItem(${idx})">Delete</button>
-                </div>
-            `;
-            list.appendChild(itemDiv);
-        });
-    }
-
-    let editingFaqIndex = null;
-
-    async function saveFaqItem() {
-        const question = document.getElementById('faqQuestion').value.trim();
-        const answer = document.getElementById('faqAnswer').value.trim();
-        const status = document.getElementById('faqStatus');
-
-        if (!question || !answer) {
-            status.textContent = '✗ Fill all fields';
-            setTimeout(() => status.textContent = '', 2000);
-            return;
-        }
-
-        if (editingFaqIndex !== null) {
-            currentData.faqItems[editingFaqIndex] = { question, answer };
-        } else {
-            currentData.faqItems.push({ question, answer });
-        }
-
-        if (await saveData()) {
-            status.textContent = editingFaqIndex !== null ? '✓ Updated' : '✓ Added';
-            cancelFaqEdit();
-            displayFaq(currentData.faqItems);
-            renderFaqList(currentData.faqItems);
-            setTimeout(() => status.textContent = '', 2000);
-        } else {
-            status.textContent = '✗ Save failed';
-        }
-    }
-
-    function editFaqItem(idx) {
-        const item = currentData.faqItems[idx];
-        document.getElementById('faqQuestion').value = item.question;
-        document.getElementById('faqAnswer').value = item.answer;
-        editingFaqIndex = idx;
-        document.getElementById('faqFormTitle').textContent = 'Edit FAQ Item';
-        document.getElementById('faqSaveBtn').textContent = 'Update FAQ';
-        document.getElementById('faqCancelBtn').style.display = 'block';
-        document.getElementById('faqQuestion').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function cancelFaqEdit() {
-        editingFaqIndex = null;
-        document.getElementById('faqQuestion').value = '';
-        document.getElementById('faqAnswer').value = '';
-        document.getElementById('faqFormTitle').textContent = 'Add FAQ Item';
-        document.getElementById('faqSaveBtn').textContent = 'Add FAQ';
-        document.getElementById('faqCancelBtn').style.display = 'none';
-    }
-
-    async function removeFaqItem(idx) {
-        currentData.faqItems.splice(idx, 1);
-        if (editingFaqIndex === idx) cancelFaqEdit();
-        if (await saveData()) {
-            displayFaq(currentData.faqItems);
-            renderFaqList(currentData.faqItems);
-        }
-    }
-
-    function populateAdminFields() {
-        document.getElementById('settingAboutPhoto').value = currentData.brand.aboutPhotoUrl || '';
-        document.getElementById('settingEmail').value = currentData.brand.email || '';
-        document.getElementById('linkWhatsapp').value = currentData.links.whatsapp || '';
-        document.getElementById('linkManagement').value = currentData.links.management || '';
-        document.getElementById('linkMiniServices').value = currentData.links.miniServices || '';
-        document.getElementById('linkFooterWhatsapp').value = currentData.links.footerWhatsapp || '';
-        document.getElementById('linkFacebook').value = currentData.links.facebook || '';
-        document.getElementById('linkInstagram').value = currentData.links.instagram || '';
-        renderTestimonialList(currentData.testimonials);
-        renderProductList(currentData.products);
-        renderMiniServiceList(currentData.miniServices);
-        renderFaqList(currentData.faqItems);
-    }
-
-    async function saveLinks() {
-        currentData.brand.aboutPhotoUrl = document.getElementById('settingAboutPhoto').value.trim();
-        currentData.brand.email = document.getElementById('settingEmail').value.trim();
-        currentData.links.whatsapp = document.getElementById('linkWhatsapp').value.trim();
-        currentData.links.management = document.getElementById('linkManagement').value.trim();
-        currentData.links.miniServices = document.getElementById('linkMiniServices').value.trim();
-        currentData.links.footerWhatsapp = document.getElementById('linkFooterWhatsapp').value.trim();
-        currentData.links.facebook = document.getElementById('linkFacebook').value.trim();
-        currentData.links.instagram = document.getElementById('linkInstagram').value.trim();
-
-        const status = document.getElementById('linksStatus');
-        if (await saveData()) {
-            applyBrand();
-            applyLinks();
-            applySocial();
-            displayTestimonials(currentData.testimonials);
-            displayMiniServices(currentData.miniServices);
-            status.textContent = '✓ Settings updated';
-            setTimeout(() => status.textContent = '', 2000);
-        } else {
-            status.textContent = '✗ Save failed';
-        }
-    }
-
-    function switchTab(tab) {
-        document.querySelectorAll('.admin-content').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
-        document.getElementById(tab + '-tab').classList.add('active');
-        event.target.classList.add('active');
-    }
-
-    function toggleMobileMenu() {
-        document.getElementById('mobileMenu').classList.toggle('open');
-    }
-    function closeMobileMenu() {
-        document.getElementById('mobileMenu').classList.remove('open');
-    }
-
-    function toggleFaq(element) {
-        const answer = element.nextElementSibling;
-        answer.classList.toggle('open');
-        const toggle = element.querySelector('.faq-toggle');
-        toggle.textContent = answer.classList.contains('open') ? '−' : '+';
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', function(e) {
-            if (this.getAttribute('href') === '#') return;
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-        });
-    });
-
-    if (window.location.search.includes('admin')) {
-        document.getElementById('adminPanel').style.display = 'block';
-    }
-
-    loadData();
+/* =====================================================================
+   CONFIG: the one place to edit your details, prices and offers.
+   1. WHATSAPP NUMBER: replace YOUR_WHATSAPP_NUMBER with your number in
+      international format, digits only, no spaces and no plus sign.
+      Example: 0821234567 becomes 27821234567
+   2. CONTACT FORM: paste a form service URL into formEndpoint
+      (e.g. a Formspree or Web3Forms endpoint). Leave "" to have the form
+      send your enquiry through WhatsApp instead.
+   ===================================================================== */
+const CONFIG = {
+  businessName: "Inbox Aide SA",
+  founder: "Zondra",
+  location: "Cape Town, South Africa",
+  whatsappNumber: "YOUR_WHATSAPP_NUMBER",
+  formEndpoint: "",
+  toolkit: { active: true, price: "R120" },  // set active:false to hide the toolkit price
+  messages: {
+    general: "Hi Zondra! I’d like to find out more about Inbox Aide SA.",
+    reply: "Hi Zondra! I’d like to find out more about the R100 Reply Refresh.",
+    wa: "Hi Zondra! I’d like to ask about the R150 WhatsApp Business Setup & Refresh.",
+    resources: "Hi Zondra! I’d like to know more about your guides and tools.",
+    ongoing: "Hi Zondra! I’d like to discuss some ongoing customer communication support for my business. Can I tell you a little about what I need?"
+  }
+};
+const SERVICES = [
+  { key:"reply", name:"Reply Refresh", price:"R100", unit:"once-off",
+    who:"For businesses that repeatedly answer the same customer questions or want replies that sound clearer and more professional.",
+    items:["Up to five customised customer replies","Wording tailored to your business and brand voice","Clearer answers on pricing, availability, bookings, products or services","Messages ready for you to copy and use"],
+    note:"Once-off wording. I don’t handle your messages for you.", cta:"Ask about Reply Refresh" },
+  { key:"wa", name:"WhatsApp Business Setup & Refresh", price:"R150", unit:"once-off",
+    who:"For businesses that want their WhatsApp Business information to be clearer, more professional and easier for customers to use.",
+    items:["One refreshed About section","One greeting message","Up to five quick reply scripts","Catalogue descriptions for up to five products or services"],
+    note:"I never need your password, login or access to your account. I prepare the content and send it to you, and you apply the changes yourself.", cta:"Ask about WhatsApp Business Refresh" },
+  { key:"resources", name:"Guides and practical tools", price:"", unit:"",
+    who:"Affordable resources to help you improve customer communication and manage common communication tasks yourself.",
+    items:[], note:"", cta:"Explore resources" }
+];
+const FAQS = [
+ ["What exactly is Reply Refresh?","It’s a once-off service where I improve up to five of your customer replies. They answer the question directly, sound like you, and give customers a clear next step. You get the finished wording to copy and use."],
+ ["What do I need to send you to get started?","A little about your business, plus the replies you currently use or the questions customers ask most. For a WhatsApp Business refresh, screenshots of your profile help too. I can also use publicly available business information."],
+ ["Do you log into my WhatsApp account?","No. I never need your password, login or access to your account."],
+ ["Will you make changes directly to my profile?","No. I prepare the wording and send it to you, and you apply the changes yourself."],
+ ["Can the wording sound like my business?","Yes, that’s the aim. I tailor the wording to your business and the way you like to communicate, so it still sounds like you."],
+ ["What if I need more than five replies?","Just tell me. We can talk about what you need and agree on the scope and price before I start."],
+ ["Is the price once-off?","Yes. Reply Refresh and WhatsApp Business Setup & Refresh are once-off prices for the deliverables listed. They aren’t subscriptions."],
+ ["How does payment work?","We agree the service, what’s included, the price and how you’ll pay before any work begins, so there are no surprises."],
+ ["Can I ask about ongoing support?","Yes. It isn’t a standard package, but you’re welcome to tell me what you need and we can see whether an arrangement makes sense for both of us."],
+ ["What if I’m not sure which service I need?","Send me a message and tell me what’s frustrating you. I’ll point you to the right starting place, with no pressure."]
+];
+const PICK = [
+ ["I need better wording for my customer replies.","Reply Refresh","reply"],
+ ["My WhatsApp Business profile needs attention.","WhatsApp Business Setup & Refresh","wa"],
+ ["I want resources I can use myself.","Guides and tools","resources"],
+ ["I need help with something more ongoing or specific.","Contact Zondra to discuss your needs","ongoing"]
+];
+const $ = s => document.querySelector(s);
+const num = CONFIG.whatsappNumber.replace(/[^0-9A-Za-z_]/g,"");
+const waUrl = k => "https://wa.me/" + num + "?text=" + encodeURIComponent(CONFIG.messages[k] || CONFIG.messages.general);
+if (CONFIG.whatsappNumber.includes("YOUR_")) $("#setup").hidden = false;
+
+$("#servicecards").innerHTML = SERVICES.map(s => {
+  const price = s.key==="resources" ? (CONFIG.toolkit.active ? `<p class="price">${CONFIG.toolkit.price} <small>toolkit, once-off</small></p>` : "") : `<p class="price">${s.price} <small>${s.unit}</small></p>`;
+  return `<article class="card"><h3>${s.name}</h3>${price}<p>${s.who}</p>${s.items.length?`<ul>${s.items.map(i=>`<li>${i}</li>`).join("")}</ul>`:""}${s.note?`<div class="note">${s.note}</div>`:""}<a class="btn" data-wa="${s.key}" href="#">${s.cta}</a></article>`;
+}).join("");
+$("#pick").innerHTML = PICK.map(p => `<li><span>${p[0]}</span><a data-wa="${p[2]}" href="#">${p[1]}</a></li>`).join("");
+$("#faqlist").innerHTML = FAQS.map(f => `<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
+$("#fservice").innerHTML = ["Reply Refresh (R100)","WhatsApp Business Setup & Refresh (R150)","Guides and tools","Something more ongoing or specific","Not sure yet"].map(o=>`<option>${o}</option>`).join("");
+$("#foot").textContent = `${CONFIG.businessName} · ${CONFIG.location} · Prices in ZAR`;
+
+document.querySelectorAll("[data-wa]").forEach(a => { a.href = waUrl(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
+
+const menu = $("#menu"), nav = $("#nav");
+menu.addEventListener("click", () => { const o = nav.classList.toggle("open"); menu.setAttribute("aria-expanded", o); });
+nav.addEventListener("click", e => { if (e.target.tagName==="A") { nav.classList.remove("open"); menu.setAttribute("aria-expanded","false"); } });
+
+const hasEndpoint = CONFIG.formEndpoint.trim() !== "";
+if (!hasEndpoint) $("#fbtn").textContent = "Send via WhatsApp";
+$("#cform").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, d = Object.fromEntries(new FormData(f)), st = $("#fstatus");
+  if (!d.name.trim() || !d.message.trim()) { st.textContent = "Please add your name and a short message so I know how to help."; return; }
+  const text = `Hi Zondra! My name is ${d.name}${d.business?` (${d.business})`:""}. Service: ${d.service}. Preferred contact: ${d.method}.\n\n${d.message}`;
+  if (!hasEndpoint) {
+    st.textContent = "This form doesn’t save enquiries yet, so I’m opening WhatsApp with your details ready to send.";
+    window.open("https://wa.me/" + num + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+    return;
+  }
+  try {
+    const r = await fetch(CONFIG.formEndpoint, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(d) });
+    if (!r.ok) throw new Error();
+    st.textContent = "Thank you. Your enquiry has been sent and I’ll be in touch."; f.reset();
+  } catch { st.textContent = "Your enquiry didn’t send. Please try again, or use the WhatsApp button instead."; }
+});
 </script>
 </body>
 </html>
