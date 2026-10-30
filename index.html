@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Inbox Aide SA | Clearer customer replies and WhatsApp Business content</title>
-<meta name="description" content="Inbox Aide SA helps small businesses improve their customer replies and WhatsApp Business content, so customers find what they need and know what to do next. Reply Refresh from R100.">
+<meta name="description" content="Inbox Aide SA helps small businesses improve their customer replies and WhatsApp Business content, so customers find what they need and know what to do next. Free reply check. Greeting Refresh R30. Reply Refresh R100.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23232A3B'/%3E%3Cpath d='M8 10h16v9H15l-5 4v-4H8z' fill='%23F0A47F'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -86,7 +86,7 @@ footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 <div>
 <h1>Your customers have questions. Let’s make the answers clearer.</h1>
 <p class="lead">I help small businesses improve their customer replies and WhatsApp Business content, so important information is easier to find, messages are easier to understand, and customers know what to do next.</p>
-<div class="row"><a class="btn" href="#choose">Find the right service</a><a class="btn ghost" data-wa="general" href="#">Chat to me on WhatsApp</a></div>
+<div class="row"><a class="btn" data-wa="check" href="#">Get a free reply check</a><a class="btn ghost" href="#services">See services and prices</a></div>
 <p style="margin-top:1rem;font-size:.95rem;color:var(--mute)">Made for small businesses in South Africa. You work with me directly.</p>
 </div>
 <div class="chat" aria-label="Example of a clearer reply">
@@ -122,7 +122,7 @@ footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 
 <section id="services" class="alt"><div class="wrap">
 <h2>Services and pricing</h2>
-<p class="lead">Clear scope, clear prices. All amounts are in rand (ZAR).</p>
+<p class="lead">Clear scope, clear prices.</p>
 <h3 class="grp">Work with me</h3>
 <div class="grid g2" id="servicecards"></div>
 <h3 class="grp">Do it yourself</h3>
@@ -167,6 +167,7 @@ footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 <section id="contact" class="alt"><div class="wrap">
 <h2>Send me an enquiry</h2>
 <p>Prefer WhatsApp? Use the buttons above. Or fill in the form below.</p>
+<p id="hours" style="color:var(--mute)"></p>
 <form id="cform" novalidate>
 <label>Name<input name="name" required autocomplete="name"></label>
 <label>Business name (optional)<input name="business" autocomplete="organization"></label>
@@ -200,10 +201,14 @@ const CONFIG = {
   businessName: "Inbox Aide SA",
   founder: "Zondra",
   location: "Cape Town, South Africa",
+  hours: "Available Monday to Friday, 9am to 5pm",
   whatsappNumber: "27768260594",
   formEndpoint: "",
-  toolkit: { active: true, fromPrice: "R30" },  // "From" price on the Do it yourself card. Set active:false to hide the card.
+  toolkit: { active: true, fromPrice: "R99" },  // "From" price on the Do it yourself card. Set active:false to hide the card.
   messages: {
+    check: "CHECK. Hi Zondra! I’d like a free reply check. Here are some questions my customers keep asking:",
+    greeting: "Hi Zondra! I’d like to find out more about the R30 Greeting Refresh.",
+    listing: "Hi Zondra! I’d like to find out more about the Product Listing Refresh.",
     general: "Hi Zondra! I’d like to find out more about Inbox Aide SA.",
     reply: "Hi Zondra! I’d like to find out more about the R100 Reply Refresh.",
     wa: "Hi Zondra! I’d like to ask about the R150 WhatsApp Business Setup & Refresh.",
@@ -212,10 +217,22 @@ const CONFIG = {
   }
 };
 const SERVICES = [
+  { key:"check", name:"Free Reply Check", price:"Free", unit:"no obligation",
+    who:"For businesses whose customers keep asking the same questions and who aren’t sure why.",
+    items:["Send me three questions customers ask you most (hide names and numbers)","I look at why they might keep asking","You get one or two practical fixes"],
+    note:"A genuine free check. No account access needed and no obligation to buy anything.", cta:"Get my free check" },
+  { key:"greeting", name:"Greeting Refresh", price:"R30", unit:"once-off",
+    who:"For businesses whose WhatsApp greeting is generic, unclear or doesn’t tell customers what to do next.",
+    items:["One greeting message tailored to your business","Welcoming, in your tone, with a clear next step","Ready for you to copy into WhatsApp Business"],
+    note:"I prepare the wording and you apply it yourself.", cta:"Ask about Greeting Refresh" },
   { key:"reply", name:"Reply Refresh", price:"R100", unit:"once-off",
     who:"For businesses that repeatedly answer the same customer questions or want replies that sound clearer and more professional.",
     items:["Up to five customised customer replies","Wording tailored to your business and brand voice","Clearer answers on pricing, availability, bookings, products or services","Messages ready for you to copy and use"],
     note:"Once-off wording. I don’t handle your messages for you.", cta:"Ask about Reply Refresh" },
+  { key:"listing", name:"Product Listing Refresh", price:"From R50", unit:"for 5 descriptions",
+    who:"For sellers who have products to list but no time to write clear descriptions.",
+    items:["Five product descriptions for R50, or ten for R100","Clearer, easier for customers to understand","Ready to add to your catalogue or listings"],
+    note:"I only use the details you give me. I never invent specifications, ingredients, benefits or claims.", cta:"Ask about Listing Refresh" },
   { key:"wa", name:"WhatsApp Business Setup & Refresh", price:"R150", unit:"once-off",
     who:"For businesses that want their WhatsApp Business information to be clearer, more professional and easier for customers to use.",
     items:["One refreshed About section","One greeting message","Up to five quick reply scripts","Catalogue descriptions for up to five products or services"],
@@ -225,22 +242,26 @@ const SERVICES = [
     items:[], note:"", cta:"Explore resources" }
 ];
 const FAQS = [
+ ["What is the free reply check?","You send me three questions your customers keep asking, with names and numbers hidden. I look at why they might keep asking and give you one or two practical fixes. It’s free and there’s no obligation."],
  ["What exactly is Reply Refresh?","It’s a once-off service where I improve up to five of your customer replies. They answer the question directly, sound like you, and give customers a clear next step. You get the finished wording to copy and use."],
  ["What do I need to send you to get started?","A little about your business, plus the replies you currently use or the questions customers ask most. For a WhatsApp Business refresh, screenshots of your profile help too. I can also use publicly available business information."],
  ["Do you log into my WhatsApp account?","No. I never need your password, login or access to your account."],
  ["Will you make changes directly to my profile?","No. I prepare the wording and send it to you, and you apply the changes yourself."],
  ["Can the wording sound like my business?","Yes, that’s the aim. I tailor the wording to your business and the way you like to communicate, so it still sounds like you."],
  ["What if I need more than five replies?","Just tell me. We can talk about what you need and agree on the scope and price before I start."],
- ["Is the price once-off?","Yes. Reply Refresh and WhatsApp Business Setup & Refresh are once-off prices for the deliverables listed. They aren’t subscriptions."],
+ ["Is the price once-off?","Yes. Greeting Refresh, Reply Refresh, Product Listing Refresh and WhatsApp Business Setup & Refresh are once-off prices for the deliverables listed. They aren’t subscriptions."],
  ["How does payment work?","We agree the service, what’s included, the price and how you’ll pay before any work begins, so there are no surprises."],
  ["Can I ask about ongoing support?","Yes. It isn’t a standard package, but you’re welcome to tell me what you need and we can see whether an arrangement makes sense for both of us."],
  ["What if I’m not sure which service I need?","Send me a message and tell me what’s frustrating you. I’ll point you to the right starting place, with no pressure."]
 ];
 const PICK = [
- ["I need better wording for my customer replies.","Reply Refresh","reply"],
- ["My WhatsApp Business profile needs attention.","WhatsApp Business Setup & Refresh","wa"],
- ["I want resources I can use myself.","Guides and tools","resources"],
- ["I need help with something more ongoing or specific.","Contact Zondra to discuss your needs","ongoing"]
+  ["Customers keep asking me the same questions.","Get a free reply check","check"],
+  ["My WhatsApp greeting is generic or unclear.","Greeting Refresh (R30)","greeting"],
+  ["I need better wording for my customer replies.","Reply Refresh (R100)","reply"],
+  ["I have products to list but no time to write descriptions.","Product Listing Refresh","listing"],
+  ["My WhatsApp Business profile needs attention.","WhatsApp Business Setup & Refresh (R150)","wa"],
+  ["I want resources I can use myself.","Guides and tools","resources"],
+  ["I need help with something more ongoing or specific.","Contact Zondra to discuss your needs","ongoing"]
 ];
 const $ = s => document.querySelector(s);
 const num = CONFIG.whatsappNumber.replace(/[^0-9A-Za-z_]/g,"");
@@ -254,8 +275,9 @@ $("#servicecards").innerHTML = SERVICES.filter(s => s.key!=="resources").map(s =
 $("#diy").innerHTML = CONFIG.toolkit.active ? `<article class="diy"><div><h3>Guides and toolkits</h3><p>Affordable resources you buy and use on your own. You don’t need me involved: no back-and-forth and no waiting. Good if you’d rather improve things yourself, at your own pace.</p><p>Prices vary by resource.</p></div><div><p class="price">From ${CONFIG.toolkit.fromPrice}</p><a class="btn" data-wa="resources" href="#">Ask about resources</a></div></article>` : "";
 $("#pick").innerHTML = PICK.map(p => `<li><span>${p[0]}</span><a data-wa="${p[2]}" href="#">${p[1]}</a></li>`).join("");
 $("#faqlist").innerHTML = FAQS.map(f => `<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
-$("#fservice").innerHTML = ["Reply Refresh (R100)","WhatsApp Business Setup & Refresh (R150)","Guides and tools","Something more ongoing or specific","Not sure yet"].map(o=>`<option>${o}</option>`).join("");
-$("#foot").textContent = `${CONFIG.businessName} · ${CONFIG.location} · Prices in ZAR`;
+$("#fservice").innerHTML = ["Free reply check","Greeting Refresh (R30)","Reply Refresh (R100)","Product Listing Refresh (from R50)","WhatsApp Business Setup & Refresh (R150)","Guides and tools","Something more ongoing or specific","Not sure yet"].map(o=>`<option>${o}</option>`).join("");
+$("#hours").textContent = CONFIG.hours + ". Messages sent outside these hours will be answered the next working day.";
+$("#foot").textContent = `${CONFIG.businessName} · ${CONFIG.location} · ${CONFIG.hours}`;
 
 document.querySelectorAll("[data-wa]").forEach(a => { a.href = waUrl(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
 
