@@ -191,9 +191,9 @@ footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 <script>
 /* =====================================================================
    CONFIG: the one place to edit your details, prices and offers.
-   1. WHATSAPP NUMBER: replace YOUR_WHATSAPP_NUMBER with your number in
-      international format, digits only, no spaces and no plus sign.
-      Example: 0821234567 becomes 27821234567
+   1. WHATSAPP NUMBER: the single number every WhatsApp button and the
+      contact form use. International format, digits only, no spaces and
+      no plus sign. Example: 0821234567 becomes 27821234567
    2. CONTACT FORM: paste a form service URL into formEndpoint
       (e.g. a Formspree or Web3Forms endpoint). Leave "" to have the form
       send your enquiry through WhatsApp instead.
@@ -206,7 +206,7 @@ const CONFIG = {
   whatsappNumber: "27768260594",
   formEndpoint: "",
   resourcesUrl: "",
-  toolkit: { active: true, fromPrice: "R30" },  // "From" price on the Do it yourself card. Set active:false to hide the card.
+  toolkit: { active: true, fromPrice: "R99" },  // "From" price on the Do it yourself card. Set active:false to hide the card.
   messages: {
     check: "CHECK. Hi Zondra! I’d like a free 2-minute reply check. Here are some questions my customers keep asking:",
     greeting: "Hi Zondra! I’d like to find out more about the R30 Greeting Refresh.",
@@ -268,7 +268,8 @@ const PICK = [
 const $ = s => document.querySelector(s);
 let num;
 function render(){
-num = CONFIG.whatsappNumber.replace(/[^0-9A-Za-z_]/g,"");
+const rawNum = CONFIG.whatsappNumber.replace(/[\s+()-]/g,"");
+num = /^0\d{9}$/.test(rawNum) ? "27"+rawNum.slice(1) : rawNum; // safety net: 0768260594 becomes 27768260594
 const waUrl = k => "https://wa.me/" + num + "?text=" + encodeURIComponent(CONFIG.messages[k] || CONFIG.messages.general);
 if (CONFIG.whatsappNumber.includes("YOUR_")) $("#setup").hidden = false;
 
@@ -309,7 +310,7 @@ $("#cform").addEventListener("submit", async e => {
 });
 
 /* ===== ADMIN PANEL: open your site with #admin on the end of the address ===== */
-const BIN_ID="$2a$10$y0l6arP0oY8b8qkc5RUAc.qMVTSZIfEcyyEYSippN3vb.w8ybK/1q",API="https://api.jsonbin.io/v3/b";
+const BIN_ID="YOUR_BIN_ID",API="https://api.jsonbin.io/v3/b";
 const E=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const cl=o=>JSON.parse(JSON.stringify(o));
 const TXT={};document.querySelectorAll("[data-t]").forEach(e=>TXT[e.dataset.t]=e.textContent.trim());
@@ -352,7 +353,7 @@ async function load(){
 }
 function edit(){
  const sc=ov().scrollTop,op=[...document.querySelectorAll("#ab details")].map(x=>x.open),c=D.cfg;
- $("#ab").innerHTML=`<h2 style="margin:.2rem 0">Site admin</h2><div id="st" role="status"></div>
+ $("#ab").innerHTML=`<h2 style="margin:.2rem 0">Site admin</h2>
 <details open><summary>Details and links</summary>${I("cfg.founder","Your name",c.founder)}${I("cfg.location","Location",c.location)}${I("cfg.hours","Availability",c.hours)}${I("cfg.whatsappNumber","WhatsApp number (27…, digits only)",c.whatsappNumber)}${I("cfg.resourcesUrl","Store link for guides and tools (e.g. Selar)",c.resourcesUrl||"")}${I("cfg.formEndpoint","Contact form link (optional)",c.formEndpoint)}${I("cfg.toolkit.fromPrice","Guides “from” price",c.toolkit.fromPrice)}<label><input type="checkbox" data-c="cfg.toolkit.active" ${c.toolkit.active?"checked":""} style="width:auto"> Show the guides and tools card</label></details>
 <details><summary>Photo</summary>${D.photo?`<img src="${E(D.photo)}" alt="" style="width:120px;height:120px;border-radius:50%;object-fit:cover">`:""}<label>Upload a photo<input type="file" accept="image/*" id="ph"></label>${I("photo","Or paste an image link",D.photo.startsWith("data:")?"":D.photo)}<button data-a="rmph">Remove photo</button></details>
 <details><summary>Wording</summary>${Object.keys(D.texts).map(k=>I("texts."+k,hd(k),D.texts[k],3)).join("")}</details>
@@ -360,19 +361,19 @@ function edit(){
 <details><summary>“Not sure which one?” list</summary>${D.pick.map((p,i)=>`<div>${I(`pick.${i}.t`,"Situation",p.t)}${I(`pick.${i}.l`,"Button text",p.l)}${bar("pick",i)}<hr></div>`).join("")}<button data-a="add" data-l="pick">Add one</button></details>
 <details><summary>FAQs</summary>${D.faqs.map((f,i)=>`<div>${I(`faqs.${i}.q`,"Question",f.q)}${I(`faqs.${i}.a`,"Answer",f.a,3)}${bar("faqs",i)}<hr></div>`).join("")}<button data-a="add" data-l="faqs">Add a question</button></details>
 <details><summary>WhatsApp messages</summary>${Object.keys(c.messages).map(k=>I("cfg.messages."+k,hd(k),c.messages[k],3)).join("")}</details>
-<div style="position:sticky;bottom:0;background:#FFF8F2;padding:.6rem 0"><button class="p" data-a="save">Save to website</button><button data-a="close">Close</button><button data-a="out">Log out</button></div>`;
+<div style="position:sticky;bottom:0;background:#FFF8F2;padding:.6rem 0;border-top:1px solid #eadbcf"><div id="st" role="status" aria-live="polite" style="font-size:.95rem;margin-bottom:.4rem"></div><button class="p" data-a="save">Save to website</button><button data-a="close">Close</button><button data-a="out">Log out</button></div>`;
  document.querySelectorAll("#ab details").forEach((x,i)=>{if(op[i]!==undefined)x.open=op[i]});ov().scrollTop=sc;
 }
 async function save(){
  const st=$("#st");let id=BID();st.textContent="Saving…";
  try{
   if(!id){const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","X-Master-Key":KEY,"X-Bin-Private":"false","X-Bin-Name":"inbox-aide-site"},body:JSON.stringify(D)});
-   if(!r.ok)throw 0;id=(await r.json()).metadata.id;localStorage.setItem("ia_bin",id);
+   if(!r.ok)throw r.status;id=(await r.json()).metadata.id;localStorage.setItem("ia_bin",id);
    st.innerHTML=`Saved. One-time step: paste <b>${id}</b> into BIN_ID near the bottom of your website file and upload the file once. After that, every save updates the live site.`}
   else{const r=await fetch(`${API}/${id}`,{method:"PUT",headers:{"Content-Type":"application/json","X-Master-Key":KEY},body:JSON.stringify(D)});
-   if(!r.ok)throw 0;st.textContent="Saved. Your website is updated."}
+   if(!r.ok)throw r.status;st.textContent="Saved. Your website is updated."}
   apply(merge(cl(D)));
- }catch{st.textContent="Couldn’t save. Check your key and connection, then try again."}
+ }catch(e){st.textContent=e===401||e===403?"JSONBin didn’t accept that key. Tap Log out, then paste your Master Key again.":typeof e==="number"?"JSONBin couldn’t save this (error "+e+"). Check your key and try again.":"Couldn’t reach JSONBin. Check your internet connection and try again."}
 }
 function act(d){
  const a=d.a,L=d.l,i=+d.i;
