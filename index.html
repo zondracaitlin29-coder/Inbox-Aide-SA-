@@ -3,71 +3,98 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF7F2">
 <title>Inbox Aide SA | Clearer customer replies and WhatsApp Business content</title>
-<meta name="description" content="Inbox Aide SA helps small businesses improve their customer replies and WhatsApp Business content, so customers find what they need and know what to do next. Free 2-minute reply check. Greeting Refresh R30. Reply Refresh R100.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23232A3B'/%3E%3Cpath d='M8 10h16v9H15l-5 4v-4H8z' fill='%23F0A47F'/%3E%3C/svg%3E">
+<meta name="description" content="Inbox Aide SA helps clothing sellers &amp; caterers improve their customer replies and WhatsApp Business content, so customers find what they need and know what to do next. Free 2-minute check. Greeting Glow-Up R30. Quick Reply Rescue R50. First Impression Pack R150.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2333503C'/%3E%3Cpath d='M8 10h16v9H15l-5 4v-4H8z' fill='%23F4D6C4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FFF8F2;--surface:#FFFDFA;--soft:#FDEEE2;--ink:#2A2A3B;--mute:#5E5F72;--line:#F2D8C6;--peach:#B84A24;--peach-soft:#FFE2D0;--olive:#6B6A2E;--olive-soft:#FBEED8;--btn:#B84A24;--btn-ink:#fff;--out:#FFE4D2;
---hd:"Bricolage Grotesque",Georgia,sans-serif;--bd:"Figtree",system-ui,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171B26;--surface:#212736;--soft:#1D2230;--ink:#F3EEE4;--mute:#B2B9C9;--line:#343C50;--peach:#F0A47F;--peach-soft:#3A2B2A;--olive:#B5C47E;--olive-soft:#2C3322;--btn:#F0A47F;--btn-ink:#171B26;--out:#5A3A2B;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#171B26;--surface:#212736;--soft:#1D2230;--ink:#F3EEE4;--mute:#B2B9C9;--line:#343C50;--peach:#F0A47F;--peach-soft:#3A2B2A;--olive:#B5C47E;--olive-soft:#2C3322;--btn:#F0A47F;--btn-ink:#171B26;--out:#5A3A2B;color-scheme:dark}
+:root{--bg:#FAF7F2;--surface:#FFFDF9;--sand:#F3E9D3;--green:#33503C;--green-2:#46654F;--olive:#6B7140;--olive-soft:#E9ECD3;--terra:#A65A3F;--burnt:#A9592A;--ink:#2B352D;--mute:#5E6657;--line:#E8E1D4;--btn:#A65A3F;--btn-ink:#FFF9EE;--out:#F6E2D3;
+--hd:"Fraunces",Georgia,serif;--bd:"DM Sans",system-ui,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
 *,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--bd)}
-h1,h2,h3{font-family:var(--hd);line-height:1.15;margin:0 0 .6em;letter-spacing:-.01em}
+h1,h2,h3{font-family:var(--hd);font-weight:600;line-height:1.15;margin:0 0 .6em;letter-spacing:-.01em;color:var(--green)}
 h1{font-size:clamp(2.1rem,6.5vw,3.5rem)}h2{font-size:clamp(1.6rem,4.5vw,2.4rem)}h3{font-size:1.25rem}
 p{margin:0 0 1em;max-width:62ch}a{color:inherit}
 .wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
-section{padding:3.5rem 0}.alt{background:var(--soft)}
+section{padding:2.6rem 0}
+.s-sand{background:var(--sand)}.s-peach{background:var(--out)}.s-green{background:var(--green)}.s-olive{background:var(--olive)}.s-terra{background:var(--terra)}.s-burnt{background:var(--burnt)}
+.dk{color:var(--surface)}.dk h1,.dk h2,.dk h3{color:inherit}.dk .lead{color:inherit;opacity:.9}
+.dk .btn{background:var(--surface);color:var(--green);border-color:var(--surface)}.dk .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
 .lead{font-size:1.15rem;color:var(--mute)}
-:focus-visible{outline:3px solid var(--peach);outline-offset:3px;border-radius:6px}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px;border-radius:6px}
+.dk :focus-visible{outline-color:var(--surface)}
 .btn{display:inline-block;padding:.8rem 1.3rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--btn);background:var(--btn);color:var(--btn-ink);cursor:pointer;font:600 1rem var(--bd);text-align:center}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--green);border-color:var(--green)}
 .btn:hover{filter:brightness(1.1)}
 .row{display:flex;flex-wrap:wrap;gap:.75rem}
 #setup{background:#FFE9A8;color:#3a2f00;padding:.6rem 1rem;font-size:.9rem;text-align:center}
 header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:1rem}
-.logo{font:700 1.2rem var(--hd);text-decoration:none}.logo span{color:var(--peach)}
+.logo{font:700 1.2rem var(--hd);text-decoration:none;color:var(--green)}.logo span{color:var(--terra)}
 nav ul{display:flex;gap:1.3rem;list-style:none;margin:0;padding:0}nav a{text-decoration:none;font-weight:500;font-size:.97rem}nav a:hover{text-decoration:underline}
-#menu{display:none;background:none;border:2px solid var(--ink);color:var(--ink);border-radius:8px;padding:.45rem .5rem;line-height:0}
+#menu{display:none;background:none;border:2px solid var(--green);color:var(--green);border-radius:8px;padding:.45rem .5rem;line-height:0}
 @media(max-width:820px){#menu{display:block}nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);padding:.5rem 1.25rem 1rem}nav.open{display:block}nav ul{flex-direction:column;gap:0}nav a{display:block;padding:.7rem 0}.hdcta{display:none}}
-.hero{padding:2.5rem 0 3.5rem}.hero .wrap{display:grid;gap:2rem}
+.hero{padding:2.5rem 0 3rem}.hero .wrap{display:grid;gap:2rem}
 @media(min-width:900px){.hero .wrap{grid-template-columns:1.15fr 1fr;align-items:center}}
-.chat{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:1rem;display:flex;flex-direction:column;gap:.55rem}
+.chat{background:var(--sand);border:1px solid var(--line);border-top:5px solid var(--olive);border-radius:18px;padding:1rem;display:flex;flex-direction:column;gap:.55rem}
 .chat small{color:var(--mute);font-size:.8rem}
 .b{max-width:88%;padding:.6rem .85rem;border-radius:14px;background:var(--surface);border:1px solid var(--line);font-size:.97rem;line-height:1.45}
 .b.out{align-self:flex-end;background:var(--out);border-color:transparent}
 .b.meh{color:var(--mute);font-style:italic}
-.tag{font-weight:600;font-size:.85rem;color:var(--peach)}
-.qs{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}.qs .b{max-width:none}
+.tag{font-weight:700;font-size:.85rem;color:var(--terra)}
 .grid{display:grid;gap:1.1rem}
 @media(min-width:760px){.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.4rem;display:flex;flex-direction:column}
+.card{--ac:var(--terra);background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--ac);border-radius:14px;padding:1.4rem;display:flex;flex-direction:column}
+#servicecards .card:nth-child(1){--ac:var(--olive)}#servicecards .card:nth-child(2){--ac:var(--terra)}#servicecards .card:nth-child(3){--ac:var(--burnt)}#servicecards .card:nth-child(4){--ac:var(--green)}
 .card .btn{margin-top:auto;align-self:flex-start}.card ul{padding-left:1.2rem;margin:.3rem 0 1.2rem}.card li{margin-bottom:.3rem}
-.price{font:700 2rem var(--hd);margin:0 0 .2rem}.price small{font:500 .95rem var(--bd);color:var(--mute)}
+.price{font:700 2rem var(--hd);margin:0 0 .2rem;color:var(--green)}.price small{font:500 .95rem var(--bd);color:var(--mute)}
 .note{background:var(--olive-soft);border-radius:10px;padding:.7rem .9rem;font-size:.95rem;margin-bottom:1rem}
-.pick{list-style:none;padding:0;margin:0;display:grid;gap:.7rem}
-.pick li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem}
-.pick a{font-weight:600;color:var(--olive)}
 .steps{counter-reset:s;list-style:none;padding:0;display:grid;gap:1rem}
-@media(min-width:760px){.steps{grid-template-columns:repeat(4,1fr)}}
-.steps li{counter-increment:s;border-top:3px solid var(--peach);padding-top:.8rem}
-.steps li::before{content:counter(s);font:700 1.4rem var(--hd);color:var(--peach);display:block}
-.steps b{display:block;font-family:var(--hd);font-size:1.1rem;margin-bottom:.2rem}
+@media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{--ac:var(--terra);counter-increment:s;border-top:4px solid var(--ac);padding-top:.8rem}
+.steps li:nth-child(2){--ac:var(--olive)}.steps li:nth-child(3){--ac:var(--burnt)}.steps li:nth-child(4){--ac:var(--green)}
+.steps li::before{content:counter(s);font:700 1.4rem var(--hd);color:var(--ac);display:block}
+.steps b{display:block;font-family:var(--hd);font-size:1.1rem;margin-bottom:.2rem;color:var(--green)}
 details{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:.7rem}
-summary{cursor:pointer;padding:1rem 1.1rem;font-weight:600;list-style-position:inside}
+details[open]{border-color:var(--terra)}
+summary{cursor:pointer;padding:1rem 1.1rem;font-weight:600;list-style-position:inside;color:var(--green)}
 details p{padding:0 1.1rem;margin:0 0 1rem}
-form{display:grid;gap:.9rem;max-width:560px}label{font-weight:600;display:grid;gap:.3rem;font-size:.97rem}
+label{font-weight:600;display:grid;gap:.3rem;font-size:.97rem}
 input,select,textarea{font:400 1rem var(--bd);padding:.7rem;border:1.5px solid var(--mute);border-radius:10px;background:var(--surface);color:var(--ink);width:100%}
-#fstatus{font-size:.95rem;min-height:1.4em}
-.final{background:var(--ink);color:var(--bg)}.final .lead{color:inherit;opacity:.85}.final .btn{background:var(--peach-soft);color:#232A3B;border-color:var(--peach-soft)}.final .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
-#services .grp{margin:2rem 0 1rem}.diy{display:grid;gap:1rem;background:var(--olive-soft);border:2px dashed var(--olive);border-radius:14px;padding:1.4rem}.diy p{margin-bottom:.6rem}.diy .price{margin:0 0 .6rem}.diy .btn{margin:0}
-@media(min-width:760px){.diy{grid-template-columns:1fr auto;align-items:center;gap:2rem}}
-footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.diy{display:grid;gap:1rem;border:2px dashed rgba(255,249,238,.65);border-radius:14px;padding:1.4rem}.diy p{margin-bottom:.6rem}.diy .btn{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0}
+.chip{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;padding:.55rem 1rem;border-radius:999px;border:2px solid rgba(255,249,238,.5);background:transparent;color:var(--surface);font:600 1rem var(--bd);cursor:pointer;transition:background .15s,color .15s}
+.chip:hover{border-color:var(--surface)}
+.chip[aria-pressed="true"]{background:var(--surface);color:var(--green);border-color:var(--surface)}
+.chip .tick{display:none}.chip[aria-pressed="true"] .tick{display:inline}
+.famchat{background:var(--green-2);border:1px solid rgba(255,249,238,.25);border-radius:18px;padding:1rem;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1rem;animation:pop .25s ease}
+.famchat small{opacity:.8;font-size:.8rem}
+.famchat .b{color:var(--ink)}.famchat .b.q{align-self:flex-start;background:var(--sand)}
+.famcount{font-weight:600;margin:.2rem 0 1rem}
+.famcount:empty{display:none}
+.aboutrow{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center}.aboutrow>div{flex:1;min-width:260px}
+#photo{flex:none;width:140px;height:140px;border-radius:50%;object-fit:cover;margin:0 .5rem;box-shadow:0 0 0 4px var(--surface),0 0 0 8px var(--terra)}
+.checks{display:grid;gap:.6rem;margin:1.2rem 0}
+.chk{display:flex;align-items:center;gap:.8rem;width:100%;min-height:48px;padding:.7rem .9rem;border-radius:12px;border:2px solid var(--olive);background:var(--surface);color:var(--ink);font:500 1rem var(--bd);text-align:left;cursor:pointer;transition:background .15s,color .15s}
+.chk .box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--olive);display:grid;place-items:center;color:transparent;font-weight:700;font-size:.9rem}
+.chk[aria-pressed="true"]{background:var(--green);color:var(--surface);border-color:var(--green)}
+.chk[aria-pressed="true"] .box{background:var(--surface);color:var(--green);border-color:var(--surface)}
+.chkscore{font-size:1.1rem;margin:0 0 .8rem}
+.meter{display:flex;gap:.35rem;margin:0 0 .6rem}.meter i{flex:1;max-width:48px;height:10px;border-radius:5px;background:rgba(43,53,45,.15)}
+.meter.lo i.on{background:var(--terra)}.meter.mid i.on{background:var(--burnt)}.meter.hi i.on{background:var(--olive)}
+.gaps{list-style:none;padding:0;margin:0 0 1rem;display:grid;gap:.6rem}
+.gaps li{background:var(--surface);border-left:5px solid var(--terra);border-radius:10px;padding:.7rem .9rem}
+.gaps em{display:block;font-style:normal;color:var(--mute);font-size:.95rem;margin-top:.15rem}
+.chkchat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:.9rem;margin:0 0 1.2rem}
+.chkchat small{display:block;color:var(--mute);font-size:.82rem}.chkchat .b{max-width:100%;margin:.5rem 0}
+mark{background:var(--terra);color:var(--surface);border-radius:4px;padding:0 .25rem}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+footer{padding:2rem 0;padding-bottom:calc(2rem + env(safe-area-inset-bottom,0px));font-size:.92rem;background:var(--green);color:#E9E2CF}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.famchat{animation:none}.chip,.chk{transition:none}}
 </style>
 </head>
 <body>
@@ -77,7 +104,7 @@ footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 <a class="logo" href="#top">Inbox Aide <span>SA</span></a>
 <button id="menu" aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
 <nav id="nav" aria-label="Main"><ul>
-<li><a href="#familiar">Sound familiar?</a></li><li><a href="#help">How I help</a></li><li><a href="#services">Services</a></li><li><a href="#how">How it works</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+<li><a href="#checkup">Check your reply</a></li><li><a href="#services">Services</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
 <a class="btn hdcta" data-wa="general" href="#">WhatsApp me</a>
 </div></header>
 
@@ -85,105 +112,82 @@ footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 <section class="hero"><div class="wrap">
 <div>
 <h1 data-t="hero_title">Your customers have questions. Let’s make the answers clearer.</h1>
-<p class="lead" data-t="hero_intro">I help small businesses improve their customer replies and WhatsApp Business content, so important information is easier to find, messages are easier to understand, and customers know what to do next.</p>
-<div class="row"><a class="btn" data-wa="check" href="#">Get a free 2-minute reply check</a><a class="btn ghost" href="#services">See services and prices</a></div>
-<p style="margin-top:1rem;font-size:.95rem;color:var(--mute)" data-t="hero_note">Made for small businesses in South Africa. You work with me directly.</p>
+<p class="lead" data-t="hero_intro">I help clothing sellers &amp; caterers improve their customer replies and WhatsApp Business content, so important information is easier to find, messages are easier to understand, and customers know what to do next.</p>
+<div class="row"><a class="btn" data-wa="check" href="#">Get a free 2-minute check</a><a class="btn ghost" href="#services">See services and prices</a></div>
+<p style="margin-top:1rem;font-size:.95rem;color:var(--mute)" data-t="hero_note">You work with me directly.</p>
 </div>
-<div class="chat" aria-label="Example of a clearer reply">
-<small>Illustrative example</small>
-<div class="b">Hi, how much is a cut and blow-dry?</div>
-<div class="b out meh">hi ya its R250 but depends on length, we open tues-sat, call to book</div>
-<div class="b out">Hi! A cut and blow-dry starts at R250, depending on hair length. We’re open Tuesday to Saturday, 09:00 to 17:00. To book, reply with your preferred day and time and I’ll confirm your slot.</div>
-<small>Same information. Clearer wording and a next step.</small>
+<div class="chat" aria-label="Sample of a clearer reply">
+<small>SAMPLE</small>
+<div class="b">Hi, is this still available? Price? Size?</div>
+<span class="tag" style="align-self:flex-end">Before</span>
+<div class="b out meh">hi ya its R250 but depends, dm for size</div>
+<span class="tag" style="align-self:flex-end">After</span>
+<div class="b out">Hi! Yes, still available 💛 Floral Dress — R250, Size M. To order, send MINE + your size and I’ll confirm. Delivery R60 / Pickup in Capricorn.</div>
+<small>SAMPLE — made by Inbox Aide. Same info. Clearer wording + next step.</small>
 </div>
 </div></section>
 
-<section id="familiar" class="alt"><div class="wrap">
+<section id="familiar" class="s-green dk"><div class="wrap">
 <h2>Does this sound familiar?</h2>
-<div class="qs" aria-label="Common customer questions">
-<div class="b">How much does it cost?</div><div class="b">Are you open today?</div><div class="b">Do you deliver?</div><div class="b">How do I book?</div><div class="b">Can you send me the details again?</div></div>
-<p data-t="familiar_1">Answering the same questions again and again is completely normal when you run a small business. Often the information is already there. It just isn’t easy for customers to find, or the wording leaves them unsure what to do next.</p>
-<p data-t="familiar_2">Small changes can make a real difference: answering the actual question first, keeping messages short enough to scan, and ending with a clear next step. That makes things easier for your customers and for you, with less repeated typing.</p>
-<ul>
-<li>Messages that feel too long, unclear or hard to scan</li>
-<li>A WhatsApp Business profile that’s incomplete or out of date</li>
-<li>Catalogue descriptions that don’t explain the product or service well</li>
-<li>Wanting to sound professional without sounding cold or unlike yourself</li>
-</ul>
+<p class="lead">Tap the questions your customers keep asking you.</p>
+<div class="chips" id="famchips" role="group" aria-label="Questions customers keep asking"></div>
+<div id="famout" aria-live="polite">
+<div id="fampreview"></div>
+<p id="famcount" class="famcount"></p>
+</div>
+<a class="btn" id="famcta" href="#" hidden>Send these to Zondra for a free check</a>
 </div></section>
 
-<section id="help"><div class="wrap">
-<h2>How I help</h2>
-<div class="grid g3">
-<article class="card"><h3>Clearer customer replies</h3><p>For when customers keep asking the same things and your answers could be clearer.</p><p><b>What I deliver:</b> improved versions of your common replies that answer directly, sound natural and give a clear next step.</p><p><b>Suits:</b> anyone who types the same answers every day.</p></article>
-<article class="card"><h3>Better WhatsApp Business content</h3><p>For when your profile or catalogue doesn’t explain your business as well as it could.</p><p><b>What I deliver:</b> wording for your About section, greeting message, quick replies and catalogue descriptions.</p><p><b>Suits:</b> businesses already on WhatsApp Business.</p></article>
-<article class="card"><h3>Practical communication resources</h3><p>For when you’d rather improve things yourself, at your own pace.</p><p><b>What I deliver:</b> simple, affordable guides and tools for everyday customer communication.</p><p><b>Suits:</b> hands-on owners who like a ready-made starting point.</p></article>
-</div></div></section>
+<section id="checkup" class="s-peach"><div class="wrap">
+<h2>Check your last reply</h2>
+<p class="lead">Think of the last reply you sent a customer. Tap everything it did.</p>
+<div class="checks" id="chkitems" role="group" aria-label="What your last reply did"></div>
+<div id="chkout" aria-live="polite"></div>
+<a class="btn" id="chkcta" href="#" hidden>Send my result for a free check</a>
+</div></section>
 
-<section id="services" class="alt"><div class="wrap">
+<section id="services"><div class="wrap">
 <h2>Services and pricing</h2>
-<p class="lead" data-t="services_intro">Clear scope, clear prices.</p>
-<h3 class="grp">Work with me</h3>
 <div class="grid g2" id="servicecards"></div>
-<h3 class="grp">Do it yourself</h3>
-<div id="diy"></div>
 </div></section>
 
-<section id="choose"><div class="wrap">
-<h2>Not sure which one you need?</h2>
-<ul class="pick" id="pick"></ul>
+<section id="selar" class="s-burnt dk" hidden><div class="wrap">
+<div class="diy"><div>
+<h2>Want to do it yourself?</h2>
+<p data-t="selar_text">My guides &amp; templates are in my Selar shop — same clear wording, you copy-paste it yourself.</p>
+<a class="btn" id="selarbtn" href="#">Shop Guides &amp; Templates on Selar</a>
+<p data-t="selar_note" style="margin:.8rem 0 0;font-size:.92rem;opacity:.9">Instant download. Rand only. Prefer me to write it for you? DM me CHECK on WhatsApp instead.</p>
+</div></div>
 </div></section>
 
-<section id="how" class="alt"><div class="wrap">
+<section id="how" class="s-sand"><div class="wrap">
 <h2>How it works</h2>
 <ol class="steps">
-<li><b>Tell me what you need</b>Share a little about your business and the communication problems you want to improve.</li>
-<li><b>We clarify the scope</b>I confirm the service, deliverables, price and next steps with you.</li>
-<li><b>I prepare your content</b>I tailor the wording to your business and communication style.</li>
-<li><b>You receive your finished content</b>Your replies and profile wording arrive ready to copy and use.</li>
+<li><b>Tell me what you need</b>Message me CHECK, or tell me which service you want.</li>
+<li><b>Agree the scope, then pay</b>I confirm what’s included and the price. Payment before work.</li>
+<li><b>Get your wording</b>It arrives ready to copy and paste, written to sound like you.</li>
 </ol>
-<p data-t="payment_note">Payment and delivery arrangements are agreed before any work begins, so you’ll always know what’s included first.</p>
 </div></section>
 
-<section id="about"><div class="wrap">
+<section id="about" class="s-olive dk"><div class="wrap">
 <h2>About Zondra</h2>
-<img id="photo" alt="Zondra" hidden style="width:150px;height:150px;border-radius:50%;object-fit:cover;margin-bottom:1rem">
+<div class="aboutrow">
+<img id="photo" src="zondra.jpg" alt="Zondra" hidden onload="this.hidden=false" onerror="this.hidden=true">
+<div>
 <p data-t="about_1"><b>Hi, I’m Zondra, the person behind Inbox Aide SA.</b></p>
-<p data-t="about_2">I started Inbox Aide to help small businesses make everyday customer communication a little easier. Sometimes it’s not about writing more. It’s about answering the actual question, putting the important information first, and making the next step clear.</p>
-<p data-t="about_3">I help you prepare wording that fits your business and still sounds like you. No unnecessary jargon, no one-size-fits-all scripts, just practical support for clearer customer communication.</p>
+<p data-t="about_2">I started Inbox Aide to help clothing sellers &amp; caterers make everyday customer communication a little easier. Sometimes it’s not about writing more. It’s about answering the actual question, putting the important information first, and making the next step clear.</p>
+</div></div>
 </div></section>
 
-<section id="faq" class="alt"><div class="wrap">
+<section id="faq"><div class="wrap">
 <h2>Frequently asked questions</h2>
 <div id="faqlist"></div>
 </div></section>
 
-<section id="ongoing"><div class="wrap">
-<h2>Need something more ongoing?</h2>
-<p data-t="ongoing_text">Every business handles customer communication differently. If you’re looking for more ongoing support with customer enquiries, you’re welcome to tell me about your business and what you need. We can discuss whether there’s an arrangement that makes sense for both of us.</p>
-<p style="color:var(--mute)">This isn’t a standard package. It’s an individual conversation, with no obligation.</p>
-<a class="btn ghost" data-wa="ongoing" href="#">Discuss my needs with Zondra</a>
-</div></section>
-
-<section id="contact" class="alt"><div class="wrap">
-<h2>Send me an enquiry</h2>
-<p>Prefer WhatsApp? Use the buttons above. Or fill in the form below.</p>
-<p id="hours" style="color:var(--mute)"></p>
-<form id="cform" novalidate>
-<label>Name<input name="name" required autocomplete="name"></label>
-<label>Business name (optional)<input name="business" autocomplete="organization"></label>
-<label>Preferred contact method<select name="method"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select></label>
-<label>Service of interest<select name="service" id="fservice"></select></label>
-<label>What would you like help with?<textarea name="message" rows="4" required></textarea></label>
-<button class="btn" type="submit" id="fbtn">Send enquiry</button>
-<div id="fstatus" role="status" aria-live="polite"></div>
-</form>
-</div></section>
-
-<section class="final"><div class="wrap">
+<section id="contact" class="s-terra dk"><div class="wrap">
 <h2 data-t="final_title">Let’s make your customer communication clearer.</h2>
-<p class="lead" data-t="final_text">Tell me a little about your business and where you need help. We can start with a small improvement and take it from there.</p>
-<div class="row"><a class="btn" data-wa="general" href="#">Chat to Zondra</a><a class="btn ghost" href="#services">View services</a></div>
+<p id="hours" style="font-size:.95rem;opacity:.9"></p>
+<a class="btn" data-wa="checkonly" href="https://wa.me/27768260594?text=CHECK">DM me CHECK on WhatsApp</a>
 </div></section>
 </main>
 <footer><div class="wrap"><span id="foot"></span></div></footer>
@@ -191,12 +195,12 @@ footer{padding:2rem 0;font-size:.92rem;color:var(--mute)}
 <script>
 /* =====================================================================
    CONFIG: the one place to edit your details, prices and offers.
-   1. WHATSAPP NUMBER: the single number every WhatsApp button and the
-      contact form use. International format, digits only, no spaces and
+   1. WHATSAPP NUMBER: the single number every WhatsApp button
+      uses. International format, digits only, no spaces and
       no plus sign. Example: 0821234567 becomes 27821234567
-   2. CONTACT FORM: paste a form service URL into formEndpoint
-      (e.g. a Formspree or Web3Forms endpoint). Leave "" to have the form
-      send your enquiry through WhatsApp instead.
+   2. SELAR LINK: paste your Selar shop link into selarUrl (it must start
+      with https://). Until you do, the "Want to do it yourself?" section
+      stays hidden, so visitors never see a dead button.
    ===================================================================== */
 const CONFIG = {
   businessName: "Inbox Aide SA",
@@ -204,67 +208,59 @@ const CONFIG = {
   location: "Cape Town, South Africa",
   hours: "Available Monday to Friday, 9am to 5pm",
   whatsappNumber: "27768260594",
-  formEndpoint: "",
-  resourcesUrl: "",
-  toolkit: { active: true, fromPrice: "R99" },  // "From" price on the Do it yourself card. Set active:false to hide the card.
+  selarUrl: "PASTE YOUR SELAR LINK HERE",
   messages: {
-    check: "CHECK. Hi Zondra! I’d like a free 2-minute reply check. Here are some questions my customers keep asking:",
-    greeting: "Hi Zondra! I’d like to find out more about the R30 Greeting Refresh.",
-    listing: "Hi Zondra! I’d like to find out more about the Product Listing Refresh.",
-    general: "Hi Zondra! I’d like to find out more about Inbox Aide SA.",
-    reply: "Hi Zondra! I’d like to find out more about the R100 Reply Refresh.",
-    wa: "Hi Zondra! I’d like to ask about the R150 WhatsApp Business Setup & Refresh.",
-    resources: "Hi Zondra! I’d like to know more about your guides and tools.",
-    ongoing: "Hi Zondra! I’d like to discuss some ongoing customer communication support for my business. Can I tell you a little about what I need?"
+    check: "CHECK. Hi Zondra! I’d like a free 2-minute check. Here are some questions my customers keep asking:",
+    checkonly: "CHECK",
+    greeting: "Hi Zondra! I’d like to find out more about the R30 Greeting Glow-Up.",
+    reply: "Hi Zondra! I’d like to find out more about the R50 Quick Reply Rescue.",
+    pack: "Hi Zondra! I’d like to find out more about the R150 First Impression Pack.",
+    general: "Hi Zondra! I’d like to find out more about Inbox Aide SA."
   }
 };
 const SERVICES = [
-  { key:"check", name:"Free 2-Minute Reply Check", price:"Free", unit:"no obligation",
-    who:"For businesses whose customers keep asking the same questions and who aren’t sure why.",
+  { key:"check", name:"Free 2-Minute Check", price:"Free", unit:"no obligation",
+    who:"For when customers keep asking the same questions and you’re not sure why.",
     items:["Send me three questions customers ask you most (hide names and numbers)","I look at why they might keep asking","You get one or two practical fixes"],
-    note:"A genuine free check. No account access needed and no obligation to buy anything.", cta:"Get my free check" },
-  { key:"greeting", name:"Greeting Refresh", price:"R30", unit:"once-off",
-    who:"For businesses whose WhatsApp greeting is generic, unclear or doesn’t tell customers what to do next.",
-    items:["One greeting message tailored to your business","Welcoming, in your tone, with a clear next step","Ready for you to copy into WhatsApp Business"],
-    note:"I prepare the wording and you apply it yourself.", cta:"Ask about Greeting Refresh" },
-  { key:"reply", name:"Reply Refresh", price:"R100", unit:"once-off",
-    who:"For businesses that repeatedly answer the same customer questions or want replies that sound clearer and more professional.",
-    items:["Up to five customised customer replies","Wording tailored to your business and brand voice","Clearer answers on pricing, availability, bookings, products or services","Messages ready for you to copy and use"],
-    note:"Once-off wording. I don’t handle your messages for you.", cta:"Ask about Reply Refresh" },
-  { key:"listing", name:"Product Listing Refresh", price:"From R50", unit:"for 5 descriptions",
-    who:"For sellers who have products to list but no time to write clear descriptions.",
-    items:["Five product descriptions for R50, or ten for R100","Clearer, easier for customers to understand","Ready to add to your catalogue or listings"],
-    note:"I only use the details you give me. I never invent specifications, ingredients, benefits or claims.", cta:"Ask about Listing Refresh" },
-  { key:"wa", name:"WhatsApp Business Setup & Refresh", price:"R150", unit:"once-off",
-    who:"For businesses that want their WhatsApp Business information to be clearer, more professional and easier for customers to use.",
-    items:["One refreshed About section","One greeting message","Up to five quick reply scripts","Catalogue descriptions for up to five products or services"],
-    note:"I never need your password, login or access to your account. I prepare the content and send it to you, and you apply the changes yourself.", cta:"Ask about WhatsApp Business Refresh" },
-  { key:"resources", name:"Guides and practical tools", price:"", unit:"",
-    who:"Affordable resources to help you improve customer communication and manage common communication tasks yourself.",
-    items:[], note:"", cta:"Explore resources" }
+    note:"", cta:"Get my free check" },
+  { key:"pack", name:"First Impression Pack", price:"R150", unit:"once-off",
+    who:"For a clear, professional first impression on WhatsApp Business.",
+    items:["1 bio","1 greeting","5 quick replies","5 product descriptions"],
+    note:"I prepare wording, you copy-paste it. I never need your password or login.", cta:"Ask about the First Impression Pack" },
+  { key:"greeting", name:"Greeting Glow-Up", price:"R30", unit:"once-off",
+    who:"For a greeting that’s generic, unclear or doesn’t tell customers what to do next.",
+    items:["1 greeting only"],
+    note:"", cta:"Ask about Greeting Glow-Up" },
+  { key:"reply", name:"Quick Reply Rescue", price:"R50", unit:"once-off",
+    who:"For when you keep typing the same answers and want replies that sound clearer and more professional.",
+    items:["5 quick replies only"],
+    note:"", cta:"Ask about Quick Reply Rescue" }
 ];
 const FAQS = [
- ["What is the free 2-minute reply check?","You send me three questions your customers keep asking, with names and numbers hidden. I look at why they might keep asking and give you one or two practical fixes. It’s free and there’s no obligation."],
- ["What exactly is Reply Refresh?","It’s a once-off service where I improve up to five of your customer replies. They answer the question directly, sound like you, and give customers a clear next step. You get the finished wording to copy and use."],
- ["What do I need to send you to get started?","A little about your business, plus the replies you currently use or the questions customers ask most. For a WhatsApp Business refresh, screenshots of your profile help too. I can also use publicly available business information."],
- ["Do you log into my WhatsApp account?","No. I never need your password, login or access to your account."],
- ["Will you make changes directly to my profile?","No. I prepare the wording and send it to you, and you apply the changes yourself."],
- ["Can the wording sound like my business?","Yes, that’s the aim. I tailor the wording to your business and the way you like to communicate, so it still sounds like you."],
- ["What if I need more than five replies?","Just tell me. We can talk about what you need and agree on the scope and price before I start."],
- ["Is the price once-off?","Yes. Greeting Refresh, Reply Refresh, Product Listing Refresh and WhatsApp Business Setup & Refresh are once-off prices for the deliverables listed. They aren’t subscriptions."],
- ["How does payment work?","We agree the service, what’s included, the price and how you’ll pay before any work begins, so there are no surprises."],
- ["Can I ask about ongoing support?","Yes. It isn’t a standard package, but you’re welcome to tell me what you need and we can see whether an arrangement makes sense for both of us."],
- ["What if I’m not sure which service I need?","Send me a message and tell me what’s frustrating you. I’ll point you to the right starting place, with no pressure."]
+ ["Do you log into my WhatsApp account?","No. I never need your password, login or access to your account. I write the wording and you copy-paste it yourself."],
+ ["What if I need more than five replies?","Just tell me. We’ll agree the scope and price before I start."],
+ ["What’s the difference between WhatsApp services and Selar?","WhatsApp = I write it for you. Selar = you download the guide/template and do it yourself."]
 ];
-const PICK = [
-  ["Customers keep asking me the same questions.","Get a free 2-minute reply check","check"],
-  ["My WhatsApp greeting is generic or unclear.","Greeting Refresh (R30)","greeting"],
-  ["I need better wording for my customer replies.","Reply Refresh (R100)","reply"],
-  ["I have products to list but no time to write descriptions.","Product Listing Refresh","listing"],
-  ["My WhatsApp Business profile needs attention.","WhatsApp Business Setup & Refresh (R150)","wa"],
-  ["I want resources I can use myself.","Guides and tools","resources"],
-  ["I need help with something more ongoing or specific.","Contact Zondra to discuss your needs","ongoing"]
+// "Does this sound familiar?" tap list: [question customers ask, SAMPLE clearer reply]
+const FAM = [
+ ["How much does it cost?","Hi! The Floral Dress is R250. Delivery R60 or pickup in Capricorn. To order, send MINE + your size 💛"],
+ ["Is this still available?","Hi! Yes, still available 💛 Send MINE + your size and I’ll confirm your order."],
+ ["What sizes do you have?","Hi! It comes in S, M and L. Tell me your size and I’ll confirm it’s in stock."],
+ ["Do you deliver?","Hi! Yes, delivery is R60. Pickup in Capricorn is also available. Which would you like?"],
+ ["How do I order?","Hi! Send MINE + your size (or your order for the day). I’ll confirm the total and how to pay."],
+ ["What’s on the menu?","Hi! This week: chicken curry & rice R70, samoosas (6) R30. Orders close Thursday 12:00. Reply with what you’d like and I’ll confirm."],
+ ["Can you send me the details again?","Of course! Reply with the item you mean and I’ll send the price, sizes, delivery and how to order in one message."]
 ];
+let picked = [];
+// "Check your last reply": t = what to tick, gap = name if missing, why = what it costs you, ex = SAMPLE fragment (in reading order)
+const CHK = [
+ {t:"It opened friendly, like a person wrote it", gap:"A friendly opening", why:"Short, cold replies can read as rude.", ex:"Hi!"},
+ {t:"It answered the question straight away", gap:"A straight answer", why:"Customers shouldn’t have to hunt for it.", ex:"Yes, that’s available 💛"},
+ {t:"It included the price", gap:"The price", why:"Without it, “how much?” is the next message.", ex:"It’s R250."},
+ {t:"It said how to order or what to do next", gap:"A next step", why:"Without one, customers are left unsure what to do.", ex:"To order, reply with what you’d like and I’ll confirm."},
+ {t:"It covered delivery or pickup", gap:"Delivery or pickup", why:"Expect a “do you deliver?” follow-up.", ex:"Delivery is R60, or you can collect."}
+];
+let ticked = [];
 const $ = s => document.querySelector(s);
 let num;
 function render(){
@@ -273,56 +269,94 @@ num = /^0\d{9}$/.test(rawNum) ? "27"+rawNum.slice(1) : rawNum; // safety net: 07
 const waUrl = k => "https://wa.me/" + num + "?text=" + encodeURIComponent(CONFIG.messages[k] || CONFIG.messages.general);
 if (CONFIG.whatsappNumber.includes("YOUR_")) $("#setup").hidden = false;
 
-$("#servicecards").innerHTML = SERVICES.filter(s => s.key!=="resources").map(s => {
-  const price = s.key==="resources" ? (CONFIG.toolkit.active ? `<p class="price">${CONFIG.toolkit.price} <small>toolkit, once-off</small></p>` : "") : `<p class="price">${s.price} <small>${s.unit}</small></p>`;
-  return `<article class="card"><h3>${s.name}</h3>${price}<p>${s.who}</p>${s.items.length?`<ul>${s.items.map(i=>`<li>${i}</li>`).join("")}</ul>`:""}${s.note?`<div class="note">${s.note}</div>`:""}<a class="btn" ${s.link?`href="${s.link}" target="_blank" rel="noopener"`:`data-wa="${s.key}" href="#"`}>${s.cta}</a></article>`;
-}).join("");
-$("#diy").innerHTML = CONFIG.toolkit.active ? `<article class="diy"><div><h3>Guides and toolkits</h3><p>Affordable resources you buy and use on your own. You don’t need me involved: no back-and-forth and no waiting. Good if you’d rather improve things yourself, at your own pace.</p><p>Prices vary by resource.</p></div><div><p class="price">From ${CONFIG.toolkit.fromPrice}</p><a class="btn" ${CONFIG.resourcesUrl?`href="${CONFIG.resourcesUrl}" target="_blank" rel="noopener"`:`data-wa="resources" href="#"`}>${CONFIG.resourcesUrl?"View in my store":"Ask about resources"}</a></div></article>` : "";
-$("#pick").innerHTML = PICK.map(p => `<li><span>${p[0]}</span><a data-wa="${p[2]}" href="#">${p[1]}</a></li>`).join("");
+$("#servicecards").innerHTML = SERVICES.map(s => `<article class="card"><h3>${s.name}</h3><p class="price">${s.price} <small>${s.unit}</small></p><p>${s.who}</p>${s.items.length?`<ul>${s.items.map(i=>`<li>${i}</li>`).join("")}</ul>`:""}${s.note?`<div class="note">${s.note}</div>`:""}<a class="btn" ${s.link?`href="${s.link}" target="_blank" rel="noopener"`:`data-wa="${s.key}" href="#"`}>${s.cta}</a></article>`).join("");
 $("#faqlist").innerHTML = FAQS.map(f => `<details><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join("");
-$("#fservice").innerHTML = ["Free 2-minute reply check","Greeting Refresh (R30)","Reply Refresh (R100)","Product Listing Refresh (from R50)","WhatsApp Business Setup & Refresh (R150)","Guides and tools","Something more ongoing or specific","Not sure yet"].map(o=>`<option>${o}</option>`).join("");
 $("#hours").textContent = CONFIG.hours + ". Messages sent outside these hours will be answered the next working day.";
-$("#foot").textContent = `${CONFIG.businessName} · ${CONFIG.location} · ${CONFIG.hours}`;
+$("#foot").textContent = `${CONFIG.businessName} · For clothing sellers & caterers · ${CONFIG.location}`;
+
+const selarOk = /^https?:\/\//i.test(CONFIG.selarUrl || ""); // the Selar section only shows once a real link is pasted
+$("#selar").hidden = !selarOk;
+if (selarOk) { const b = $("#selarbtn"); b.href = CONFIG.selarUrl; b.target = "_blank"; b.rel = "noopener"; }
 
 document.querySelectorAll("[data-wa]").forEach(a => { a.href = waUrl(a.dataset.wa); a.target = "_blank"; a.rel = "noopener"; });
-$("#fbtn").textContent = CONFIG.formEndpoint.trim() ? "Send enquiry" : "Send via WhatsApp";
+$("#famchips").innerHTML = FAM.map((f,i) => `<button type="button" class="chip" data-i="${i}" aria-pressed="${picked.includes(i)}"><span class="tick" aria-hidden="true">✓</span>${E(f[0])}</button>`).join("");
+famUpdate();
+$("#chkitems").innerHTML = CHK.map((c,i) => `<button type="button" class="chk" data-i="${i}" aria-pressed="${ticked.includes(i)}"><span class="box" aria-hidden="true">✓</span>${E(c.t)}</button>`).join("");
+chkUpdate();
 }
+
+function chkUpdate(){
+  const n = ticked.length;
+  const missing = CHK.filter((c,i) => !ticked.includes(i));
+  const head = ["", "This reply leaves customers guessing.", "Half the information is missing, so expect follow-up questions.", "Decent, but customers will probably still message to ask.", "Almost there. One gap left.", "Strong reply. Save it as a quick reply so you never retype it."][n];
+  const level = n<=2 ? "lo" : n===3 ? "mid" : "hi";
+  $("#chkout").innerHTML = n===0 ? "" :
+    `<div class="meter ${level}" aria-hidden="true">${CHK.map((c,i)=>`<i class="${ticked.includes(i)?"on":""}"></i>`).join("")}</div>`
+    + `<p class="chkscore"><b>${n} of 5.</b> ${E(head)}</p>`
+    + (missing.length ? `<ul class="gaps">${missing.map(c=>`<li><b>${E(c.gap)}.</b> ${E(c.why)}<em>Try: ${E(c.ex)}</em></li>`).join("")}</ul>`
+      + `<div class="chkchat"><small>SAMPLE with the gaps filled in</small><div class="b out">${CHK.map((c,i)=>ticked.includes(i)?E(c.ex):`<mark>${E(c.ex)}</mark>`).join(" ")}</div><small>Highlighted = what your reply was missing.</small></div>` : "");
+  const cta = $("#chkcta");
+  cta.hidden = n===0 || missing.length===0;
+  if (!cta.hidden) {
+    const msg = (CONFIG.messages.checkonly || "CHECK") + "\nMy last reply was missing: " + missing.map(c => c.gap.toLowerCase()).join(", ");
+    cta.href = "https://wa.me/" + num + "?text=" + encodeURIComponent(msg);
+    cta.target = "_blank"; cta.rel = "noopener";
+  }
+}
+$("#chkitems").addEventListener("click", e => {
+  const b = e.target.closest && e.target.closest(".chk");
+  if (!b) return;
+  const i = +b.dataset.i, at = ticked.indexOf(i);
+  if (at > -1) ticked.splice(at,1); else ticked.push(i);
+  b.setAttribute("aria-pressed", ticked.includes(i));
+  chkUpdate();
+});
+
+function famToggle(i){
+  const at = picked.indexOf(i);
+  if (at > -1) picked.splice(at,1); else picked.push(i);
+  famUpdate();
+}
+function famUpdate(){
+  const n = picked.length, last = picked[n-1];
+  $("#famcount").textContent = n===0 ? ""
+    : n===1 ? "That’s one question you could answer once with a saved reply."
+    : n<4 ? "That’s normal. Saved quick replies mean you type each answer once."
+    : "That’s a lot of repeat typing. Saved quick replies can take a lot of that away.";
+  $("#fampreview").innerHTML = n===0 ? "" : `<div class="famchat"><small>SAMPLE reply</small><div class="b q">${E(FAM[last][0])}</div><div class="b out">${E(FAM[last][1])}</div></div>`;
+  const cta = $("#famcta");
+  cta.hidden = n===0;
+  if (n) {
+    const msg = (CONFIG.messages.check || "CHECK") + "\n" + picked.map(i => "- " + FAM[i][0]).join("\n");
+    cta.href = "https://wa.me/" + num + "?text=" + encodeURIComponent(msg);
+    cta.target = "_blank"; cta.rel = "noopener";
+  }
+}
+$("#famchips").addEventListener("click", e => {
+  const b = e.target.closest && e.target.closest(".chip");
+  if (!b) return;
+  const i = +b.dataset.i;
+  famToggle(i);
+  b.setAttribute("aria-pressed", picked.includes(i));
+});
 
 const menu = $("#menu"), nav = $("#nav");
 menu.addEventListener("click", () => { const o = nav.classList.toggle("open"); menu.setAttribute("aria-expanded", o); });
 nav.addEventListener("click", e => { if (e.target.tagName==="A") { nav.classList.remove("open"); menu.setAttribute("aria-expanded","false"); } });
-
-$("#cform").addEventListener("submit", async e => {
-  e.preventDefault();
-  const f = e.target, d = Object.fromEntries(new FormData(f)), st = $("#fstatus");
-  if (!d.name.trim() || !d.message.trim()) { st.textContent = "Please add your name and a short message so I know how to help."; return; }
-  const text = `Hi Zondra! My name is ${d.name}${d.business?` (${d.business})`:""}. Service: ${d.service}. Preferred contact: ${d.method}.\n\n${d.message}`;
-  if (!CONFIG.formEndpoint.trim()) {
-    st.textContent = "This form doesn’t save enquiries yet, so I’m opening WhatsApp with your details ready to send.";
-    window.open("https://wa.me/" + num + "?text=" + encodeURIComponent(text), "_blank", "noopener");
-    return;
-  }
-  try {
-    const r = await fetch(CONFIG.formEndpoint, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" }, body: JSON.stringify(d) });
-    if (!r.ok) throw new Error();
-    st.textContent = "Thank you. Your enquiry has been sent and I’ll be in touch."; f.reset();
-  } catch { st.textContent = "Your enquiry didn’t send. Please try again, or use the WhatsApp button instead."; }
-});
 
 /* ===== ADMIN PANEL: open your site with #admin on the end of the address ===== */
 const BIN_ID="YOUR_BIN_ID",API="https://api.jsonbin.io/v3/b";
 const E=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const cl=o=>JSON.parse(JSON.stringify(o));
 const TXT={};document.querySelectorAll("[data-t]").forEach(e=>TXT[e.dataset.t]=e.textContent.trim());
-const DEF=cl({cfg:CONFIG,services:SERVICES,faqs:FAQS.map(([q,a])=>({q,a})),pick:PICK.map(([t,l,k])=>({t,l,k})),texts:TXT,photo:""});
-const merge=d=>{d=d||{};const c=d.cfg||{};return {...DEF,...d,cfg:{...DEF.cfg,...c,toolkit:{...DEF.cfg.toolkit,...c.toolkit},messages:{...DEF.cfg.messages,...c.messages}},texts:{...DEF.texts,...d.texts}}};
+const DEF=cl({cfg:CONFIG,services:SERVICES,faqs:FAQS.map(([q,a])=>({q,a})),texts:TXT,photo:""});
+const merge=d=>{d=d||{};const c=d.cfg||{};return {...DEF,...d,cfg:{...DEF.cfg,...c,messages:{...DEF.cfg.messages,...c.messages}},texts:{...DEF.texts,...d.texts}}};
 function apply(d){
- const c=d.cfg;Object.assign(CONFIG,c,{resourcesUrl:E(c.resourcesUrl),toolkit:{...c.toolkit,fromPrice:E(c.toolkit.fromPrice)}});
+ const c=d.cfg;Object.assign(CONFIG,c);
  SERVICES.splice(0,SERVICES.length,...d.services.filter(s=>!s.hidden).map(s=>({...s,name:E(s.name),price:E(s.price),unit:E(s.unit),who:E(s.who),note:E(s.note),cta:E(s.cta),link:E(s.link),items:(s.items||[]).map(E)})));
  FAQS.splice(0,FAQS.length,...d.faqs.map(f=>[E(f.q),E(f.a)]));
- PICK.splice(0,PICK.length,...d.pick.map(p=>[E(p.t),E(p.l),p.k]));
  document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;if(d.texts[k]!==TXT[k])e.textContent=d.texts[k]});
- const im=$("#photo");im.hidden=!d.photo;if(d.photo)im.src=d.photo;
+ const im=$("#photo");if(d.photo){im.src=d.photo;im.hidden=false}
  render();
 }
 render();
@@ -354,11 +388,10 @@ async function load(){
 function edit(){
  const sc=ov().scrollTop,op=[...document.querySelectorAll("#ab details")].map(x=>x.open),c=D.cfg;
  $("#ab").innerHTML=`<h2 style="margin:.2rem 0">Site admin</h2>
-<details open><summary>Details and links</summary>${I("cfg.founder","Your name",c.founder)}${I("cfg.location","Location",c.location)}${I("cfg.hours","Availability",c.hours)}${I("cfg.whatsappNumber","WhatsApp number (27…, digits only)",c.whatsappNumber)}${I("cfg.resourcesUrl","Store link for guides and tools (e.g. Selar)",c.resourcesUrl||"")}${I("cfg.formEndpoint","Contact form link (optional)",c.formEndpoint)}${I("cfg.toolkit.fromPrice","Guides “from” price",c.toolkit.fromPrice)}<label><input type="checkbox" data-c="cfg.toolkit.active" ${c.toolkit.active?"checked":""} style="width:auto"> Show the guides and tools card</label></details>
+<details open><summary>Details and links</summary>${I("cfg.founder","Your name",c.founder)}${I("cfg.location","Location",c.location)}${I("cfg.hours","Availability",c.hours)}${I("cfg.whatsappNumber","WhatsApp number (27…, digits only)",c.whatsappNumber)}${I("cfg.selarUrl","Selar shop link (starts with https://)",c.selarUrl||"")}</details>
 <details><summary>Photo</summary>${D.photo?`<img src="${E(D.photo)}" alt="" style="width:120px;height:120px;border-radius:50%;object-fit:cover">`:""}<label>Upload a photo<input type="file" accept="image/*" id="ph"></label>${I("photo","Or paste an image link",D.photo.startsWith("data:")?"":D.photo)}<button data-a="rmph">Remove photo</button></details>
 <details><summary>Wording</summary>${Object.keys(D.texts).map(k=>I("texts."+k,hd(k),D.texts[k],3)).join("")}</details>
-<details><summary>Services and prices</summary>${D.services.map((s,i)=>s.key==="resources"?"":`<details><summary>${E(s.name)||"New service"}</summary>${I(`services.${i}.name`,"Name",s.name)}${I(`services.${i}.price`,"Price (e.g. R100)",s.price)}${I(`services.${i}.unit`,"Price note (e.g. once-off)",s.unit)}${I(`services.${i}.who`,"Who it’s for",s.who,3)}<label>What’s included (one per line)<textarea rows="4" data-l="services.${i}.items">${E((s.items||[]).join("\n"))}</textarea></label>${I(`services.${i}.note`,"Note",s.note,2)}${I(`services.${i}.cta`,"Button text",s.cta)}${I(`services.${i}.link`,"Button link (leave empty to open WhatsApp)",s.link||"")}<label><input type="checkbox" data-c="services.${i}.hidden" ${s.hidden?"checked":""} style="width:auto"> Hide this service</label>${bar("services",i)}</details>`).join("")}<button data-a="add" data-l="services">Add a service</button></details>
-<details><summary>“Not sure which one?” list</summary>${D.pick.map((p,i)=>`<div>${I(`pick.${i}.t`,"Situation",p.t)}${I(`pick.${i}.l`,"Button text",p.l)}${bar("pick",i)}<hr></div>`).join("")}<button data-a="add" data-l="pick">Add one</button></details>
+<details><summary>Services and prices</summary>${D.services.map((s,i)=>`<details><summary>${E(s.name)||"New service"}</summary>${I(`services.${i}.name`,"Name",s.name)}${I(`services.${i}.price`,"Price (e.g. R100)",s.price)}${I(`services.${i}.unit`,"Price note (e.g. once-off)",s.unit)}${I(`services.${i}.who`,"Who it’s for",s.who,3)}<label>What’s included (one per line)<textarea rows="4" data-l="services.${i}.items">${E((s.items||[]).join("\n"))}</textarea></label>${I(`services.${i}.note`,"Note",s.note,2)}${I(`services.${i}.cta`,"Button text",s.cta)}${I(`services.${i}.link`,"Button link (leave empty to open WhatsApp)",s.link||"")}<label><input type="checkbox" data-c="services.${i}.hidden" ${s.hidden?"checked":""} style="width:auto"> Hide this service</label>${bar("services",i)}</details>`).join("")}<button data-a="add" data-l="services">Add a service</button></details>
 <details><summary>FAQs</summary>${D.faqs.map((f,i)=>`<div>${I(`faqs.${i}.q`,"Question",f.q)}${I(`faqs.${i}.a`,"Answer",f.a,3)}${bar("faqs",i)}<hr></div>`).join("")}<button data-a="add" data-l="faqs">Add a question</button></details>
 <details><summary>WhatsApp messages</summary>${Object.keys(c.messages).map(k=>I("cfg.messages."+k,hd(k),c.messages[k],3)).join("")}</details>
 <div style="position:sticky;bottom:0;background:#FFF8F2;padding:.6rem 0;border-top:1px solid #eadbcf"><div id="st" role="status" aria-live="polite" style="font-size:.95rem;margin-bottom:.4rem"></div><button class="p" data-a="save">Save to website</button><button data-a="close">Close</button><button data-a="out">Log out</button></div>`;
@@ -382,7 +415,7 @@ function act(d){
  if(a==="out"){localStorage.removeItem("ia_key");KEY="";return login()}
  if(a==="rmph"){D.photo="";return edit()}
  if(a==="save")return save();
- if(a==="add"){const k="s"+Date.now();D[L].push(L==="services"?{key:k,name:"",price:"",unit:"",who:"",items:[],note:"",cta:"Ask about this",link:""}:L==="pick"?{t:"",l:"",k:"general"}:{q:"",a:""});if(L==="services")D.cfg.messages[k]="Hi Zondra! I’d like to ask about one of your services.";return edit()}
+ if(a==="add"){const k="s"+Date.now();D[L].push(L==="services"?{key:k,name:"",price:"",unit:"",who:"",items:[],note:"",cta:"Ask about this",link:""}:{q:"",a:""});if(L==="services")D.cfg.messages[k]="Hi Zondra! I’d like to ask about one of your services.";return edit()}
  if(a==="up"||a==="dn"){const j=i+(a==="up"?-1:1),A=D[L];if(j<0||j>=A.length)return;[A[i],A[j]]=[A[j],A[i]];return edit()}
  if(a==="del"&&confirm("Delete this?")){D[L].splice(i,1);edit()}
 }
