@@ -21,7 +21,7 @@ h1{font-size:clamp(2.1rem,6.5vw,3.5rem)}h2{font-size:clamp(1.6rem,4.5vw,2.4rem)}
 p{margin:0 0 1em;max-width:62ch}a{color:inherit}
 .wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
 section{padding:2.6rem 0}
-.s-sand{background:var(--sand)}.s-peach{background:var(--out)}.s-green{background:var(--green)}.s-olive{background:var(--olive)}.s-terra{background:var(--terra)}.s-burnt{background:var(--burnt)}
+.s-sand{background:var(--sand)}.s-peach{background:var(--out)}.s-soft{background:var(--olive-soft)}.s-green{background:var(--green)}.s-olive{background:var(--olive)}.s-terra{background:var(--terra)}.s-burnt{background:var(--burnt)}
 .dk{color:var(--surface)}.dk h1,.dk h2,.dk h3{color:inherit}.dk .lead{color:inherit;opacity:.9}
 .dk .btn{background:var(--surface);color:var(--green);border-color:var(--surface)}.dk .btn.ghost{background:transparent;color:inherit;border-color:currentColor}
 .lead{font-size:1.15rem;color:var(--mute)}
@@ -148,7 +148,7 @@ footer{padding:2rem 0;padding-bottom:calc(2rem + env(safe-area-inset-bottom,0px)
 
 <section id="services"><div class="wrap">
 <h2>Services and pricing</h2>
-<div class="grid g2" id="servicecards"></div>
+<div class="grid g2" id="servicecards"><article class="card"><h3>Free 2-Minute Check</h3><p class="price">Free <small>no obligation</small></p><p>Send your 3 most-asked questions, get 1-2 fixes.</p><a class="btn" data-wa="check" href="https://wa.me/27768260594?text=CHECK.%20Hi%20Zondra!%20I%E2%80%99d%20like%20a%20free%202-minute%20check.%20Here%20are%20some%20questions%20my%20customers%20keep%20asking%3A">Get my free check</a></article><article class="card"><h3>First Impression Pack</h3><p class="price">R150 <small>once-off</small></p><p>A clear, professional first impression on WhatsApp Business.</p><ul><li>1 bio</li><li>1 greeting</li><li>5 quick replies</li><li>5 catalogue descriptions</li></ul><div class="note">I prepare wording, you copy-paste it. I never need your password or login.</div><a class="btn" data-wa="pack" href="https://wa.me/27768260594?text=Hi%20Zondra!%20I%E2%80%99d%20like%20to%20find%20out%20more%20about%20the%20R150%20First%20Impression%20Pack.">Ask about the First Impression Pack</a></article><article class="card"><h3>Greeting Glow-Up</h3><p class="price">R30 <small>once-off</small></p><p>1 clear greeting, so customers know how to order straight away.</p><a class="btn" data-wa="greeting" href="https://wa.me/27768260594?text=Hi%20Zondra!%20I%E2%80%99d%20like%20to%20find%20out%20more%20about%20the%20R30%20Greeting%20Glow-Up.">Ask about Greeting Glow-Up</a></article><article class="card"><h3>Quick Reply Rescue</h3><p class="price">R50 <small>once-off</small></p><p>5 quick replies, so you stop typing the same answers.</p><a class="btn" data-wa="reply" href="https://wa.me/27768260594?text=Hi%20Zondra!%20I%E2%80%99d%20like%20to%20find%20out%20more%20about%20the%20R50%20Quick%20Reply%20Rescue.">Ask about Quick Reply Rescue</a></article></div>
 </div></section>
 
 <section id="selar" class="s-burnt dk" hidden><div class="wrap">
@@ -182,6 +182,11 @@ footer{padding:2rem 0;padding-bottom:calc(2rem + env(safe-area-inset-bottom,0px)
 <section id="faq"><div class="wrap">
 <h2>Frequently asked questions</h2>
 <div id="faqlist"></div>
+</div></section>
+
+<section id="start" class="s-soft"><div class="wrap">
+<h2>Want to start small?</h2>
+<p class="lead" data-t="start_small">Start with a FREE 2-Minute Check. Send me your 3 most-asked questions and I’ll suggest 1-2 fixes. No pressure to buy.</p>
 </div></section>
 
 <section id="contact" class="s-terra dk"><div class="wrap">
@@ -221,21 +226,18 @@ const CONFIG = {
 };
 const SERVICES = [
   { key:"check", name:"Free 2-Minute Check", price:"Free", unit:"no obligation",
-    who:"For when customers keep asking the same questions and you’re not sure why.",
-    items:["Send me three questions customers ask you most (hide names and numbers)","I look at why they might keep asking","You get one or two practical fixes"],
-    note:"", cta:"Get my free check" },
+    who:"Send your 3 most-asked questions, get 1-2 fixes.",
+    items:[], note:"", cta:"Get my free check" },
   { key:"pack", name:"First Impression Pack", price:"R150", unit:"once-off",
-    who:"For a clear, professional first impression on WhatsApp Business.",
-    items:["1 bio","1 greeting","5 quick replies","5 product descriptions"],
+    who:"A clear, professional first impression on WhatsApp Business.",
+    items:["1 bio","1 greeting","5 quick replies","5 catalogue descriptions"],
     note:"I prepare wording, you copy-paste it. I never need your password or login.", cta:"Ask about the First Impression Pack" },
   { key:"greeting", name:"Greeting Glow-Up", price:"R30", unit:"once-off",
-    who:"For a greeting that’s generic, unclear or doesn’t tell customers what to do next.",
-    items:["1 greeting only"],
-    note:"", cta:"Ask about Greeting Glow-Up" },
+    who:"1 clear greeting, so customers know how to order straight away.",
+    items:[], note:"", cta:"Ask about Greeting Glow-Up" },
   { key:"reply", name:"Quick Reply Rescue", price:"R50", unit:"once-off",
-    who:"For when you keep typing the same answers and want replies that sound clearer and more professional.",
-    items:["5 quick replies only"],
-    note:"", cta:"Ask about Quick Reply Rescue" }
+    who:"5 quick replies, so you stop typing the same answers.",
+    items:[], note:"", cta:"Ask about Quick Reply Rescue" }
 ];
 const FAQS = [
  ["Do you log into my WhatsApp account?","No. I never need your password, login or access to your account. I write the wording and you copy-paste it yourself."],
