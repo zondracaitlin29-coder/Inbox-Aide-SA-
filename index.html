@@ -212,6 +212,7 @@ const CONFIG = {
   messages: {
     check: "CHECK. Hi Zondra! I’d like a free 2-minute check. Here are some questions my customers keep asking:",
     checkonly: "CHECK",
+    replycheck: "CHECK. Hi Zondra! I’d like a free 2-minute check of my last reply.",
     greeting: "Hi Zondra! I’d like to find out more about the R30 Greeting Glow-Up.",
     reply: "Hi Zondra! I’d like to find out more about the R50 Quick Reply Rescue.",
     pack: "Hi Zondra! I’d like to find out more about the R150 First Impression Pack.",
@@ -298,7 +299,7 @@ function chkUpdate(){
   const cta = $("#chkcta");
   cta.hidden = n===0 || missing.length===0;
   if (!cta.hidden) {
-    const msg = (CONFIG.messages.checkonly || "CHECK") + "\nMy last reply was missing: " + missing.map(c => c.gap.toLowerCase()).join(", ");
+    const msg = (CONFIG.messages.replycheck || "CHECK") + "\nIt scored " + n + " of 5.\nMissing: " + missing.map(c => c.gap.toLowerCase()).join(", ");
     cta.href = "https://wa.me/" + num + "?text=" + encodeURIComponent(msg);
     cta.target = "_blank"; cta.rel = "noopener";
   }
